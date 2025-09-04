@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <cs50.h>
 
-string main(void) {
+int main(void) {
 
     printf("hello, world\n");
 }
+
