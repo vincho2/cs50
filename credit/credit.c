@@ -81,7 +81,7 @@ int main(void)
 bool check_amex(long card_nb)
 {
     // Extract the first 2 digits of the card number
-    int starting_2_digits = starting_digits(card_nb, size_amex, 2);
+    int starting_2_digits = starting_digits(card_nb, size_15, 2);
 
     // Check that the starting digits of the card number are valid for this card type
     bool check_starting_digits =
@@ -105,7 +105,7 @@ bool check_amex(long card_nb)
 bool check_mastercard(long card_nb)
 {
     // Extract the first 2 digits of the card number
-    int starting_2_digits = starting_digits(card_nb, size_matercard, 2);
+    int starting_2_digits = starting_digits(card_nb, size_16, 2);
 
     // Check that the starting digits of the card number are valid for this card type
     bool check_starting_digits =
@@ -131,8 +131,8 @@ bool check_mastercard(long card_nb)
 bool check_visa(long card_nb)
 {
     // Extract the first digit of the card number
-    int check_starting_digit_low = starting_digits(card_nb, size_visa_low, 1);
-    int check_starting_digit_high = starting_digits(card_nb, size_visa_high, 1);
+    int check_starting_digit_low = starting_digits(card_nb, size_13, 1);
+    int check_starting_digit_high = starting_digits(card_nb, size_16, 1);
 
     // Check that the starting digit of the card number is valid for this card type
     bool check_starting_digits =
