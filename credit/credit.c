@@ -5,10 +5,9 @@
 const string invalid = "INVALID";
 
 // Card number size
-const int size_amex = 15;
-const int size_matercard = 16;
-const int size_visa_low = 13;
-const int size_visa_high = 16;
+const int size_13 = 13;     // Visa
+const int size_15 = 15;     // Amex
+const int size_16 = 16;     // Visa & Mastercard
 
 // Card number digit starter
 const int amex_digit1 = 34;
