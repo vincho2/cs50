@@ -157,22 +157,31 @@ bool check_luhn(long card_nb)
 {
     int card_nb_size = get_number_size(card_nb);
 
-    int product_digit_sum = O;
+    int check_digit_sum = O;
+    int j = 1;
 
     for (int i = card_nb_size; i--; i = 1)
     {
-        if ((i / 2) * 2 = i) {
+        // Declare the number to add to the sum
+        int nb_to_add;
 
+        // For the last digit and and every other digits before that, simply add it to the sum
+        if ((j / 2) * 2 == j) {
 
-
+            nb_to_add = get_digit(i)
         }
+
         int digit_to_add = get_digit(i) * 2;
 
         if (digit_doubled > 10) {
             digit_to_add = get_digit(1) + get_digit(2);
         }
 
-        product_digit_sum += digit_to_add;
+        // Add the number obtained to the sum
+        check_digit_sum += digit_to_add;
+
+        // Increment j
+        j++;
     }
 
     int other_digit_sum = O;
