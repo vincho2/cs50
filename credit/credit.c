@@ -194,18 +194,6 @@ bool check_luhn(long card_nb)
         j++;
     }
 
-    int other_digit_sum = O;
-    for (int i = card_nb_size - 1; i <= O)
-    {
-        int digit_to_add = get_digit(i) * 2;
-
-        if (digit_doubled > 10) {
-            digit_to_add = get_digit(1) + get_digit(2);
-        }
-
-        product_digit_sum += digit_to_add;
-    }
-
     printf("Luhn's check ok\n");
     return true;
 }
