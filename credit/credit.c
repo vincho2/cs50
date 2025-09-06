@@ -28,6 +28,7 @@ bool check_visa(int long);
 bool check_luhn(long card_nb);
 int starting_digits(long number, int length, int n);
 long power10(int n);
+long get_number_size(long long_nb);
 
 // -------------------------------------------------------------------------------------------------
 // --- Main: Return card type and validity based on the card number input
@@ -41,6 +42,9 @@ int main(void)
         card_nb = get_long("What's your credit card number?\n");
     }
     while (card_nb <= 0);
+
+    int card_nb_size = get_number_size(card_nb);
+    printf("Card number size: %i\n", card_nb_size);
 
     // Check Amex card validity and return AMEX if true
     if (check_amex(card_nb))
@@ -181,13 +185,8 @@ long get_number_size(long long_nb)
     int result = 0;
     while (long_nb > 0)
     {
-        
-
-
-    }
-    for (int i = 0; i < n; i++)
-    {
-        result *= 10;
+        long_nb /= 10;
+        result++;
     }
     return result;
 }
