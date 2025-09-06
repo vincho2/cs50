@@ -198,9 +198,11 @@ long get_number_size(long long_nb)
 // -------------------------------------------------------------------------------------------------
 // Helper function: Get number digit i
 // -------------------------------------------------------------------------------------------------
-long get_digit(long long_nb, int digit_nb)
+int get_digit(long long_nb, int digit_nb)
 {
-    int result = 0;
+    int nb_size = get_number_size(long_nb);
+
+    return get_last_digit(long_nb / power10(nb_size))
     while (long_nb > 0)
     {
         long_nb /= 10;
@@ -212,7 +214,7 @@ long get_digit(long long_nb, int digit_nb)
 // -------------------------------------------------------------------------------------------------
 // Helper function: Get number last
 // -------------------------------------------------------------------------------------------------
-long get_last_digit(long long_nb)
+int get_last_digit(long long_nb)
 {
     return long_nb - (long_nb / 10) * 10;
 }
