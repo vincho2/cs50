@@ -165,17 +165,20 @@ bool check_luhn(long card_nb)
         // Declare the number to add to the sum
         int nb_to_add;
         int digit_i = get_digit(card_nb, i);
+        string loop_comment;
 
         // For the last digit and every other digits before that, simply add it to the sum
         if ((j / 2) * 2 == j)
         {
             nb_to_add = digit_i;
+            loop_comment = "add digit value";
         }
         // For the second-to-last digit and every other digits before that, check further
         else
         {
             // Double the digit
             nb_to_add = digit_i * 2;
+            loop_comment = "add doubled digit value";
 
             // If the doubled digit is higer than 10, number to add is the sum of the digits of the
             // doubled digit
@@ -183,6 +186,7 @@ bool check_luhn(long card_nb)
             {
                 // Replace the number to add by the sum of both digits of the doubled digit
                 nb_to_add = get_digit(nb_to_add, 1) + get_digit(nb_to_add, 2);
+                loop_comment = "add doubled digit 2 digits value";
             }
         }
 
