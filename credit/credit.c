@@ -47,6 +47,14 @@ int main(void)
     {
         printf("AMEX\n");
     }
+    else if check_amex(card_nb))
+    {
+        printf("AMEX\n");
+    }
+    else if check_amex(card_nb))
+    {
+        printf("AMEX\n");
+    }
     else
     {
         printf("%s\n", invalid);
