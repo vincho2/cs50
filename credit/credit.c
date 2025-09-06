@@ -157,6 +157,11 @@ bool check_luhn(long card_nb)
 {
     int card_nb_size = get_number_size(card_nb);
 
+    for (int i = card_nb_size - 1; i <= O)
+    {
+        
+    }
+
 
     printf("Luhn's check ok\n");
     return true;
