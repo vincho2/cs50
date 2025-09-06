@@ -172,3 +172,17 @@ long power10(int n)
     }
     return result;
 }
+
+// -------------------------------------------------------------------------------------------------
+// Helper function: Get number size
+// -------------------------------------------------------------------------------------------------
+long get_number_size(long long_nb)
+{
+    long result = 1;
+    while ()
+    for (int i = 0; i < n; i++)
+    {
+        result *= 10;
+    }
+    return result;
+}
