@@ -29,7 +29,7 @@ int starting_digits(long number, int length, int n);
 long get_number_size(long long_nb);
 int get_digit(long long_nb, int digit_nb);
 int get_last_digit(long long_nb);
-long power10(int n);
+long power_10(int n);
 
 // -------------------------------------------------------------------------------------------------
 // --- Main: Return card type and validity based on the card number input
@@ -212,7 +212,7 @@ bool check_luhn(long card_nb)
 // -------------------------------------------------------------------------------------------------
 int starting_digits(long number, int length, int n)
 {
-    int starting_digits = number / power10(length - n);
+    int starting_digits = number / power_10(length - n);
     printf("starting digits: %i\n", starting_digits);
 
     return starting_digits;
@@ -238,7 +238,7 @@ long get_number_size(long long_nb)
 int get_digit(long long_nb, int digit_nb)
 {
     int nb_size = get_number_size(long_nb);
-    return get_last_digit(long_nb / power10(nb_size - digit_nb));
+    return get_last_digit(long_nb / power_10(nb_size - digit_nb));
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -252,7 +252,7 @@ int get_last_digit(long long_nb)
 // -------------------------------------------------------------------------------------------------
 // Helper function: Returns 10^n, n being the argument provided
 // -------------------------------------------------------------------------------------------------
-long power10(int n)
+long power_10(int n)
 {
     long result = 1;
     for (int i = 0; i < n; i++)
