@@ -164,18 +164,27 @@ bool check_luhn(long card_nb)
     {
         // Declare the number to add to the sum
         int nb_to_add;
+        int nb_to_add = get_digit(i)
 
         // For the last digit and and every other digits before that, simply add it to the sum
         if ((j / 2) * 2 == j) {
 
             nb_to_add = get_digit(i)
         }
+        else
+        {
 
-        int digit_to_add = get_digit(i) * 2;
+            nb_to_add = get_digit(i) * 2;
 
-        if (digit_doubled > 10) {
-            digit_to_add = get_digit(1) + get_digit(2);
+            // If the doubled digit is higer than 10, replace the number
+            if (nb_to_add > 10)
+            {
+                // Add both digits of the initial doubled digit together
+                nb_to_add = get_digit(nb_to_add, 1) + get_digit(nb_to_add, 2);
+            }
         }
+
+
 
         // Add the number obtained to the sum
         check_digit_sum += digit_to_add;
