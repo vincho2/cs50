@@ -157,7 +157,7 @@ bool check_luhn(long card_nb)
 {
     int card_nb_size = get_number_size(card_nb);
 
-    int check_digit_sum = O;
+    int check_digit_sum = 0;
     int j = 1;
 
     for (int i = card_nb_size; i--; i = 1)
@@ -203,7 +203,7 @@ bool check_luhn(long card_nb)
     else
     {
         printf("Result of modulo = %i\n", check_digit_sum % 10);
-        return false
+        return false;
     }
 }
 
