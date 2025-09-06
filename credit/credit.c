@@ -58,7 +58,6 @@ int main(void)
 // -------------------------------------------------------------------------------------------------
 bool check_amex(long card_nb)
 {
-
     // Extract the first 2 digits of the card number
     int dig_st_2 = starting_digits(card_nb, size_amex, 2);
 
@@ -105,7 +104,22 @@ bool check_mastercard(long card_nb)
 // -------------------------------------------------------------------------------------------------
 bool check_visa(long card_nb)
 {
-    return true;
+    // Extract the first digit of the card number
+    int dig_st_1_low = starting_digits(card_nb, size_visa_low, 1);
+    int dig_st_1_high = starting_digits(card_nb, size_visa_high, 1);
+
+    // Check that the starting digit of the card number is valid for this card type
+    bool check_st_dig = (dig_st_1_low == st_dig_visa || dig_st_1_high == st_dig_visa);
+
+    // Check overall validity by checking the firt digits and then Luhn algorithm
+    if (check_st_dig && check_luhn(card_nb))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 // -------------------------------------------------------------------------------------------------
