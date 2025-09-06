@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <cs50.h>
+#include <stdio.h>
 
 // Define constants
 const string invalid = "INVALID";
@@ -30,7 +30,7 @@ int starting_digits(long number, int length, int n);
 long power10(int n);
 
 // -------------------------------------------------------------------------------------------------
-// --- Main: Return card type and validity based on the card number input --------------------------------
+// --- Main: Return card type and validity based on the card number input
 // -------------------------------------------------------------------------------------------------
 int main(void)
 {
@@ -85,7 +85,9 @@ bool check_mastercard(long card_nb)
     int dig_st_2 = starting_digits(card_nb, size_matercard, 2);
 
     // Check that the starting digits of the card number are valid for this card type
-    bool check_st_dig = (dig_st_2 == st_dig_amx1 || dig_st_2 == st_dig_amx2);
+    bool check_st_dig =
+        (dig_st_2 == st_dig_mcd1 || dig_st_2 == st_dig_mcd2 || dig_st_2 == st_dig_mcd3 ||
+         dig_st_2 == st_dig_mcd4 || dig_st_2 == st_dig_mcd5);
 
     // Check overall validity by checking the firt digits and then Luhn algorithm
     if (check_st_dig && check_luhn(card_nb))
@@ -133,9 +135,7 @@ long power10(int n)
     long result = 1;
     for (int i = 0; i < n; i++)
     {
-        result *=10;
+        result *= 10;
     }
     return result;
 }
-
-
