@@ -178,8 +178,13 @@ long power10(int n)
 // -------------------------------------------------------------------------------------------------
 long get_number_size(long long_nb)
 {
-    long result = 1;
-    while ()
+    int result = 0;
+    while (long_nb > 0)
+    {
+        
+
+
+    }
     for (int i = 0; i < n; i++)
     {
         result *= 10;
