@@ -47,14 +47,17 @@ int main(void)
     {
         printf("AMEX\n");
     }
+
     // Check MasterCard validity and return MASTERCARD if true
     else if check_amex(card_nb))
     {
-        printf("AMEX\n");
+        printf("MASTERCARD\n");
     }
-    else if check_amex(card_nb))
+
+    // Check Visa validity and return VISA if true
+    else if check_visa(card_nb))
     {
-        printf("AMEX\n");
+        printf("VISA\n");
     }
     else
     {
