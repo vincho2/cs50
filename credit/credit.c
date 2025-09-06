@@ -177,7 +177,7 @@ bool check_luhn(long card_nb)
 
             // If the doubled digit is higer than 10, number to add is the sum of the digits of the
             // doubled digit
-            if (nb_to_add > 10)
+            if (nb_to_add > 9)
             {
                 // Replace the number to add by the sum of both digits of the doubled digit
                 nb_to_add = get_digit(nb_to_add, 1) + get_digit(nb_to_add, 2);
