@@ -164,7 +164,7 @@ bool check_luhn(long card_nb)
     {
         // Declare the number to add to the sum
         int nb_to_add;
-        int nb_to_add = get_digit(i)
+        int digit_i = get_digit(i);
 
         // For the last digit and and every other digits before that, simply add it to the sum
         if ((j / 2) * 2 == j)
