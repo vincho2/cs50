@@ -148,6 +148,9 @@ bool check_visa(long card_nb)
 // -------------------------------------------------------------------------------------------------
 bool check_luhn(long card_nb)
 {
+    int card_nb_size = get_number_size(card_nb);
+
+
     printf("Luhn's check ok\n");
     return true;
 }
@@ -180,6 +183,20 @@ long power10(int n)
 // Helper function: Get number size
 // -------------------------------------------------------------------------------------------------
 long get_number_size(long long_nb)
+{
+    int result = 0;
+    while (long_nb > 0)
+    {
+        long_nb /= 10;
+        result++;
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------
+// Helper function: Get number digit i
+// -------------------------------------------------------------------------------------------------
+long get_digit(long long_nb, int digit_nb)
 {
     int result = 0;
     while (long_nb > 0)
