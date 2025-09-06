@@ -159,7 +159,7 @@ bool check_luhn(long card_nb)
 
     for (int i = card_nb_size - 1; i <= O)
     {
-        
+        int 
     }
 
 
