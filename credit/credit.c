@@ -168,7 +168,7 @@ bool check_luhn(long card_nb)
         string loop_comment;
 
         // For the last digit and every other digits before that, simply add it to the sum
-        if ((j / 2) * 2 == j)
+        if ((j / 2) * 2 != j)
         {
             nb_to_add = digit_i;
             loop_comment = "add digit value";
