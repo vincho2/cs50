@@ -83,6 +83,7 @@ bool check_amex(long card_nb)
     }
     else
     {
+        printf("Not an Amex"\n);
         return false;
     }
 }
@@ -107,6 +108,7 @@ bool check_mastercard(long card_nb)
     }
     else
     {
+        printf("Not an Amex"\n);
         return false;
     }
 }
@@ -139,6 +141,7 @@ bool check_visa(long card_nb)
 // -------------------------------------------------------------------------------------------------
 bool check_luhn(long card_nb)
 {
+    printf("Luhn's check ok"\n);
     return true;
 }
 
