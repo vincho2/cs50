@@ -47,6 +47,7 @@ int main(void)
     {
         printf("AMEX\n");
     }
+    // Check MasterCard validity and return MASTERCARD if true
     else if check_amex(card_nb))
     {
         printf("AMEX\n");
