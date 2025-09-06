@@ -159,8 +159,13 @@ bool check_luhn(long card_nb)
 
     int product_digit_sum = O;
 
-    for (int i = card_nb_size - 1; i <= O)
+    for (int i = card_nb_size; i--; i = 1)
     {
+        if ((i / 2) * 2 = i) {
+
+
+
+        }
         int digit_to_add = get_digit(i) * 2;
 
         if (digit_doubled > 10) {
