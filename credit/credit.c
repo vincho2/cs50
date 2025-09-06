@@ -166,13 +166,15 @@ bool check_luhn(long card_nb)
         int nb_to_add;
         int digit_i = get_digit(i);
 
-        // For the last digit and and every other digits before that, simply add it to the sum
+        // For the last digit and every other digits before that, simply add it to the sum
         if ((j / 2) * 2 == j)
         {
             nb_to_add = digit_i;
         }
+        // For the second-to-last digit and every other digits before that, check further
         else
         {
+            // Double the digit
             nb_to_add = digit_i * 2;
 
             // If the doubled digit is higer than 10, replace the number
