@@ -26,10 +26,10 @@ bool check_mastercard(long card_nb);
 bool check_visa(int long);
 bool check_luhn(long card_nb);
 int starting_digits(long number, int length, int n);
-long power10(int n);
 long get_number_size(long long_nb);
 int get_digit(long long_nb, int digit_nb);
 int get_last_digit(long long_nb);
+long power10(int n);
 
 // -------------------------------------------------------------------------------------------------
 // --- Main: Return card type and validity based on the card number input
@@ -173,18 +173,6 @@ int starting_digits(long number, int length, int n)
     return starting_digits;
 }
 
-// -------------------------------------------------------------------------------------------------
-// Helper function: Returns 10^n, n being the argument provided
-// -------------------------------------------------------------------------------------------------
-long power10(int n)
-{
-    long result = 1;
-    for (int i = 0; i < n; i++)
-    {
-        result *= 10;
-    }
-    return result;
-}
 
 // -------------------------------------------------------------------------------------------------
 // Helper function: Get number size
@@ -215,4 +203,17 @@ int get_digit(long long_nb, int digit_nb)
 int get_last_digit(long long_nb)
 {
     return long_nb - (long_nb / 10) * 10;
+}
+
+// -------------------------------------------------------------------------------------------------
+// Helper function: Returns 10^n, n being the argument provided
+// -------------------------------------------------------------------------------------------------
+long power10(int n)
+{
+    long result = 1;
+    for (int i = 0; i < n; i++)
+    {
+        result *= 10;
+    }
+    return result;
 }
