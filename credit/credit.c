@@ -192,7 +192,8 @@ bool check_luhn(long card_nb)
 
         // Add the number obtained to the overal sum
         check_digit_sum += nb_to_add;
-        printf("check digit sum: %i, digit checked: %i, nb added: %i\n", check_digit_sum, digit_i, nb_to_add);
+        printf("check digit sum: %i, digit checked: %i, calculation applied: %s, nb added: %i\n",
+             check_digit_sum, digit_i, loop_comment, nb_to_add);
 
         // Increment j
         j++;
