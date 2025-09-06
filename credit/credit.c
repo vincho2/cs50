@@ -194,8 +194,17 @@ bool check_luhn(long card_nb)
         j++;
     }
 
-    printf("Luhn's check ok\n");
-    return true;
+    // After looping on all digits, return true if the final sum modulo 10 is congruent to 0
+    if ((check_digit_sum % 10) == 0)
+    {
+        printf("Luhn's check ok\n");
+        return true;
+    }
+    else
+    {
+        printf("Result of modulo = %i\n", check_digit_sum % 10);
+        return false
+    }
 }
 
 // -------------------------------------------------------------------------------------------------
