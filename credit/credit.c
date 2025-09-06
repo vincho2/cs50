@@ -177,18 +177,18 @@ bool check_luhn(long card_nb)
             // Double the digit
             nb_to_add = digit_i * 2;
 
-            // If the doubled digit is higer than 10, replace the number
+            // If the doubled digit is higer than 10, number to add is the sum of the digits of the
+            // doubled digit
             if (nb_to_add > 10)
             {
-                // Add both digits of the initial doubled digit together
+                // Replace the number to add by the sum of both digits of the doubled digit
                 nb_to_add = get_digit(nb_to_add, 1) + get_digit(nb_to_add, 2);
             }
         }
 
-
-
-        // Add the number obtained to the sum
-        check_digit_sum += digit_to_add;
+        // Add the number obtained to the overal sum
+        check_digit_sum += nb_to_add;
+        printf("check digit sum: %i, digit checked: %i, nb added: %i\n", check_digit_sum, i, nb_to_add);
 
         // Increment j
         j++;
