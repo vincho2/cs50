@@ -49,13 +49,13 @@ int main(void)
     }
 
     // Check MasterCard validity and return MASTERCARD if true
-    else if check_amex(card_nb))
+    else if (check_mastercard(card_nb))
     {
         printf("MASTERCARD\n");
     }
 
     // Check Visa validity and return VISA if true
-    else if check_visa(card_nb))
+    else if (check_visa(card_nb))
     {
         printf("VISA\n");
     }
@@ -108,7 +108,7 @@ bool check_mastercard(long card_nb)
     }
     else
     {
-        printf("Not an Amex"\n);
+        printf("Not a Mastercard"\n);
         return false;
     }
 }
@@ -132,6 +132,7 @@ bool check_visa(long card_nb)
     }
     else
     {
+        printf("Not a Visa"\n);
         return false;
     }
 }
