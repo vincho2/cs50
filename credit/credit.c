@@ -160,7 +160,7 @@ bool check_luhn(long card_nb)
     int check_digit_sum = 0;
     int j = 1;
 
-    for (int i = card_nb_size; i == 1; i--)
+    for (int i = card_nb_size; i > 0; i--)
     {
         // Declare the number to add to the sum
         int nb_to_add;
