@@ -82,7 +82,7 @@ bool check_amex(long card_nb)
 bool check_mastercard(long card_nb)
 {
     // Extract the first 2 digits of the card number
-    int dig_st_2 = starting_digits(card_nb, size_amex, 2);
+    int dig_st_2 = starting_digits(card_nb, size_matercard, 2);
 
     // Check that the starting digits of the card number are valid for this card type
     bool check_st_dig = (dig_st_2 == st_dig_amx1 || dig_st_2 == st_dig_amx2);
