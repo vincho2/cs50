@@ -71,13 +71,14 @@ int main(void)
 bool check_amex(long card_nb)
 {
     // Extract the first 2 digits of the card number
-    int dig_st_2 = starting_digits(card_nb, size_amex, 2);
+    int starting_2_digits = starting_digits(card_nb, size_amex, 2);
 
     // Check that the starting digits of the card number are valid for this card type
-    bool check_st_dig = (dig_st_2 == amex_digit1 || dig_st_2 == amex_digit2);
+    bool check_starting_digits =
+        (starting_2_digits == amex_digit1 || starting_2_digits == amex_digit2);
 
     // Check overall validity by checking the firt digits and then Luhn algorithm
-    if (check_st_dig && check_luhn(card_nb))
+    if (check_starting_digits && check_luhn(card_nb))
     {
         return true;
     }
@@ -94,15 +95,16 @@ bool check_amex(long card_nb)
 bool check_mastercard(long card_nb)
 {
     // Extract the first 2 digits of the card number
-    int dig_st_2 = starting_digits(card_nb, size_matercard, 2);
+    int starting_2_digits = starting_digits(card_nb, size_matercard, 2);
 
     // Check that the starting digits of the card number are valid for this card type
-    bool check_st_dig =
-        (dig_st_2 == mast_digit1 || dig_st_2 == mast_digit2 || dig_st_2 == mast_digit3 ||
-         dig_st_2 == mast_digit4 || dig_st_2 == mast_digit5);
+    bool check_starting_digits =
+        (starting_2_digits == mast_digit1 || starting_2_digits == mast_digit2 ||
+         starting_2_digits == mast_digit3 || starting_2_digits == mast_digit4 ||
+         starting_2_digits == mast_digit5);
 
     // Check overall validity by checking the firt digits and then Luhn algorithm
-    if (check_st_dig && check_luhn(card_nb))
+    if (check_starting_digits && check_luhn(card_nb))
     {
         return true;
     }
@@ -119,14 +121,15 @@ bool check_mastercard(long card_nb)
 bool check_visa(long card_nb)
 {
     // Extract the first digit of the card number
-    int dig_st_1_low = starting_digits(card_nb, size_visa_low, 1);
-    int dig_st_1_high = starting_digits(card_nb, size_visa_high, 1);
+    int check_starting_digit_low = starting_digits(card_nb, size_visa_low, 1);
+    int check_starting_digit_high = starting_digits(card_nb, size_visa_high, 1);
 
     // Check that the starting digit of the card number is valid for this card type
-    bool check_st_dig = (dig_st_1_low == visa_digit || dig_st_1_high == visa_digit);
+    bool check_starting_digits =
+        (check_starting_digit_low == visa_digit || check_starting_digit_high == visa_digit);
 
     // Check overall validity by checking the firt digits and then Luhn algorithm
-    if (check_st_dig && check_luhn(card_nb))
+    if (check_starting_digits && check_luhn(card_nb))
     {
         return true;
     }
