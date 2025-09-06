@@ -38,19 +38,14 @@ int main(void)
 {
     // Ask for the credit card number until a valid positive long integer is displayed
     long card_nb;
-    int digit_requested;                                                // to be removed
     do
     {
         card_nb = get_long("What's your credit card number?\n");
-        digit_requested = get_int("What digit do you want?\n");         // to be removed
     }
     while (card_nb <= 0);
 
     int card_nb_size = get_number_size(card_nb);
     printf("Card number size: %i\n", card_nb_size);
-
-    int nb_digit = get_digit(card_nb, digit_requested);
-    printf("Digit value: %i\n", nb_digit);
 
     // Check Amex card validity and return AMEX if true
     if (check_amex(card_nb))
