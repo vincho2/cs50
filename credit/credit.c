@@ -28,8 +28,8 @@ bool check_luhn(long card_nb);
 int starting_digits(long number, int length, int n);
 long power10(int n);
 long get_number_size(long long_nb);
-long get_digit(long long_nb, int digit_nb);
-long get_last_digit(long long_nb);
+int get_digit(long long_nb, int digit_nb);
+int get_last_digit(long long_nb);
 
 // -------------------------------------------------------------------------------------------------
 // --- Main: Return card type and validity based on the card number input
@@ -206,7 +206,7 @@ long get_number_size(long long_nb)
 int get_digit(long long_nb, int digit_nb)
 {
     int nb_size = get_number_size(long_nb);
-    return get_last_digit(long_nb / power10(nb_size - digit_nb))
+    return get_last_digit(long_nb / power10(nb_size - digit_nb));
 }
 
 // -------------------------------------------------------------------------------------------------
