@@ -213,6 +213,7 @@ void sort_pairs(void)
 // -------------------------------------------------------------------------------------------------
 void lock_pairs(void)
 {
+    printf("Pairs locked"); // TBR
     // TODO
 
 }
@@ -222,6 +223,7 @@ void lock_pairs(void)
 // -------------------------------------------------------------------------------------------------
 void print_winner(void)
 {
+    printf("Winner is printed"); // TBR
     // TODO
 
 }
@@ -342,5 +344,5 @@ void populate_sub_array(pair source_array[],
 
 int get_pair_winner_votes(pair pair)
 {
-    return preferences[pair.winner, pair.loser];
+    return preferences[pair.winner][pair.loser];
 }
