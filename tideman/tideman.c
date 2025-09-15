@@ -300,8 +300,12 @@ void sort_array(pair pairs_array[], int array_size)
             {
                 for (int i = left_counter; i < left_array_size; i++)
                 {
-                    pairs_array[]
+                    pairs_array[array_pair_id] = left_array[left_counter];
                 }
+            }
+            else
+            {
+
             }
         }
     }
