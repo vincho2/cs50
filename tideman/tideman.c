@@ -166,10 +166,10 @@ void add_pairs(void)
     int win_i_over_j;
     int win_j_over_i;
     int k = 0;
-    // Loop over pair and define the winner / loser
+    // Loop over each pair and define the winner / loser
     for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = 0; j < candidate_count; j++)
+        for (int j = i; j < candidate_count; j++)
         {
             // Define a pair only when there is a winner over a loser
             // (i.e: 2 different candidates, no tie)
