@@ -237,7 +237,7 @@ void print_winner(void)
 // -------------------------------------------------------------------------------------------------
 void sort_array(pair pairs_array[], int array_size)
 {
-    printf("Array size: %i\n", array_size); // TBR
+    printf("Array size to sort: %i\n", array_size); // TBR
     if (array_size == 1)
     {
         printf("Array sorted\n"); // TBR
