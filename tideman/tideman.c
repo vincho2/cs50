@@ -196,7 +196,7 @@ void add_pairs(void)
         }
     }
     // Update pair count when loop is over
-    pair_count = k + 1;
+    pair_count = k;
 
     printf("Unsorted array populated:\n");
     for (int i = 0; i < pair_count; i++)
