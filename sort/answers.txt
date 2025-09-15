@@ -1,0 +1,18 @@
+sort1 uses: bubble sort
+
+How do you know?:
+sort1 is much slower than sort2 and around twice as slower as sort3 for random list.
+bubble sort takes around n² steps while selection sort take around (n²/2) steps (if we ignore the n factor), so it's kind of expected that bubble is twice as slow for random sorting.
+Moreover, when the number are fully sorted initially, sort1 is very fast (proportional to n) which is probably because there is a condition on the no swap which makes the program end faster for already sorted list.
+
+sort2 uses: merge sort
+
+How do you know?:
+sort2 is much faster than the 2 others for the random sort and the timing increase seems to be quite in line with n*log2(n) function
+
+sort3 uses: selection sort
+
+How do you know?:
+sort3 is much slower than sort2 and around twice as quick as sort1 for random list.
+bubble sort takes around n² steps while selection sort take around (n²/2) steps (if we ignore the n factor), so it's kind of expected that selection is twice as quick for random sorting.
+Moreover, when the number are fully sorted initially, sort3 is as fast as for random list sort, which is because the number of steps remains the same whenever the list is random or sorted.

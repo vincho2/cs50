@@ -1,0 +1,15 @@
+sort1:
+
+random5000      : 0.05  / 0.01
+random10000     : 0.20  / 0.02
+random500000    : 6.50  / 0.10
+
+reversed5000    : 0.08  / 0.01
+reversed10000   : 0.20  / 0.02
+reversed500000  :
+
+sorted5000      :
+sorted10000     :
+sorted500000    :
+
+
