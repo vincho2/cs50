@@ -210,6 +210,15 @@ void add_pairs(void)
 void sort_pairs(void)
 {
     sort_array(pairs, pair_count);
+
+    for (int i = 0; i < pair_count; i++)
+        {
+            printf("%s vs %s, Votes: %i\n",
+                candidates[pairs[i].winner],
+                candidates[pairs[i].loser],
+                preferences[pairs[i].winner][pairs[i].loser]);
+        }
+
 }
 
 // -------------------------------------------------------------------------------------------------
