@@ -298,7 +298,10 @@ void sort_array(pair pairs_array[], int array_size)
             // into the parent array
             if (left_counter < left_array_size)
             {
-                for (int i = left)
+                for (int i = left_counter; i < left_array_size; i++)
+                {
+                    pairs_array[]
+                }
             }
         }
     }
