@@ -317,7 +317,7 @@ void sort_array(pair pairs_array[], int array_size)
                 // If left pair has the higher edge, then update the array with this pair
                 if (left_winner_votes > right_winner_votes)
                 {
-                    pairs_array[array_pair_id] = left_pair;
+                    pairs_array[array_pair_id] = left_array[left_counter];
 
                     printf("Pair %i added:", array_pair_id);
                     printf("%s vs %s, Votes: %i\n",
@@ -331,7 +331,7 @@ void sort_array(pair pairs_array[], int array_size)
                 // If right pair has the higher edge, then update the array with this pair
                 else if (right_winner_votes > left_winner_votes)
                 {
-                    pairs_array[array_pair_id] = right_pair;
+                    pairs_array[array_pair_id] = right_array[right_counter];
 
                     printf("Pair %i added:", array_pair_id);
                     printf("%s vs %s, Votes: %i\n",
