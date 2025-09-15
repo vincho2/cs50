@@ -184,6 +184,11 @@ void add_pairs(void)
                     pairs[k].winner = i;
                     pairs[k].loser = j;
                     k++;
+                    printf("Pair %i added: %s vs %s, Votes: %i\n",
+                        k - 1,
+                        candidates[pairs[k].winner],
+                        candidates[pairs[k].loser],
+                        preferences[pairs[k].winner][pairs[k].loser]);
                 }
                 // Define winner / loser of the pair k when candidate j is winning
                 else if (win_j_over_i < win_i_over_j)
@@ -191,6 +196,11 @@ void add_pairs(void)
                     pairs[k].winner = j;
                     pairs[k].loser = i;
                     k++;
+                    printf("Pair %i added: %s vs %s, Votes: %i\n",
+                        k - 1,
+                        candidates[pairs[k].winner],
+                        candidates[pairs[k].loser],
+                        preferences[pairs[k].winner][pairs[k].loser]);
                 }
             }
         }
@@ -201,7 +211,7 @@ void add_pairs(void)
     printf("Unsorted array populated:\n");
     for (int i = 0; i < pair_count; i++)
     {
-        printf("Winner: %s vs Loser: %s, Votes: %i\n",
+        printf("%s vs %s, Votes: %i\n",
             candidates[pairs[i].winner], candidates[pairs[i].loser], preferences[pairs[i].winner][pairs[i].loser]);
     }
 }
