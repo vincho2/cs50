@@ -213,7 +213,7 @@ void sort_pairs(void)
 // -------------------------------------------------------------------------------------------------
 void lock_pairs(void)
 {
-    printf("Pairs locked"); // TBR
+    printf("Pairs locked\n"); // TBR
     // TODO
 
 }
@@ -223,7 +223,7 @@ void lock_pairs(void)
 // -------------------------------------------------------------------------------------------------
 void print_winner(void)
 {
-    printf("Winner is printed"); // TBR
+    printf("Winner is printed\n"); // TBR
     // TODO
 
 }
@@ -236,7 +236,7 @@ void sort_array(pair pairs_array[], int array_size)
     printf("Array size: %i\n", array_size); // TBR
     if (array_size == 1)
     {
-        printf("Array sorted"); // TBR
+        printf("Array sorted\n"); // TBR
     }
     else
     {
