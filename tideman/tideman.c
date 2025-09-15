@@ -294,18 +294,36 @@ void sort_array(pair pairs_array[], int array_size)
                     array_pair_id++;
                 }
             }
-            // At this point, one of the array is fully scanned, so all the remaining pairs goes
-            // into the parent array
+            // At this point, one of the array is fully scanned, so all the remaining pairs of the
+            // other array go into the parent array in their current order
             if (left_counter < left_array_size)
             {
                 for (int i = left_counter; i < left_array_size; i++)
                 {
                     pairs_array[array_pair_id] = left_array[left_counter];
+                    array_pair_id++;
                 }
             }
             else
             {
-
+                for (int i = right_counter; i < right_array_size; i++)
+                {
+                    pairs_array[array_pair_id] = right_array[right_counter];
+                    array_pair_id++;
+                }
+            }
+            // At this point array_pair_id should be equal to the array_size
+            if (array_pair_id != array_size)
+            {
+                printf("issue");
+            }
+            else
+            {
+                for (int i = 0; i < array_size)
+                {
+                    printf("Winner: %s vs Loser: %s, Votes: %i\n",
+                        candidates[pairs[i].winner], candidates[pairs[i].loser], preferences[pairs[i].winner][pairs[i].loser]);
+                }
             }
         }
     }
