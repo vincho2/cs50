@@ -169,39 +169,37 @@ void add_pairs(void)
     // Loop over each pair and define the winner / loser
     for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = i; j < candidate_count; j++)
+        for (int j = i + 1; j < candidate_count; j++)
         {
             // Define a pair only when there is a winner over a loser
-            // (i.e: 2 different candidates, no tie)
-            if(i != j)
+            // (i.e: no tie)
+            win_i_over_j = preferences[i][j];
+            win_j_over_i = preferences[j][i];
+
+            // Define winner / loser of the pair k when candidate i is winning
+            if (win_i_over_j > win_j_over_i)
             {
-                win_i_over_j = preferences[i][j];
-                win_j_over_i = preferences[j][i];
+                pairs[k].winner = i;
+                pairs[k].loser = j;
+                printf("Pair %i added: %s vs %s, Votes: %i\n",
+                    k,
+                    candidates[pairs[k].winner],
+                    candidates[pairs[k].loser],
+                    preferences[pairs[k].winner][pairs[k].loser]);
+                k++;
 
-                // Define winner / loser of the pair k when candidate i is winning
-                if (win_i_over_j > win_j_over_i)
-                {
-                    pairs[k].winner = i;
-                    pairs[k].loser = j;
-                    printf("Pair %i added: %s vs %s, Votes: %i\n",
-                        k,
-                        candidates[pairs[k].winner],
-                        candidates[pairs[k].loser],
-                        preferences[pairs[k].winner][pairs[k].loser]);
-                    k++;
-
-                }
-                // Define winner / loser of the pair k when candidate j is winning
-                else if (win_j_over_i > win_i_over_j)
-                {
-                    pairs[k].winner = j;
-                    pairs[k].loser = i;
-                    printf("Pair %i added: %s vs %s, Votes: %i\n",
-                        k,
-                        candidates[pairs[k].winner],
-                        candidates[pairs[k].loser],
-                        preferences[pairs[k].winner][pairs[k].loser]);
-                    k++;
+            }
+            // Define winner / loser of the pair k when candidate j is winning
+            else if (win_j_over_i > win_i_over_j)
+            {
+                pairs[k].winner = j;
+                pairs[k].loser = i;
+                printf("Pair %i added: %s vs %s, Votes: %i\n",
+                    k,
+                    candidates[pairs[k].winner],
+                    candidates[pairs[k].loser],
+                    preferences[pairs[k].winner][pairs[k].loser]);
+                k++;
                 }
             }
         }
