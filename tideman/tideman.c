@@ -181,11 +181,6 @@ void add_pairs(void)
             {
                 pairs[k].winner = i;
                 pairs[k].loser = j;
-                printf("Pair %i added: %s vs %s, Votes: %i\n",
-                    k,
-                    candidates[pairs[k].winner],
-                    candidates[pairs[k].loser],
-                    preferences[pairs[k].winner][pairs[k].loser]);
                 k++;
 
             }
@@ -194,11 +189,6 @@ void add_pairs(void)
             {
                 pairs[k].winner = j;
                 pairs[k].loser = i;
-                printf("Pair %i added: %s vs %s, Votes: %i\n",
-                    k,
-                    candidates[pairs[k].winner],
-                    candidates[pairs[k].loser],
-                    preferences[pairs[k].winner][pairs[k].loser]);
                 k++;
             }
         }
