@@ -192,7 +192,7 @@ void add_pairs(void)
 
                 }
                 // Define winner / loser of the pair k when candidate j is winning
-                else if (win_j_over_i < win_i_over_j)
+                else if (win_j_over_i > win_i_over_j)
                 {
                     pairs[k].winner = j;
                     pairs[k].loser = i;
