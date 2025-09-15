@@ -248,13 +248,50 @@ void sort_array(pair pairs_array[], int array_size)
         int left_array_size = array_size / 2;
         pair left_array[left_array_size];
         populate_sub_array(pairs_array, left_array, left_array_size, 0);
+
+        printf("Unsorted Left array before sorting:\n");
+        for (int i = 0; i < left_array_size; i++)
+        {
+            printf("%s vs %s, Votes: %i\n",
+                candidates[left_array[i].winner],
+                candidates[left_array[i].loser],
+                preferences[left_array[i].winner][left_array[i].loser]);
+        }
+
+
         sort_array(left_array, left_array_size);
+
+        printf("Sorted Left array before sorting:\n");
+        for (int i = 0; i < left_array_size; i++)
+        {
+            printf("%s vs %s, Votes: %i\n",
+                candidates[left_array[i].winner],
+                candidates[left_array[i].loser],
+                preferences[left_array[i].winner][left_array[i].loser]);
+        }
 
         // Define right array and sort it
         int right_array_size = array_size - left_array_size;
         pair right_array[right_array_size];
         populate_sub_array(pairs_array, right_array, right_array_size, left_array_size);
+
+        for (int i = 0; i < right_array_size; i++)
+        {
+            printf("%s vs %s, Votes: %i\n",
+                candidates[right_array[i].winner],
+                candidates[right_array[i].loser],
+                preferences[right_array[i].winner][right_array[i].loser]);
+        }
+
         sort_array(right_array, right_array_size);
+
+        for (int i = 0; i < right_array_size; i++)
+        {
+            printf("%s vs %s, Votes: %i\n",
+                candidates[right_array[i].winner],
+                candidates[right_array[i].loser],
+                preferences[right_array[i].winner][right_array[i].loser]);
+        }
 
         // Merge left and right arrays into the parent array
         int array_pair_id = 0;
