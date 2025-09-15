@@ -198,6 +198,12 @@ void add_pairs(void)
     }
     // Update pair count when loop is over
     pair_count = k + 1;
+
+    for (int i = 0; i < pair_count; i++)
+    {
+        printf("Winner: %s vs Loser: %s, Votes: %i\n",
+            candidates[pairs[i].winner], candidates[pairs[i].loser], preferences[pairs[i].winner][pairs[i].loser]);
+    }
 }
 
 // -------------------------------------------------------------------------------------------------
