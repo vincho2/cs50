@@ -183,24 +183,25 @@ void add_pairs(void)
                 {
                     pairs[k].winner = i;
                     pairs[k].loser = j;
-                    k++;
                     printf("Pair %i added: %s vs %s, Votes: %i\n",
-                        k - 1,
+                        k,
                         candidates[pairs[k].winner],
                         candidates[pairs[k].loser],
                         preferences[pairs[k].winner][pairs[k].loser]);
+                    k++;
+
                 }
                 // Define winner / loser of the pair k when candidate j is winning
                 else if (win_j_over_i < win_i_over_j)
                 {
                     pairs[k].winner = j;
                     pairs[k].loser = i;
-                    k++;
                     printf("Pair %i added: %s vs %s, Votes: %i\n",
-                        k - 1,
+                        k,
                         candidates[pairs[k].winner],
                         candidates[pairs[k].loser],
                         preferences[pairs[k].winner][pairs[k].loser]);
+                    k++;
                 }
             }
         }
