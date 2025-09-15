@@ -211,6 +211,7 @@ void sort_pairs(void)
 {
     sort_array(pairs, pair_count);
 
+    printf("Sorted Pairs:\n"); // TBR
     for (int i = 0; i < pair_count; i++)
         {
             printf("%s vs %s, Votes: %i\n",
