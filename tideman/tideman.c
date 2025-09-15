@@ -200,7 +200,6 @@ void add_pairs(void)
                     candidates[pairs[k].loser],
                     preferences[pairs[k].winner][pairs[k].loser]);
                 k++;
-                }
             }
         }
     }
