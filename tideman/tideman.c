@@ -240,7 +240,11 @@ void sort_array(pair pairs_array[], int array_size)
     printf("Array size to sort: %i\n", array_size); // TBR
     if (array_size == 1)
     {
-        printf("Array sorted\n"); // TBR
+        printf("Single value array:\n"); // TBR
+        printf("%s vs %s, Votes: %i\n",
+                candidates[pairs_array[0].winner],
+                candidates[pairs_array[0].loser],
+                preferences[pairs_array[0].winner][pairs_array[0].loser]);
     }
     else
     {
