@@ -261,7 +261,7 @@ void sort_array(pair pairs_array[], int array_size)
 
         sort_array(left_array, left_array_size);
 
-        printf("Sorted Left array before sorting:\n");
+        printf("Sorted Left array:\n");
         for (int i = 0; i < left_array_size; i++)
         {
             printf("%s vs %s, Votes: %i\n",
@@ -275,6 +275,7 @@ void sort_array(pair pairs_array[], int array_size)
         pair right_array[right_array_size];
         populate_sub_array(pairs_array, right_array, right_array_size, left_array_size);
 
+        printf("Unsorted Right array before sorting:\n");
         for (int i = 0; i < right_array_size; i++)
         {
             printf("%s vs %s, Votes: %i\n",
@@ -285,6 +286,7 @@ void sort_array(pair pairs_array[], int array_size)
 
         sort_array(right_array, right_array_size);
 
+        printf("sorted Right array:\n");
         for (int i = 0; i < right_array_size; i++)
         {
             printf("%s vs %s, Votes: %i\n",
