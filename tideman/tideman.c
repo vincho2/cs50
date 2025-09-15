@@ -322,6 +322,14 @@ void sort_array(pair pairs_array[], int array_size)
                 if (left_winner_votes > right_winner_votes)
                 {
                     pairs_array[array_pair_id] = left_pair;
+
+                    printf("Pair %i added:");
+                    printf("%s vs %s, Votes: %i\n",
+                        array_pair_id,
+                        candidates[pairs_array[array_pair_id].winner],
+                        candidates[pairs_array[array_pair_id].loser],
+                        preferences[pairs_array[array_pair_id].winner][pairs_array[array_pair_id].loser]);
+
                     left_counter++;
                     array_pair_id++;
                 }
@@ -329,6 +337,14 @@ void sort_array(pair pairs_array[], int array_size)
                 else if (right_winner_votes > left_winner_votes)
                 {
                     pairs_array[array_pair_id] = right_pair;
+
+                    printf("Pair %i added:");
+                    printf("%s vs %s, Votes: %i\n",
+                        array_pair_id,
+                        candidates[pairs_array[array_pair_id].winner],
+                        candidates[pairs_array[array_pair_id].loser],
+                        preferences[pairs_array[array_pair_id].winner][pairs_array[array_pair_id].loser]);
+
                     right_counter++;
                     array_pair_id++;
                 }
@@ -336,9 +352,25 @@ void sort_array(pair pairs_array[], int array_size)
                 else
                 {
                     pairs_array[array_pair_id] = left_pair;
+
+                    printf("Pair %i added:");
+                    printf("%s vs %s, Votes: %i\n",
+                        array_pair_id,
+                        candidates[pairs_array[array_pair_id].winner],
+                        candidates[pairs_array[array_pair_id].loser],
+                        preferences[pairs_array[array_pair_id].winner][pairs_array[array_pair_id].loser]);
+
                     left_counter++;
                     array_pair_id++;
                     pairs_array[array_pair_id] = right_pair;
+
+                    printf("Pair %i added:");
+                    printf("%s vs %s, Votes: %i\n",
+                        array_pair_id,
+                        candidates[pairs_array[array_pair_id].winner],
+                        candidates[pairs_array[array_pair_id].loser],
+                        preferences[pairs_array[array_pair_id].winner][pairs_array[array_pair_id].loser]);
+
                     right_counter++;
                     array_pair_id++;
                 }
@@ -350,6 +382,14 @@ void sort_array(pair pairs_array[], int array_size)
                 for (int i = left_counter; i < left_array_size; i++)
                 {
                     pairs_array[array_pair_id] = left_array[left_counter];
+
+                    printf("Pair %i added:");
+                    printf("%s vs %s, Votes: %i\n",
+                        array_pair_id,
+                        candidates[pairs_array[array_pair_id].winner],
+                        candidates[pairs_array[array_pair_id].loser],
+                        preferences[pairs_array[array_pair_id].winner][pairs_array[array_pair_id].loser]);
+
                     array_pair_id++;
                 }
             }
@@ -358,6 +398,14 @@ void sort_array(pair pairs_array[], int array_size)
                 for (int i = right_counter; i < right_array_size; i++)
                 {
                     pairs_array[array_pair_id] = right_array[right_counter];
+
+                    printf("Pair %i added:");
+                    printf("%s vs %s, Votes: %i\n",
+                        array_pair_id,
+                        candidates[pairs_array[array_pair_id].winner],
+                        candidates[pairs_array[array_pair_id].loser],
+                        preferences[pairs_array[array_pair_id].winner][pairs_array[array_pair_id].loser]);
+
                     array_pair_id++;
                 }
             }
