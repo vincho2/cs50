@@ -296,7 +296,10 @@ void sort_array(pair pairs_array[], int array_size)
             }
             // At this point, one of the array is fully scanned, so all the remaining pairs goes
             // into the parent array
-            if 
+            if (left_counter < left_array_size)
+            {
+                for (int i = left)
+            }
         }
     }
 }
