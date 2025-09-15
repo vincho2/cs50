@@ -353,7 +353,7 @@ void sort_array(pair pairs_array[], int array_size)
                     array_pair_id++;
                 }
             }
-            else
+            else if (right_counter < right_array_size)
             {
                 for (int i = right_counter; i < right_array_size; i++)
                 {
