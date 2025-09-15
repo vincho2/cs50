@@ -308,7 +308,7 @@ void sort_array(pair pairs_array[], int array_size)
             int right_counter = 0;
 
             // Compare pairs of both arrays until one has been fully scanned
-            while (left_counter < left_array_size || right_counter < right_array_size)
+            while (left_counter < left_array_size && right_counter < right_array_size)
             {
                 // Define left and right pairs to compare
                 pair left_pair = left_array[left_counter];
