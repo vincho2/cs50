@@ -66,11 +66,11 @@ int main(void)
                             candidates[3],
                             candidates[4]
         };
-        string voter1[] = { candidates[1],
+        string voter1[] = { candidates[0],
                             candidates[2],
                             candidates[3],
                             candidates[4],
-                            candidates[0]
+                            candidates[1]
         };
 
         string voter2[] = { candidates[2],
