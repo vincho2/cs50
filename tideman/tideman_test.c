@@ -23,7 +23,7 @@ string candidates[MAX];
 pair pairs[MAX * (MAX - 1) / 2];
 
 int pair_count;
-int candidate_count;
+int candidate_count = 5;
 
 // Function prototypes
 bool vote(int rank, string name, int ranks[]);
@@ -39,26 +39,13 @@ void populate_sub_array(pair source_array[],
 void sort_array(pair pairs_array[], int array_size);
 int get_pair_winner_votes(pair pair);
 
-int main(int argc, string argv[])
+int main(void)
 {
-    // Check for invalid usage
-    if (argc < 2)
-    {
-        printf("Usage: tideman [candidate ...]\n");
-        return 1;
-    }
-
-    // Populate array of candidates
-    candidate_count = argc - 1;
-    if (candidate_count > MAX)
-    {
-        printf("Maximum number of candidates is %i\n", MAX);
-        return 2;
-    }
-    for (int i = 0; i < candidate_count; i++)
-    {
-        candidates[i] = argv[i + 1];
-    }
+    candidates[0] = "a";
+    candidates[1] = "b";
+    candidates[2] = "c";
+    candidates[3] = "d";
+    candidates[4] = "e";
 
     // Clear graph of locked in pairs
     for (int i = 0; i < candidate_count; i++)
@@ -70,7 +57,90 @@ int main(int argc, string argv[])
     }
 
     pair_count = 0;
-    int voter_count = get_int("Number of voters: ");
+    int voter_count = 10;
+    string voters_choices[voter_count][candidate_count];
+
+        string voter0[] = { candidates[0],
+                            candidates[1],
+                            candidates[2],
+                            candidates[3],
+                            candidates[4]
+        };
+        string voter1[] = { candidates[1],
+                            candidates[2],
+                            candidates[3],
+                            candidates[4],
+                            candidates[0]
+        };
+
+        string voter2[] = { candidates[2],
+                            candidates[3],
+                            candidates[4],
+                            candidates[0],
+                            candidates[1]
+        };
+        string voter3[] = { candidates[3],
+                            candidates[4],
+                            candidates[0],
+                            candidates[1],
+                            candidates[2]
+        };
+        string voter4[] = { candidates[4],
+                            candidates[0],
+                            candidates[1],
+                            candidates[2],
+                            candidates[3]
+        };
+        string voter5[] = { candidates[0],
+                            candidates[1],
+                            candidates[2],
+                            candidates[3],
+                            candidates[4]
+        };
+        string voter6[] = { candidates[1],
+                            candidates[2],
+                            candidates[3],
+                            candidates[4],
+                            candidates[0]
+        };
+        string voter7[] = { candidates[2],
+                            candidates[3],
+                            candidates[4],
+                            candidates[0],
+                            candidates[1]
+        };
+        string voter8[] = { candidates[3],
+                            candidates[4],
+                            candidates[0],
+                            candidates[1],
+                            candidates[2]
+        };
+        string voter9[] = { candidates[4],
+                            candidates[0],
+                            candidates[1],
+                            candidates[2],
+                            candidates[3]
+        };
+
+    for (int i = 0; i < candidate_count; i++) {voters_choices[0][i] = voter0[i];}
+    for (int i = 0; i < candidate_count; i++) {voters_choices[1][i] = voter1[i];}
+    for (int i = 0; i < candidate_count; i++) {voters_choices[2][i] = voter2[i];}
+    for (int i = 0; i < candidate_count; i++) {voters_choices[3][i] = voter3[i];}
+    for (int i = 0; i < candidate_count; i++) {voters_choices[4][i] = voter4[i];}
+    for (int i = 0; i < candidate_count; i++) {voters_choices[5][i] = voter5[i];}
+    for (int i = 0; i < candidate_count; i++) {voters_choices[6][i] = voter6[i];}
+    for (int i = 0; i < candidate_count; i++) {voters_choices[7][i] = voter7[i];}
+    for (int i = 0; i < candidate_count; i++) {voters_choices[8][i] = voter8[i];}
+    for (int i = 0; i < candidate_count; i++) {voters_choices[9][i] = voter9[i];}
+
+    printf("Voters_choices:\n");        // TBR
+    for (int i = 0; i < voter_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++) {
+            printf("%s", voters_choices[i][j]);
+        }
+        printf("\n");
+    }
 
     // Query for votes
     for (int i = 0; i < voter_count; i++)
@@ -81,7 +151,8 @@ int main(int argc, string argv[])
         // Query for each rank
         for (int j = 0; j < candidate_count; j++)
         {
-            string name = get_string("Rank %i: ", j + 1);
+            string name = voters_choices[i][j];
+            // get_string("Rank %i: ", j + 1);
 
             if (!vote(j, name, ranks))
             {
@@ -90,8 +161,14 @@ int main(int argc, string argv[])
             }
         }
 
-        record_preferences(ranks);
+        printf("Display ranks %i\n", i);
+        for (int k = 0; k < candidate_count; k++)
+        {
+            printf("%i ", ranks[k]);
+        }
+        printf("\n");
 
+        record_preferences(ranks);
         printf("\n");
     }
 
@@ -250,13 +327,49 @@ void sort_array(pair pairs_array[], int array_size)
     // Sort is only needed when there more than 1 single element in the array
     if (array_size > 1)
     {
+
+        // -- Debug ----------------------------
+        printf("Parent array unsorted:\n");
+        for (int i = 0; i < array_size; i++)
+        {
+            printf("%s-%s = %i\n",
+                candidates[pairs_array[i].winner],
+                candidates[pairs_array[i].loser],
+                preferences[pairs_array[i].winner][pairs_array[i].loser]);
+        }
+        // -- Debug end ---------------------------
+
+
         // -----------------------------------------------------------------------------------------
         // Define left array and sort it
         // -----------------------------------------------------------------------------------------
         int left_array_size = array_size / 2;
         pair left_array[left_array_size];
         populate_sub_array(pairs_array, left_array, left_array_size, 0);
+
+        // -- Debug ----------------------------
+        printf("Left array unsorted:\n");
+        for (int i = 0; i < left_array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[left_array[i].winner],
+                candidates[left_array[i].loser],
+                preferences[left_array[i].winner][left_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
+
         sort_array(left_array, left_array_size);
+
+        // -- Debug ----------------------------
+        printf("Left array sorted:\n");
+        for (int i = 0; i < left_array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[left_array[i].winner],
+                candidates[left_array[i].loser],
+                preferences[left_array[i].winner][left_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
 
         // -----------------------------------------------------------------------------------------
         // Define right array and sort it
@@ -264,7 +377,30 @@ void sort_array(pair pairs_array[], int array_size)
         int right_array_size = array_size - left_array_size;
         pair right_array[right_array_size];
         populate_sub_array(pairs_array, right_array, right_array_size, left_array_size);
+
+        // -- Debug ----------------------------
+        printf("Right array unsorted:\n");
+        for (int i = 0; i < right_array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[right_array[i].winner],
+                candidates[right_array[i].loser],
+                preferences[right_array[i].winner][right_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
+
         sort_array(right_array, right_array_size);
+
+        // -- Debug ----------------------------
+        printf("Right array sorted:\n");
+        for (int i = 0; i < right_array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[right_array[i].winner],
+                candidates[right_array[i].loser],
+                preferences[right_array[i].winner][right_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
 
         // -----------------------------------------------------------------------------------------
         // Merge left and right arrays into the parent array
@@ -330,6 +466,17 @@ void sort_array(pair pairs_array[], int array_size)
                 array_pair_id++;
             }
         }
+
+        // -- Debug ----------------------------
+        printf("Parent array sorted:\n");
+        for (int i = 0; i < array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[pairs_array[i].winner],
+                candidates[pairs_array[i].loser],
+                preferences[pairs_array[i].winner][pairs_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
     }
 }
 

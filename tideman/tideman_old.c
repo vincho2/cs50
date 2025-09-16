@@ -198,7 +198,7 @@ void add_pairs(void)
     printf("Unsorted pairs:\n");        // TBR
     for (int i = 0; i < pair_count; i++)
     {
-        printf("%s-%s = %i\n",
+        printf("%s vs %s, Votes: %i\n",
             candidates[pairs[i].winner],
             candidates[pairs[i].loser],
             preferences[pairs[i].winner][pairs[i].loser]);
@@ -215,7 +215,7 @@ void sort_pairs(void)
     printf("Sorted Pairs:\n");              // TBR
     for (int i = 0; i < pair_count; i++)
         {
-            printf("%s-%s = %i\n",
+            printf("%s vs %s, Votes: %i\n",
                 candidates[pairs[i].winner],
                 candidates[pairs[i].loser],
                 preferences[pairs[i].winner][pairs[i].loser]);
@@ -269,73 +269,73 @@ void sort_array(pair pairs_array[], int array_size)
         // -----------------------------------------------------------------------------------------
         // Merge left and right arrays into the parent array
         // -----------------------------------------------------------------------------------------
-
         int array_pair_id = 0;
-        int left_counter = 0;
-        int right_counter = 0;
-
-        // Compare pairs of both arrays until one has been fully scanned
-        while (left_counter < left_array_size && right_counter < right_array_size)
+        while (array_pair_id < array_size)
         {
-            // Define left and right pairs to compare
-            pair left_pair = left_array[left_counter];
-            pair right_pair = right_array[right_counter];
 
-            // Define pairs scores
-            int left_winner_votes = get_pair_winner_votes(left_pair);
-            int right_winner_votes = get_pair_winner_votes(right_pair);
+            int left_counter = 0;
+            int right_counter = 0;
 
-            // If left pair has the higher edge, then update the array with this pair
-            if (left_winner_votes > right_winner_votes)
+            // Compare pairs of both arrays until one has been fully scanned
+            while (left_counter < left_array_size && right_counter < right_array_size)
             {
-                pairs_array[array_pair_id] = left_pair;
-                left_counter++;
-                array_pair_id++;
+                // Define left and right pairs to compare
+                pair left_pair = left_array[left_counter];
+                pair right_pair = right_array[right_counter];
+
+                // Define pairs scores
+                int left_winner_votes = get_pair_winner_votes(left_pair);
+                int right_winner_votes = get_pair_winner_votes(right_pair);
+
+                // If left pair has the higher edge, then update the array with this pair
+                if (left_winner_votes > right_winner_votes)
+                {
+                    pairs_array[array_pair_id] = left_pair;
+                    left_counter++;
+                    array_pair_id++;
+                }
+                // If right pair has the higher edge, then update the array with this pair
+                else if (right_winner_votes > left_winner_votes)
+                {
+                    pairs_array[array_pair_id] = right_pair;
+                    right_counter++;
+                    array_pair_id++;
+                }
+                // In case both are equal, then update the array with both (starting with left one)
+                else
+                {
+                    // Add left pair
+                    pairs_array[array_pair_id] = left_pair;
+                    left_counter++;
+                    array_pair_id++;
+                    // Add right pair
+                    pairs_array[array_pair_id] = right_pair;
+                    right_counter++;
+                    array_pair_id++;
+                }
             }
-            // If right pair has the higher edge, then update the array with this pair
-            else if (right_winner_votes > left_winner_votes)
+            // At this point, one of the array is fully scanned, so all the remaining pairs of the
+            // other array go into the parent array in their current order
+            if (left_counter < left_array_size)
             {
-                pairs_array[array_pair_id] = right_pair;
-                right_counter++;
-                array_pair_id++;
+                for (int i = left_counter; i < left_array_size; i++)
+                {
+                    pairs_array[array_pair_id] = left_array[left_counter];
+                    array_pair_id++;
+                }
             }
-            // In case both are equal, then update the array with both (starting with left one)
-            else
+            else if (right_counter < right_array_size)
             {
-                // Add left pair
-                pairs_array[array_pair_id] = left_pair;
-                left_counter++;
-                array_pair_id++;
-                // Add right pair
-                pairs_array[array_pair_id] = right_pair;
-                right_counter++;
-                array_pair_id++;
-            }
-        }
-        // At this point, one of the array is fully scanned, so all the remaining pairs of the
-        // other array go into the parent array in their current order
-        if (left_counter < left_array_size)
-        {
-            for (int i = left_counter; i < left_array_size; i++)
-            {
-                pairs_array[array_pair_id] = left_array[i];
-                array_pair_id++;
-            }
-        }
-        else if (right_counter < right_array_size)
-        {
-            for (int i = right_counter; i < right_array_size; i++)
-            {
-                pairs_array[array_pair_id] = right_array[i];
-                array_pair_id++;
+                for (int i = right_counter; i < right_array_size; i++)
+                {
+                    pairs_array[array_pair_id] = right_array[right_counter];
+                    array_pair_id++;
+                }
             }
         }
     }
 }
 
-// -------------------------------------------------------------------------------------------------
-// Helper method to populate the intermediaries arrays
-// -------------------------------------------------------------------------------------------------
 void populate_sub_array(pair source_array[],
     pair target_array[],
     int target_array_size,
@@ -347,9 +347,6 @@ void populate_sub_array(pair source_array[],
     }
 }
 
-// -------------------------------------------------------------------------------------------------
-// Helper method to get the number of votes of a pair's winner
-// -------------------------------------------------------------------------------------------------
 int get_pair_winner_votes(pair pair)
 {
     return preferences[pair.winner][pair.loser];
