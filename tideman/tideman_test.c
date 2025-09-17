@@ -32,12 +32,11 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-void populate_sub_array(pair source_array[],
-    pair target_array[],
-    int target_array_size,
-    int source_array_starting_point);
+void populate_sub_array(pair source_array[], pair target_array[], int target_array_size,
+                        int source_array_starting_point);
 void sort_array(pair pairs_array[], int array_size);
 int get_pair_winner_votes(pair pair);
+bool is_cycle(int edge_source, int edge_target);
 
 int main(void)
 {
