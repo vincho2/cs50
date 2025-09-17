@@ -32,12 +32,11 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-void populate_sub_array(pair source_array[],
-    pair target_array[],
-    int target_array_size,
-    int source_array_starting_point);
+void populate_sub_array(pair source_array[], pair target_array[], int target_array_size,
+                        int source_array_starting_point);
 void sort_array(pair pairs_array[], int array_size);
 int get_pair_winner_votes(pair pair);
+bool is_cycle(int edge_source, int edge_target);
 
 int main(int argc, string argv[])
 {
@@ -140,22 +139,6 @@ void record_preferences(int ranks[])
             preferences[candidate_id_pair_winner][candidate_id_pair_loser]++;
         }
     }
-
-
-    // ---------------------------------------------------------------------------------------------
-    // TBR - display preferences
-    // ---------------------------------------------------------------------------------------------
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            printf("%i", preferences[i][j]);
-        }
-        printf("\n");
-    }
-    // ---------------------------------------------------------------------------------------------
-    // TBR - end
-    // ---------------------------------------------------------------------------------------------
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -194,15 +177,6 @@ void add_pairs(void)
     }
     // Update pair count when loop is over
     pair_count = k;
-
-    printf("Unsorted pairs:\n");        // TBR
-    for (int i = 0; i < pair_count; i++)
-    {
-        printf("%s-%s = %i\n",
-            candidates[pairs[i].winner],
-            candidates[pairs[i].loser],
-            preferences[pairs[i].winner][pairs[i].loser]);
-    }
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -211,15 +185,6 @@ void add_pairs(void)
 void sort_pairs(void)
 {
     sort_array(pairs, pair_count);
-
-    printf("Sorted Pairs:\n");              // TBR
-    for (int i = 0; i < pair_count; i++)
-        {
-            printf("%s-%s = %i\n",
-                candidates[pairs[i].winner],
-                candidates[pairs[i].loser],
-                preferences[pairs[i].winner][pairs[i].loser]);
-        }
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -227,9 +192,21 @@ void sort_pairs(void)
 // -------------------------------------------------------------------------------------------------
 void lock_pairs(void)
 {
-    printf("Pairs locked\n"); // TBR
-    // TODO
+    for (int i = 0; i < pair_count; i++)
+    {
+        // Initialize current pair's winner and loser
+        int pair_winner = pairs[i].winner;
+        int pair_loser = pairs[i].loser;
 
+        // Check if a new edge from Winner to Loser would create a cycle and if not, create the edge
+        if (!is_cycle(pair_winner, pair_loser))
+        {
+            locked[pair_winner][pair_loser] = true;
+            // -- TBR DEBUG
+            printf("Pair %s-%s locked\n", candidates[pair_winner], candidates[pair_loser]);
+            // -- TBR DEBUG
+        }
+    }
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -237,9 +214,33 @@ void lock_pairs(void)
 // -------------------------------------------------------------------------------------------------
 void print_winner(void)
 {
-    printf("Winner is printed\n"); // TBR
-    // TODO
+    bool is_winner;
+    // Initialize candidate id to -1 so that the variable correspond to the candidate id at the
+    // end of the while loop
+    int candidate_id = 0;
 
+    // Loop on each candidate in the locked table until a winner is found
+    while (true)
+    {
+        // Initialize the is_winner variable to true at the
+        is_winner = true;
+        // Loop on each candidate opponent and check if this opponent is locked in over candidate i
+        for (int opponent_id = 0; opponent_id < candidate_count; opponent_id++)
+        {
+            // Candidate i is the winner if none of the candidates have locked him/her
+            is_winner = (is_winner && !locked[opponent_id][candidate_id]);
+        }
+        // Stop looping as soon as a winner is found
+        if (is_winner)
+        {
+            break;
+        }
+        // Check next candidate
+        candidate_id++;
+    }
+
+    // Print the name of the candidate id found as winner
+    printf("%s\n", candidates[candidate_id]);
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -334,12 +335,10 @@ void sort_array(pair pairs_array[], int array_size)
 }
 
 // -------------------------------------------------------------------------------------------------
-// Helper method to populate the intermediaries arrays
+// Helper function to populate the intermediaries arrays
 // -------------------------------------------------------------------------------------------------
-void populate_sub_array(pair source_array[],
-    pair target_array[],
-    int target_array_size,
-    int source_array_starting_point)
+void populate_sub_array(pair source_array[], pair target_array[], int target_array_size,
+                        int source_array_starting_point)
 {
     for (int i = 0; i < target_array_size; i++)
     {
@@ -348,9 +347,42 @@ void populate_sub_array(pair source_array[],
 }
 
 // -------------------------------------------------------------------------------------------------
-// Helper method to get the number of votes of a pair's winner
+// Helper function to get the number of votes of a pair's winner
 // -------------------------------------------------------------------------------------------------
 int get_pair_winner_votes(pair pair)
 {
     return preferences[pair.winner][pair.loser];
+}
+
+// -------------------------------------------------------------------------------------------------
+// Helper function to check if the new edge of a given pair would create a cycle
+// -------------------------------------------------------------------------------------------------
+bool is_cycle(int edge_source, int edge_target)
+{
+    // If an edge exists in the opposite direction, then the new edge would create a cycle
+    if (locked[edge_target][edge_source])
+    {
+        return true;
+    }
+    // Else go back in the chain to check for existing edges toward Edge Source to see if it goes
+    // back to the Edge Target (and return true in this case)
+    else
+    {
+        for (int i = 0; i < candidate_count; i++)
+        {
+            // If an edge toward the Edge Source exists, then check if it leads back to the initial
+            // edge target
+            if (locked[i][edge_source])
+            {
+                // Returns true if the initial Edge Target is locked in over any Target that leads
+                // to the current Edge Source (directly or indirectly)
+                if (is_cycle(i, edge_target))
+                {
+                    return true;
+                }
+            }
+        }
+        // Else, if no cycle has been found return false
+        return false;
+    }
 }
