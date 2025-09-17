@@ -217,6 +217,22 @@ void record_preferences(int ranks[])
             preferences[candidate_id_pair_winner][candidate_id_pair_loser]++;
         }
     }
+
+
+    // ---------------------------------------------------------------------------------------------
+    // TBR - display preferences
+    // ---------------------------------------------------------------------------------------------
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            printf("%i", preferences[i][j]);
+        }
+        printf("\n");
+    }
+    // ---------------------------------------------------------------------------------------------
+    // TBR - end
+    // ---------------------------------------------------------------------------------------------
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -255,6 +271,15 @@ void add_pairs(void)
     }
     // Update pair count when loop is over
     pair_count = k;
+
+    printf("Unsorted pairs:\n");        // TBR
+    for (int i = 0; i < pair_count; i++)
+    {
+        printf("%s-%s = %i\n",
+            candidates[pairs[i].winner],
+            candidates[pairs[i].loser],
+            preferences[pairs[i].winner][pairs[i].loser]);
+    }
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -264,10 +289,7 @@ void sort_pairs(void)
 {
     sort_array(pairs, pair_count);
 
-    // -----------------------------------------------------------------------
-    // Debug start
-    // -----------------------------------------------------------------------
-    printf("Sorted Pairs:\n");              
+    printf("Sorted Pairs:\n");              // TBR
     for (int i = 0; i < pair_count; i++)
         {
             printf("%s-%s = %i\n",
@@ -275,9 +297,6 @@ void sort_pairs(void)
                 candidates[pairs[i].loser],
                 preferences[pairs[i].winner][pairs[i].loser]);
         }
-    // -----------------------------------------------------------------------
-    // Debug end
-    // -----------------------------------------------------------------------
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -285,21 +304,9 @@ void sort_pairs(void)
 // -------------------------------------------------------------------------------------------------
 void lock_pairs(void)
 {
-    for (int i = 0; i < pair_count; i++)
-    {
-        // Initialize current pair's winner and loser
-        int pair_winner = pairs[i].winner;
-        int pair_loser = pairs[i].loser;
+    printf("Pairs locked\n"); // TBR
+    // TODO
 
-        // Check if a new edge from Winner to Loser would create a cycle and if not, create the edge
-        if (!is_cycle(pair_winner, pair_loser))
-        {
-            locked[pair_winner][pair_loser] = true;
-            // -- TBR DEBUG
-            printf("Pair %s-%s locked\n", candidates[pair_winner], candidates[pair_loser]);
-            // -- TBR DEBUG
-        }
-    }
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -307,33 +314,9 @@ void lock_pairs(void)
 // -------------------------------------------------------------------------------------------------
 void print_winner(void)
 {
-    bool is_winner;
-    // Initialize candidate id to -1 so that the variable correspond to the candidate id at the
-    // end of the while loop
-    int candidate_id = 0;
+    printf("Winner is printed\n"); // TBR
+    // TODO
 
-    // Loop on each candidate in the locked table until a winner is found
-    while (true)
-    {
-        // Initialize the is_winner variable to true at the
-        is_winner = true;
-        // Loop on each candidate opponent and check if this opponent is locked in over candidate i
-        for (int opponent_id = 0; opponent_id < candidate_count; opponent_id++)
-        {
-            // Candidate i is the winner if none of the candidates have locked him/her
-            is_winner = (is_winner && !locked[opponent_id][candidate_id]);
-        }
-        // Stop looping as soon as a winner is found
-        if (is_winner)
-        {
-            break;
-        }
-        // Check next candidate
-        candidate_id++;
-    }
-
-    // Print the name of the candidate id found as winner
-    printf("%s\n", candidates[candidate_id]);
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -344,13 +327,49 @@ void sort_array(pair pairs_array[], int array_size)
     // Sort is only needed when there more than 1 single element in the array
     if (array_size > 1)
     {
+
+        // -- Debug ----------------------------
+        printf("Parent array unsorted:\n");
+        for (int i = 0; i < array_size; i++)
+        {
+            printf("%s-%s = %i\n",
+                candidates[pairs_array[i].winner],
+                candidates[pairs_array[i].loser],
+                preferences[pairs_array[i].winner][pairs_array[i].loser]);
+        }
+        // -- Debug end ---------------------------
+
+
         // -----------------------------------------------------------------------------------------
         // Define left array and sort it
         // -----------------------------------------------------------------------------------------
         int left_array_size = array_size / 2;
         pair left_array[left_array_size];
         populate_sub_array(pairs_array, left_array, left_array_size, 0);
+
+        // -- Debug ----------------------------
+        printf("Left array unsorted:\n");
+        for (int i = 0; i < left_array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[left_array[i].winner],
+                candidates[left_array[i].loser],
+                preferences[left_array[i].winner][left_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
+
         sort_array(left_array, left_array_size);
+
+        // -- Debug ----------------------------
+        printf("Left array sorted:\n");
+        for (int i = 0; i < left_array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[left_array[i].winner],
+                candidates[left_array[i].loser],
+                preferences[left_array[i].winner][left_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
 
         // -----------------------------------------------------------------------------------------
         // Define right array and sort it
@@ -358,7 +377,30 @@ void sort_array(pair pairs_array[], int array_size)
         int right_array_size = array_size - left_array_size;
         pair right_array[right_array_size];
         populate_sub_array(pairs_array, right_array, right_array_size, left_array_size);
+
+        // -- Debug ----------------------------
+        printf("Right array unsorted:\n");
+        for (int i = 0; i < right_array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[right_array[i].winner],
+                candidates[right_array[i].loser],
+                preferences[right_array[i].winner][right_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
+
         sort_array(right_array, right_array_size);
+
+        // -- Debug ----------------------------
+        printf("Right array sorted:\n");
+        for (int i = 0; i < right_array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[right_array[i].winner],
+                candidates[right_array[i].loser],
+                preferences[right_array[i].winner][right_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
 
         // -----------------------------------------------------------------------------------------
         // Merge left and right arrays into the parent array
@@ -424,14 +466,27 @@ void sort_array(pair pairs_array[], int array_size)
                 array_pair_id++;
             }
         }
+
+        // -- Debug ----------------------------
+        printf("Parent array sorted:\n");
+        for (int i = 0; i < array_size; i++)
+        {
+            printf("%s-%s = %i\n" ,
+                candidates[pairs_array[i].winner],
+                candidates[pairs_array[i].loser],
+                preferences[pairs_array[i].winner][pairs_array[i].loser]);
+        }
+        // -- Debug end ----------------------------
     }
 }
 
 // -------------------------------------------------------------------------------------------------
-// Helper function to populate the intermediaries arrays
+// Helper method to populate the intermediaries arrays
 // -------------------------------------------------------------------------------------------------
-void populate_sub_array(pair source_array[], pair target_array[], int target_array_size,
-                        int source_array_starting_point)
+void populate_sub_array(pair source_array[],
+    pair target_array[],
+    int target_array_size,
+    int source_array_starting_point)
 {
     for (int i = 0; i < target_array_size; i++)
     {
@@ -440,42 +495,9 @@ void populate_sub_array(pair source_array[], pair target_array[], int target_arr
 }
 
 // -------------------------------------------------------------------------------------------------
-// Helper function to get the number of votes of a pair's winner
+// Helper method to get the number of votes of a pair's winner
 // -------------------------------------------------------------------------------------------------
 int get_pair_winner_votes(pair pair)
 {
     return preferences[pair.winner][pair.loser];
-}
-
-// -------------------------------------------------------------------------------------------------
-// Helper function to check if the new edge of a given pair would create a cycle
-// -------------------------------------------------------------------------------------------------
-bool is_cycle(int edge_source, int edge_target)
-{
-    // If an edge exists in the opposite direction, then the new edge would create a cycle
-    if (locked[edge_target][edge_source])
-    {
-        return true;
-    }
-    // Else go back in the chain to check for existing edges toward Edge Source to see if it goes
-    // back to the Edge Target (and return true in this case)
-    else
-    {
-        for (int i = 0; i < candidate_count; i++)
-        {
-            // If an edge toward the Edge Source exists, then check if it leads back to the initial
-            // edge target
-            if (locked[i][edge_source])
-            {
-                // Returns true if the initial Edge Target is locked in over any Target that leads
-                // to the current Edge Source (directly or indirectly)
-                if (is_cycle(i, edge_target))
-                {
-                    return true;
-                }
-            }
-        }
-        // Else, if no cycle has been found return false
-        return false;
-    }
 }
