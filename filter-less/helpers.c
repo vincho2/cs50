@@ -16,6 +16,11 @@ BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input);
 //--------------------------------------------------------------------------------------------------
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
+    // Declare original color variables
+    BYTE original_blue;
+    BYTE original_green;
+    BYTE original_red;
+
     // Declare brightness variable
     BYTE pixel_brightness;
 
@@ -29,6 +34,10 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             bptr = &image[i][j].rgbtBlue;
             gptr = &image[i][j].rgbtGreen;
             rptr = &image[i][j].rgbtRed;
+
+            original_blue = *bptr;
+            original_green = *gptr;
+            original_red = *rptr;
 
             // Compute pixel brightness
             pixel_brightness = (*bptr + *gptr + *rptr) / 3;
