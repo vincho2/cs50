@@ -112,6 +112,9 @@ BYTE set_sepia_color(Color c, BYTE *pixptr)
     switch(c)
     {
         case BLUE:
+            sepiaBlue = (BYTE) fmax(.272 * (*rptr) + .534 * (*gptr) + .131 * (*bptr), 255);
+            break;
+
 
     }
 
