@@ -44,12 +44,12 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     BYTE sepiaGreen;
     BYTE sepiaBlue;
 
-    enum Color
+    typedef enum
     {
-        r =
-
-    }
-    char color
+        BLUE,
+        GREEN,
+        RED
+    } Color;
 
     // Loop on each row
     for (int i = 0; i < height; i++)
@@ -62,7 +62,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             gptr = &image[i][j].rgbtGreen;
             rptr = &image[i][j].rgbtRed;
 
-            sepiaBlue = set_sepia_color('b', &image[i][j])
+            sepiaBlue = set_sepia_color(BLUE, &image[i][j]);
 
             sepiaBlue = (BYTE) fmax(.272 * (*rptr) + .534 * (*gptr) + .131 * (*bptr), 255);
             sepiaGreen = (BYTE) fmax(.349 * (*rptr) + .686 * (*gptr) + .168 * (*bptr), 255);
@@ -95,3 +95,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 {
 
 }
+
+
+set_sepia_color(BLUE, &image[i][j]);
