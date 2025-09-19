@@ -112,15 +112,15 @@ BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input)
             break;
 
         case GREEN:
-            b_factor = .131;
-            g_factor = .534;
-            r_factor = .272;
+            b_factor = .168;
+            g_factor = .686;
+            r_factor = .349;
             break;
 
         case RED:
-            b_factor = .131;
-            g_factor = .534;
-            r_factor = .272;
+            b_factor = .189;
+            g_factor = .769;
+            r_factor = .393;
             break;
     }
 
