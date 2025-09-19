@@ -3,7 +3,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
@@ -37,7 +36,6 @@ int main(int argc, char *argv[])
 
     float factor = atof(argv[3]);
 
-
     //----------------------------------------------------------------------------------------------
     // Copy header from input file to output file
     //----------------------------------------------------------------------------------------------
@@ -64,9 +62,10 @@ int main(int argc, char *argv[])
     {
 
         // Raw integer new sample value (used to check under/overflows)
-        integer_result = (int) input_sample *  (int) factor;
+        integer_result = (int) input_sample * (int) factor;
 
-        // To avoid underflow, the output is floored to the minimum value of a 16 bytes signed number
+        // To avoid underflow, the output is floored to the minimum value of a 16 bytes signed
+        // number
         if (integer_result < (int) MIN_16_BITS_VALUE)
         {
             output_sample = MIN_16_BITS_VALUE;
