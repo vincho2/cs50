@@ -1,11 +1,8 @@
 #include "helpers.h"
 
-const BYTE BLACK = 0x00;
-const BYTE WHITE = 0xff;
-
-RGBTRIPLE *pixel;
-
+//--------------------------------------------------------------------------------------------------
 // Convert image to grayscale
+//--------------------------------------------------------------------------------------------------
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
     // Declare brightness variable
@@ -36,19 +33,25 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     }
 }
 
+//--------------------------------------------------------------------------------------------------
 // Convert image to sepia
+//--------------------------------------------------------------------------------------------------
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
 
 }
 
+//--------------------------------------------------------------------------------------------------
 // Reflect image horizontally
+//--------------------------------------------------------------------------------------------------
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
 
 }
 
+//--------------------------------------------------------------------------------------------------
 // Blur image
+//--------------------------------------------------------------------------------------------------
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
 
