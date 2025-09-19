@@ -55,9 +55,9 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             rptr = &image[i][j].rgbtRed;
 
             sepiaRed =
-            sepiaRed = .393 * originalRed + .769 * originalGreen + .189 * originalBlue;
-            sepiaGreen = .349 * originalRed + .686 * originalGreen + .168 * originalBlue;
-            sepiaBlue = .272 * originalRed + .534 * originalGreen + .131 * originalBlue;
+            sepiaRed = .393 * (*rptr) + .769 * (*gptr) + .189 * (*bptr);
+            sepiaGreen = .349 * (*rptr) + .686 * (*gptr) + .168 * (*bptr);
+            sepiaBlue = .272 * (*rptr) + .534 * (*gptr) + .131 * (*bptr);
 
 
             // Compute pixel brightness
