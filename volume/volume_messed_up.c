@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
         output_sample = (int16_t) (input_sample * factor);
 
         printf("---- Sample %i -------------------- %i underflow --- %i overflows\n", i, j, k);
-        printf("input sample: %u\ninput * factor: %i\noutput before logic: %u\n", input_sample, integer_result, output_sample);
+        printf("input sample: %i\ninput * factor: %i\noutput before logic: %i\n", input_sample, integer_result, output_sample);
 
         // To avoid underflow, the output is floored to the minimum value of a 16 bytes signed number
         if (integer_result < (int) MIN_16_BITS_VALUE)
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
             k++;
         }
 
-        printf("output sample after logic: %u\n", output_sample);
+        printf("output sample after logic: %i\n", output_sample);
         printf("underflow: %i - ", j);
         printf("overflow: %i\n\n", k);
 
