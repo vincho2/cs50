@@ -1,0 +1,9 @@
+BMP file
+
+BITMAPFILEHEADER => 14 bytes
+BITMAPINFOHEADER => 40 bytes
+
+Every 3
+
+triples are coded backwards : BGR
+
