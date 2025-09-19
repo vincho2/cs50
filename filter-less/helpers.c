@@ -3,6 +3,8 @@
 
 BYTE set_sepia_color(Color c, BYTE *pixptr);
 
+const int MAX_BYTE = 255;
+
 BYTE *bptr;
 BYTE *gptr;
 BYTE *rptr;
@@ -103,11 +105,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 BYTE set_sepia_color(Color c, BYTE *pixptr)
 {
-    // Initialize factors
+    // Initialize factors by color
     float b_factor;
     float g_factor;
     float r_factor;
 
+    // Set factors depending on the input color to convert
     switch(c)
     {
         case BLUE:
@@ -134,8 +137,9 @@ BYTE set_sepia_color(Color c, BYTE *pixptr)
     gptr = pixptr.rgbtGreen;
     rptr = pixptr.rgbtRed;
 
-    int int_result = (int) fmax(b_factor * (*bptr) + g_factor * (*gptr) + r_factor * (*rptr), 255);
+    // Compute resulting sepia color
+    int int_result = (int) fmax(MAX_BYTE, b_factor * (*bptr) + g_factor * (*gptr) + r_factor * (*rptr));
 
-    // return
+    // return result as a byte type
     return (BYTE) int_result;
 }
