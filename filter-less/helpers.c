@@ -1,20 +1,15 @@
 #include "helpers.h"
 #include <math.h>
 
-BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input);
-
 const int MAX_BYTE = 255;
 
 BYTE *bptr;
 BYTE *gptr;
 BYTE *rptr;
 
-typedef enum
-{
-    BLUE,
-    GREEN,
-    RED
-} Color;
+typedef enum { BLUE, GREEN, RED } Color;
+
+BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input);
 
 //--------------------------------------------------------------------------------------------------
 // Convert image to grayscale
@@ -81,18 +76,12 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 // Reflect image horizontally
 //--------------------------------------------------------------------------------------------------
-void reflect(int height, int width, RGBTRIPLE image[height][width])
-{
-
-}
+void reflect(int height, int width, RGBTRIPLE image[height][width]) {}
 
 //--------------------------------------------------------------------------------------------------
 // Blur image
 //--------------------------------------------------------------------------------------------------
-void blur(int height, int width, RGBTRIPLE image[height][width])
-{
-
-}
+void blur(int height, int width, RGBTRIPLE image[height][width]) {}
 
 //--------------------------------------------------------------------------------------------------
 // Helper function to set the Sepia color value
@@ -105,7 +94,7 @@ BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input)
     float r_factor;
 
     // Set factors depending on the input color to convert
-    switch(c)
+    switch (c)
     {
         case BLUE:
             b_factor = .131;
@@ -127,8 +116,8 @@ BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input)
     }
 
     // Compute resulting sepia color
-    int int_result = (int) fmax(MAX_BYTE, b_factor * b_input + g_factor * g_input
-        + r_factor * r_input);
+    int int_result =
+        (int) fmax(MAX_BYTE, b_factor * b_input + g_factor * g_input + r_factor * r_input);
 
     // return result as a byte type
     return (BYTE) int_result;
