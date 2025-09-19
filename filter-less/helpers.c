@@ -40,7 +40,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             original_red = *rptr;
 
             // Compute pixel brightness
-            pixel_brightness = (original_blue + original_green + original_red) / 3;
+            pixel_brightness = round((original_blue + original_green + original_red) / 3);
             // Assign the resulted brightness value to each color of the pixel
             *bptr = pixel_brightness;
             *gptr = pixel_brightness;
