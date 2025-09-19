@@ -97,4 +97,4 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 }
 
 
-set_sepia_color(BLUE, &image[i][j]);
+BYTE set_sepia_color(Color c, *pixptr);
