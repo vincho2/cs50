@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    FILE *output = fopen(argv[2], "w");
+    FILE *output = fopen(argv[2], "a");
     if (output == NULL)
     {
         fclose(input);
@@ -42,29 +42,52 @@ int main(int argc, char *argv[])
     //----------------------------------------------------------------------------------------------
 
     // Initialize buffer used for the header
-    uint8_t input_header[HEADER_SIZE];
+    char *input_header = malloc(HEADER_SIZE);
+
+    // Make sure memory allocation is done properly, otherwise close files and stop the programme
+    if (input_header == NULL)
+    {
+        printf("No memory allocated for header");
+        fclose(input);
+        fclose(output);
+        return 2;
+    }
 
     // Get header from input
-    fread(input_header, HEADER_SIZE, 1, input);
+    fread(input_header, sizeof(char), HEADER_SIZE, input);
     // Paste header in output
-    fwrite(input_header, HEADER_SIZE, 1, output);
+    fwrite(input_header, sizeof(char), HEADER_SIZE, output);
+    // Free the memory
+    free(input_header);
 
     //----------------------------------------------------------------------------------------------
     // TODO: Read samples from input file and write updated data to output file
     //----------------------------------------------------------------------------------------------
 
     // Initialize the sample pointer
-    uint16_t input_sample;
-    uint16_t output_sample;
+    uint16_t *input_sample = malloc(sizeof(uint16_t));
+    uint16_t *output_sample = malloc(sizeof(uint16_t));
 
     // Append the amplified samples to the output file
-    while (fread(&input_sample, sizeof(uint16_t), 1, input))
+    while (fread(input_sample, sizeof(uint16_t), 1, input))
     {
-        output_sample = input_sample * factor;
-        fwrite(&output_sample, sizeof(uint16_t), 1, output);
+        float output_sample_float_value = *input_sample * factor;
+
+        // To avoid overflow, the output is capped to the maximum value of a 16 bytes number
+        if (output_sample_float_value > MAX_16_BITS_VALUE)
+        {
+            *output_sample = (uint16_t) MAX_16_BITS_VALUE;
+        }
+        else
+        {
+            *output_sample = (uint16_t) output_sample_float_value;
+        }
+        fwrite(output_sample, sizeof(uint16_t), 1, output);
     }
 
     // Free memory and close files
+    free(input_sample);
+    free(output_sample);
     fclose(input);
     fclose(output);
 }

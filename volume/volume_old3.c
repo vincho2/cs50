@@ -56,11 +56,18 @@ int main(int argc, char *argv[])
     // Initialize the sample pointer
     uint16_t input_sample;
     uint16_t output_sample;
+    uint16_t offset = 1;
 
     // Append the amplified samples to the output file
     while (fread(&input_sample, sizeof(uint16_t), 1, input))
     {
-        output_sample = input_sample * factor;
+        output_sample = (uint16_t) (input_sample * factor + 1);
+
+        // To avoid overflow, the output is capped to the maximum value of a 16 bytes number
+        if (output_sample > (uint16_t) MAX_16_BITS_VALUE)
+        {
+            output_sample = (uint16_t) MAX_16_BITS_VALUE;
+        }
         fwrite(&output_sample, sizeof(uint16_t), 1, output);
     }
 
