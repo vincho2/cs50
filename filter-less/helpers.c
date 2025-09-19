@@ -39,7 +39,9 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
     // Declare brightness variable
-    BYTE pixel_brightness;
+    BYTE sepiaRed;
+    BYTE sepiaGreen;
+    BYTE sepiaBlue;
 
     // Loop on each row
     for (int i = 0; i < height; i++)
@@ -51,6 +53,12 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             bptr = &image[i][j].rgbtBlue;
             gptr = &image[i][j].rgbtGreen;
             rptr = &image[i][j].rgbtRed;
+
+            sepiaRed =
+            sepiaRed = .393 * originalRed + .769 * originalGreen + .189 * originalBlue;
+            sepiaGreen = .349 * originalRed + .686 * originalGreen + .168 * originalBlue;
+            sepiaBlue = .272 * originalRed + .534 * originalGreen + .131 * originalBlue;
+
 
             // Compute pixel brightness
             pixel_brightness = (*bptr + *gptr + *rptr) / 3;
