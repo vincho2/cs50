@@ -43,6 +43,12 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     BYTE sepiaRed;
     BYTE sepiaGreen;
     BYTE sepiaBlue;
+
+    enum Color
+    {
+        r = 
+
+    }
     char color
 
     // Loop on each row
