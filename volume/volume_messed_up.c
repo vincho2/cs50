@@ -7,7 +7,8 @@
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
-const uint16_t MAX_16_BITS_VALUE = 65535;
+const int16_t MAX_16_BITS_VALUE = 65535;
+const int16_t MIN_16_BITS_VALUE = 65535;
 
 int main(int argc, char *argv[])
 {
