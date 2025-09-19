@@ -1,7 +1,7 @@
 #include "helpers.h"
 #include <math.h>
 
-BYTE set_sepia_color(Color c, BYTE *pixptr);
+BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input);
 
 const int MAX_BYTE = 255;
 
@@ -50,10 +50,10 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Declare brightness variable
-    BYTE sepiaRed;
-    BYTE sepiaGreen;
-    BYTE sepiaBlue;
+    // Declare original color variables
+    BYTE original_blue;
+    BYTE original_green;
+    BYTE original_red;
 
     // Loop on each row
     for (int i = 0; i < height; i++)
@@ -65,18 +65,15 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             bptr = &image[i][j].rgbtBlue;
             gptr = &image[i][j].rgbtGreen;
             rptr = &image[i][j].rgbtRed;
-            
 
-            sepiaBlue = set_sepia_color(BLUE, &image[i][j]);
-
-            sepiaBlue = (BYTE) fmax(.272 * (*rptr) + .534 * (*gptr) + .131 * (*bptr), 255);
-            sepiaGreen = (BYTE) fmax(.349 * (*rptr) + .686 * (*gptr) + .168 * (*bptr), 255);
-            sepiaRed = (BYTE) fmax(.393 * (*rptr) + .769 * (*gptr) + .189 * (*bptr), 255);
+            original_blue = *bptr;
+            original_green = *gptr;
+            original_red = *rptr;
 
             // Assign the resulted brightness value to each color of the pixel
-            *bptr = set_sepia_color(BLUE, &image[i][j]);
-            *gptr = sepiaGreen;
-            *rptr = sepiaRed;
+            *bptr = set_sepia_color(BLUE, original_blue, original_green, original_red);
+            *gptr = set_sepia_color(GREEN, original_blue, original_green, original_red);
+            *rptr = set_sepia_color(RED, original_blue, original_green, original_red);
         }
     }
 }
@@ -100,7 +97,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 // Helper function to set the Sepia color value
 //--------------------------------------------------------------------------------------------------
-BYTE set_sepia_color(Color c, BYTE *pixptr)
+BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input)
 {
     // Initialize factors by color
     float b_factor;
@@ -129,13 +126,8 @@ BYTE set_sepia_color(Color c, BYTE *pixptr)
             break;
     }
 
-    // Initialize colors pointers
-    bptr = pixptr.rgbtBlue;
-    gptr = pixptr.rgbtGreen;
-    rptr = pixptr.rgbtRed;
-
     // Compute resulting sepia color
-    int int_result = (int) fmax(MAX_BYTE, b_factor * (*bptr) + g_factor * (*gptr) + r_factor * (*rptr));
+    int int_result = (int) fmax(MAX_BYTE, b_factor * b_input + g_factor * (*gptr) + r_factor * (*rptr));
 
     // return result as a byte type
     return (BYTE) int_result;
