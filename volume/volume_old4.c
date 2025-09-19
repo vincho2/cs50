@@ -3,12 +3,10 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
-const int16_t MAX_16_BITS_VALUE = 32767;
-const int16_t MIN_16_BITS_VALUE = -32768;
+const int MAX_16_BITS_VALUE = 65535;
 
 int main(int argc, char *argv[])
 {
@@ -37,7 +35,6 @@ int main(int argc, char *argv[])
 
     float factor = atof(argv[3]);
 
-
     //----------------------------------------------------------------------------------------------
     // Copy header from input file to output file
     //----------------------------------------------------------------------------------------------
@@ -51,7 +48,7 @@ int main(int argc, char *argv[])
     fwrite(input_header, HEADER_SIZE, 1, output);
 
     //----------------------------------------------------------------------------------------------
-    // TODO: Read samples from input file and write updated data to output file
+    // Read samples from input file and write updated data to output file
     //----------------------------------------------------------------------------------------------
 
     // Initialize the sample pointer
@@ -59,36 +56,15 @@ int main(int argc, char *argv[])
     int16_t input_sample;
     int16_t output_sample;
     int i = 0;
-    int j = 0;
+
     int k = 0;
+    int l = 0;
 
     // Append the amplified samples to the output file
     while (fread(&input_sample, sizeof(int16_t), 1, input))
     {
-
         i++;
-        integer_result = (int) input_sample *  (int) factor;
-
         output_sample = (int16_t) (input_sample * factor);
-
-        printf("------------------------------------------ Sample %i --- %i underflow --- %i overflows\n", i, j, k);
-        printf("input sample: %u\ninput * factor: %i\noutput before logic: %u\n", input_sample, integer_result, output_sample);
-
-        // To avoid underflow, the output is floored to the minimum value of a 16 bytes signed number
-        if (integer_result < (int) MIN_16_BITS_VALUE)
-        {
-            output_sample = MIN_16_BITS_VALUE;
-            j++;
-        }
-        // To avoid overflow, the output is capped to the maximum value of a 16 bytes signed number
-        else if (integer_result > (int) MAX_16_BITS_VALUE)
-        {
-            output_sample = MAX_16_BITS_VALUE;
-            k++;
-        }
-
-        printf("output sample after logic: %u\n", output_sample);
-
         fwrite(&output_sample, sizeof(int16_t), 1, output);
     }
 
