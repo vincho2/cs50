@@ -72,12 +72,8 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             sepiaGreen = (BYTE) fmax(.349 * (*rptr) + .686 * (*gptr) + .168 * (*bptr), 255);
             sepiaRed = (BYTE) fmax(.393 * (*rptr) + .769 * (*gptr) + .189 * (*bptr), 255);
 
-
-
-            // Compute pixel brightness
-            pixel_brightness = (*bptr + *gptr + *rptr) / 3;
             // Assign the resulted brightness value to each color of the pixel
-            *bptr = sepiaRed;
+            *bptr = set_sepia_color(BLUE, &image[i][j]);
             *gptr = sepiaGreen;
             *rptr = sepiaRed;
         }
