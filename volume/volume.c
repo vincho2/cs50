@@ -3,7 +3,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
@@ -36,7 +35,6 @@ int main(int argc, char *argv[])
 
     float factor = atof(argv[3]);
 
-
     //----------------------------------------------------------------------------------------------
     // Copy header from input file to output file
     //----------------------------------------------------------------------------------------------
@@ -50,25 +48,24 @@ int main(int argc, char *argv[])
     fwrite(input_header, HEADER_SIZE, 1, output);
 
     //----------------------------------------------------------------------------------------------
-    // TODO: Read samples from input file and write updated data to output file
+    // Read samples from input file and write updated data to output file
     //----------------------------------------------------------------------------------------------
 
     // Initialize the sample pointer
-    uint16_t input_sample;
-    uint16_t output_sample;
-    uint16_t offset = 1;
+    int integer_result;
+    int16_t input_sample;
+    int16_t output_sample;
+    int i = 0;
+
+    int k = 0;
+    int l = 0;
 
     // Append the amplified samples to the output file
-    while (fread(&input_sample, sizeof(uint16_t), 1, input))
+    while (fread(&input_sample, sizeof(int16_t), 1, input))
     {
-        output_sample = (uint16_t) (input_sample * factor + 0.5);
-
-        // To avoid overflow, the output is capped to the maximum value of a 16 bytes number
-        if (output_sample > (uint16_t) MAX_16_BITS_VALUE)
-        {
-            output_sample = (uint16_t) MAX_16_BITS_VALUE;
-        }
-        fwrite(&output_sample, sizeof(uint16_t), 1, output);
+        i++;
+        output_sample = (int16_t) (input_sample * factor);
+        fwrite(&output_sample, sizeof(int16_t), 1, output);
     }
 
     // Free memory and close files

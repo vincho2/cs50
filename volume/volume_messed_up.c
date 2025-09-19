@@ -7,7 +7,7 @@
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
-const int MAX_16_BITS_VALUE = 65535;
+const uint16_t MAX_16_BITS_VALUE = 65535;
 
 int main(int argc, char *argv[])
 {
@@ -54,20 +54,58 @@ int main(int argc, char *argv[])
     //----------------------------------------------------------------------------------------------
 
     // Initialize the sample pointer
+    int integer_result;
     uint16_t input_sample;
     uint16_t output_sample;
     uint16_t offset = 1;
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int l = 0;
 
     // Append the amplified samples to the output file
     while (fread(&input_sample, sizeof(uint16_t), 1, input))
     {
-        output_sample = (uint16_t) (input_sample * factor + 0.5);
+
+        i++;
+        integer_result = (int) input_sample *  (int) factor;
+
+        output_sample = (uint16_t) (input_sample * factor);
+
+        printf("---- Sample %i -------------------- %i negative --- %i overflows --- small %i\n", i, j, k, l);
+        printf("input sample: %u\noutput sample: %f\ninput * factor: %u\n", input_sample, factor, output_sample);
 
         // To avoid overflow, the output is capped to the maximum value of a 16 bytes number
-       // if (output_sample > (uint16_t) MAX_16_BITS_VALUE)
-      //  {
-      //      output_sample = (uint16_t) MAX_16_BITS_VALUE;
-     //   }
+        if (integer_result > (int) MAX_16_BITS_VALUE)
+        {
+            output_sample = MAX_16_BITS_VALUE;
+            k++;
+        }
+        // To avoid underflow, the output is floored to the minimum value of a 16 bytes number
+        else if (integer_result < 0)
+        {
+            output_sample = (uint16_t) 0;
+            j++;
+        }
+        // avoid 0 in output
+        else if (input_sample == (uint16_t) 1)
+        {
+            output_sample = input_sample;
+            l++;
+        }
+
+        printf("output sample after logic: %u\n", output_sample);
+        printf("negative: %i - ", j);
+        printf("small: %i - ", l);
+        printf("overflow: %i\n\n", k);
+
+        if (l == 100)
+        {
+            fclose(input);
+            fclose(output);
+            return 1;
+        }
+
         fwrite(&output_sample, sizeof(uint16_t), 1, output);
     }
 
