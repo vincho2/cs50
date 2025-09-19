@@ -109,14 +109,27 @@ BYTE set_sepia_color(Color c, BYTE *pixptr)
     gptr = pixptr.rgbtGreen;
     rptr = pixptr.rgbtRed;
 
+    BYTE result;
+    int int_result;
+    float b_factor;
+    float g_factor;
+    float r_factor;
+
+
     switch(c)
     {
         case BLUE:
-            sepiaBlue = (BYTE) fmax(.272 * (*rptr) + .534 * (*gptr) + .131 * (*bptr), 255);
+            b_factor = ;
+            g_factor;
+            r_factor;
+
+
             break;
 
 
     }
+
+    sepiaBlue = (BYTE) fmax(.272 * (*rptr) + .534 * (*gptr) + .131 * (*bptr), 255);
 
 
 }
