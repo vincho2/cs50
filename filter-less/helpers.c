@@ -8,6 +8,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     const BYTE WHITE = 0xff;
 
     BYTE pixel_brightness;
+    RGBTRIPLE pixel;
 
 
     for (int i = 0; i < height; i++)
@@ -15,10 +16,12 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < height; j++)
         {
             // Compute pixel brightness and assign the resulted value to each colour of the pixel
-            pixel_brightness = (image.rgbtBlue + image.rgbtGreen + image.rgbtRed) / 3;
-            image.rgbtBlue = pixel_brightness;
-            image.rgbtGreen = pixel_brightness;
-            image.rgbtRed = pixel_brightness;
+
+            pixel = image[i][j];
+            pixel_brightness = (pixel.rgbtBlue + pixel.rgbtGreen + pixel.rgbtRed) / 3;
+            pixel.rgbtBlue = pixel_brightness;
+            pixel.rgbtGreen = pixel_brightness;
+            pixel.rgbtRed = pixel_brightness;
         }
     }
 }
@@ -38,5 +41,5 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    
+
 }
