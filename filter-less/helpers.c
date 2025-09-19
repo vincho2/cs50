@@ -22,9 +22,9 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             // Compute pixel brightness
             pixel_brightness = (*pixel.rgbtBlue + *pixel.rgbtGreen + *pixel.rgbtRed) / 3;
             // Assign the resulted brightness value to each color of the pixel
-            pixel.rgbtBlue = pixel_brightness;
-            pixel.rgbtGreen = pixel_brightness;
-            pixel.rgbtRed = pixel_brightness;
+            *pixel.rgbtBlue = pixel_brightness;
+            *pixel.rgbtGreen = pixel_brightness;
+            *pixel.rgbtRed = pixel_brightness;
         }
     }
 }
