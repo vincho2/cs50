@@ -104,6 +104,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 BYTE set_sepia_color(Color c, BYTE *pixptr)
 {
 
+    // Initialize colors pointers
+    bptr = pixptr.rgbtBlue;
+    gptr = pixptr.rgbtGreen;
+    rptr = pixptr.rgbtRed;
+
     switch(c)
     {
         case BLUE:
