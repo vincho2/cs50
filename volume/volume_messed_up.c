@@ -88,8 +88,6 @@ int main(int argc, char *argv[])
         }
 
         printf("output sample after logic: %i\n", output_sample);
-        printf("underflow: %i - ", j);
-        printf("overflow: %i\n\n", k);
 
         fwrite(&output_sample, sizeof(int16_t), 1, output);
     }
