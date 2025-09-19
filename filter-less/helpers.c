@@ -126,7 +126,7 @@ BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input)
 
     // Compute resulting sepia color
     int int_result =
-        (int) fmax(MAX_BYTE, b_factor * b_input + g_factor * g_input + r_factor * r_input);
+        (int) fmin(MAX_BYTE, b_factor * b_input + g_factor * g_input + r_factor * r_input);
 
     // return result as a byte type
     return (BYTE) int_result;
