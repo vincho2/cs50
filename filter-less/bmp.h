@@ -35,7 +35,7 @@ typedef struct
     LONG   biWidth;
     LONG   biHeight;
     WORD   biPlanes;
-    WORD   ma;
+    WORD   biBitCount;
     DWORD  biCompression;
     DWORD  biSizeImage;
     LONG   biXPelsPerMeter;
