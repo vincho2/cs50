@@ -7,13 +7,14 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     const BYTE BLACK = 0x00;
     const BYTE WHITE = 0xff;
 
-    
+    int pixel_brightness;
 
 
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < height; j++)
         {
+            // Compute pixel brightness
             if ()
             {
                 image.rgbtBlue =
