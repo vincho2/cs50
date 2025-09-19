@@ -1,6 +1,8 @@
 #include "helpers.h"
 #include <math.h>
 
+BYTE set_sepia_color(Color c, BYTE *pixptr);
+
 BYTE *bptr;
 BYTE *gptr;
 BYTE *rptr;
@@ -96,5 +98,17 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
 }
 
+//--------------------------------------------------------------------------------------------------
+// Helper function to set the Sepia color value
+//--------------------------------------------------------------------------------------------------
+BYTE set_sepia_color(Color c, BYTE *pixptr)
+{
 
-BYTE set_sepia_color(Color c, *pixptr);
+    switch(c)
+    {
+        case BLUE:
+            
+    }
+
+
+}
