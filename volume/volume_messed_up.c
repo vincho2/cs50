@@ -7,8 +7,8 @@
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
-const int16_t MAX_16_BITS_VALUE = 65535;
-const int16_t MIN_16_BITS_VALUE = 65535;
+const int16_t MAX_16_BITS_VALUE = 32767;
+const int16_t MIN_16_BITS_VALUE = -32768;
 
 int main(int argc, char *argv[])
 {
@@ -56,27 +56,26 @@ int main(int argc, char *argv[])
 
     // Initialize the sample pointer
     int integer_result;
-    uint16_t input_sample;
-    uint16_t output_sample;
-    uint16_t offset = 1;
+    int16_t input_sample;
+    int16_t output_sample;
     int i = 0;
     int j = 0;
     int k = 0;
     int l = 0;
 
     // Append the amplified samples to the output file
-    while (fread(&input_sample, sizeof(uint16_t), 1, input))
+    while (fread(&input_sample, sizeof(int16_t), 1, input))
     {
 
         i++;
         integer_result = (int) input_sample *  (int) factor;
 
-        output_sample = (uint16_t) (input_sample * factor);
+        output_sample = (int16_t) (input_sample * factor);
 
-        printf("---- Sample %i -------------------- %i negative --- %i overflows --- small %i\n", i, j, k, l);
-        printf("input sample: %u\noutput sample: %f\ninput * factor: %u\n", input_sample, factor, output_sample);
+        printf("---- Sample %i -------------------- %i underflow --- %i overflows\n", i, j, k);
+        printf("input sample: %u\ninput * factor: %i\noutput before logic: %u\n", input_sample, integer_result, output_sample);
 
-        // To avoid overflow, the output is capped to the maximum value of a 16 bytes number
+        // To avoid overflow, the output is capped to the maximum value of a 16 bytes signed number
         if (integer_result > (int) MAX_16_BITS_VALUE)
         {
             output_sample = MAX_16_BITS_VALUE;
@@ -89,7 +88,7 @@ int main(int argc, char *argv[])
             j++;
         }
         // avoid 0 in output
-        else if (input_sample == (uint16_t) 1)
+        else if (input_sample == > (int) MAX_16_BITS_VALUE)
         {
             output_sample = input_sample;
             l++;
