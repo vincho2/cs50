@@ -7,6 +7,13 @@ BYTE *bptr;
 BYTE *gptr;
 BYTE *rptr;
 
+typedef enum
+{
+    BLUE,
+    GREEN,
+    RED
+} Color;
+
 //--------------------------------------------------------------------------------------------------
 // Convert image to grayscale
 //--------------------------------------------------------------------------------------------------
@@ -45,13 +52,6 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     BYTE sepiaRed;
     BYTE sepiaGreen;
     BYTE sepiaBlue;
-
-    typedef enum
-    {
-        BLUE,
-        GREEN,
-        RED
-    } Color;
 
     // Loop on each row
     for (int i = 0; i < height; i++)
@@ -107,7 +107,7 @@ BYTE set_sepia_color(Color c, BYTE *pixptr)
     switch(c)
     {
         case BLUE:
-            
+
     }
 
 
