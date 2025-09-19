@@ -1,4 +1,5 @@
 #include "helpers.h"
+#include <math.h>
 
 BYTE *bptr;
 BYTE *gptr;
@@ -54,18 +55,20 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             gptr = &image[i][j].rgbtGreen;
             rptr = &image[i][j].rgbtRed;
 
-            sepiaRed =
-            sepiaRed = .393 * (*rptr) + .769 * (*gptr) + .189 * (*bptr);
-            sepiaGreen = .349 * (*rptr) + .686 * (*gptr) + .168 * (*bptr);
-            sepiaBlue = .272 * (*rptr) + .534 * (*gptr) + .131 * (*bptr);
+            set_sepia_color(sepiaBlue, )
+
+            sepiaBlue = (BYTE) fmax(.272 * (*rptr) + .534 * (*gptr) + .131 * (*bptr), 255);
+            sepiaGreen = (BYTE) fmax(.349 * (*rptr) + .686 * (*gptr) + .168 * (*bptr), 255);
+            sepiaRed = (BYTE) fmax(.393 * (*rptr) + .769 * (*gptr) + .189 * (*bptr), 255);
+
 
 
             // Compute pixel brightness
             pixel_brightness = (*bptr + *gptr + *rptr) / 3;
             // Assign the resulted brightness value to each color of the pixel
-            *bptr = pixel_brightness;
-            *gptr = pixel_brightness;
-            *rptr = pixel_brightness;
+            *bptr = sepiaRed;
+            *gptr = sepiaGreen;
+            *rptr = sepiaRed;
         }
     }
 }
