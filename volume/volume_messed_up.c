@@ -61,7 +61,6 @@ int main(int argc, char *argv[])
     int i = 0;
     int j = 0;
     int k = 0;
-    int l = 0;
 
     // Append the amplified samples to the output file
     while (fread(&input_sample, sizeof(int16_t), 1, input))
@@ -75,38 +74,24 @@ int main(int argc, char *argv[])
         printf("---- Sample %i -------------------- %i underflow --- %i overflows\n", i, j, k);
         printf("input sample: %u\ninput * factor: %i\noutput before logic: %u\n", input_sample, integer_result, output_sample);
 
+        // To avoid underflow, the output is floored to the minimum value of a 16 bytes signed number
+        if (integer_result < (int) MIN_16_BITS_VALUE)
+        {
+            output_sample = MIN_16_BITS_VALUE;
+            j++;
+        }
         // To avoid overflow, the output is capped to the maximum value of a 16 bytes signed number
-        if (integer_result > (int) MAX_16_BITS_VALUE)
+        else if (integer_result > (int) MAX_16_BITS_VALUE)
         {
             output_sample = MAX_16_BITS_VALUE;
             k++;
         }
-        // To avoid underflow, the output is floored to the minimum value of a 16 bytes number
-        else if (integer_result < 0)
-        {
-            output_sample = (uint16_t) 0;
-            j++;
-        }
-        // avoid 0 in output
-        else if (input_sample == > (int) MAX_16_BITS_VALUE)
-        {
-            output_sample = input_sample;
-            l++;
-        }
 
         printf("output sample after logic: %u\n", output_sample);
-        printf("negative: %i - ", j);
-        printf("small: %i - ", l);
+        printf("underflow: %i - ", j);
         printf("overflow: %i\n\n", k);
 
-        if (l == 100)
-        {
-            fclose(input);
-            fclose(output);
-            return 1;
-        }
-
-        fwrite(&output_sample, sizeof(uint16_t), 1, output);
+        fwrite(&output_sample, sizeof(int16_t), 1, output);
     }
 
     // Free memory and close files
