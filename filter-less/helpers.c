@@ -3,7 +3,7 @@
 const BYTE BLACK = 0x00;
 const BYTE WHITE = 0xff;
 
-RGBTRIPLE pixel;
+RGBTRIPLE *pixel;
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
