@@ -58,35 +58,41 @@ int main(int argc, char *argv[])
     int integer_result;
     int16_t input_sample;
     int16_t output_sample;
+    int i = 0;
+    int j = 0;
+    int k = 0;
 
     // Append the amplified samples to the output file
     while (fread(&input_sample, sizeof(int16_t), 1, input))
     {
 
-        // Raw integer new sample value (used to check under/overflows)
+        i++;
         integer_result = (int) input_sample *  (int) factor;
+
+        output_sample = (int16_t) (input_sample * factor);
+
+        printf("------------------------------------------ Sample %i --- %i underflow --- %i overflows\n", i, j, k);
+        printf("input sample: %u\ninput * factor: %i\noutput before logic: %u\n", input_sample, integer_result, output_sample);
 
         // To avoid underflow, the output is floored to the minimum value of a 16 bytes signed number
         if (integer_result < (int) MIN_16_BITS_VALUE)
         {
             output_sample = MIN_16_BITS_VALUE;
+            j++;
         }
         // To avoid overflow, the output is capped to the maximum value of a 16 bytes signed number
         else if (integer_result > (int) MAX_16_BITS_VALUE)
         {
             output_sample = MAX_16_BITS_VALUE;
-        }
-        // If no under or overflow, the sample is the computed value
-        else
-        {
-            output_sample = (int16_t) (input_sample * factor);
+            k++;
         }
 
-        // Write in the file the output sample
+        printf("output sample after logic: %u\n", output_sample);
+
         fwrite(&output_sample, sizeof(int16_t), 1, output);
     }
 
-    // Close files
+    // Free memory and close files
     fclose(input);
     fclose(output);
 }
