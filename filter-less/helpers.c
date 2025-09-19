@@ -129,17 +129,13 @@ BYTE set_sepia_color(Color c, BYTE *pixptr)
             break;
     }
 
-    int int_result = (int) fmax(.272 * (*rptr) + .534 * (*gptr) + .131 * (*bptr), 255);
-
     // Initialize colors pointers
     bptr = pixptr.rgbtBlue;
     gptr = pixptr.rgbtGreen;
     rptr = pixptr.rgbtRed;
 
-    BYTE result;
+    int int_result = (int) fmax(b_factor * (*bptr) + g_factor * (*gptr) + r_factor * (*rptr), 255);
 
-
-    sepiaBlue =
-
-
+    // return
+    return (BYTE) int_result;
 }
