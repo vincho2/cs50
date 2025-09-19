@@ -65,6 +65,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             bptr = &image[i][j].rgbtBlue;
             gptr = &image[i][j].rgbtGreen;
             rptr = &image[i][j].rgbtRed;
+            
 
             sepiaBlue = set_sepia_color(BLUE, &image[i][j]);
 
