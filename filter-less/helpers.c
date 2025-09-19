@@ -1,5 +1,7 @@
 #include "helpers.h"
 
+const 
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -8,6 +10,9 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < height; j++)
         {
             if ()
+            {
+                image.rgbtBlue =
+            }
         }
     }
 
