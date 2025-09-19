@@ -4,7 +4,9 @@
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
-    const int BLACK = 
+    
+    const BYTE BLACK = 0x00;
+    const BYTE WHITE = 0xff;
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < height; j++)
