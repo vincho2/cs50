@@ -90,6 +90,11 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE *rrptr = calloc(width, sizeof(RGBTRIPLE));
+    if (rrptr == NULL)
+    {
+        printf("No memory in the heap to create row of pixel");
+        return 1;
+    }
 
     // Loop on each row
     for (int i = 0; i < height; i++)
@@ -97,19 +102,12 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
         // Loop on each column to populate the reflected row array
         for (int j = 0; j < width; j++)
         {
-            RGBTRIPLE rp_j_before = rrptr[j];
-            RGBTRIPLE img = image[i][width - j - 1];
             rrptr[j] = image[i][width - j - 1];
-            RGBTRIPLE rp_j_after = rrptr[j];
-            int test = 0;
         }
         // Loop again on each column to populate the image array with the reflected array content
         for (int j = 0; j < width; j++)
         {
-            RGBTRIPLE im_j_before = image[i][j];
             image[i][j] = rrptr[j];
-            RGBTRIPLE im_j_after = image[i][j];
-            int test = 0;
         }
     }
     free(rrptr);
