@@ -89,9 +89,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-
-    RGBTRIPLE reflected_row[width];
-    RGBTRIPLE *rrptr[] = malloc(width * sizeof(RGBTRIPLE));
+    RGBTRIPLE *rrptr[width] = calloc(width, sizeof(RGBTRIPLE));
 
     // Loop on each row
     for (int i = 0; i < height; i++)
