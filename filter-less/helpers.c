@@ -92,8 +92,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     RGBTRIPLE *rrptr = calloc(width, sizeof(RGBTRIPLE));
     if (rrptr == NULL)
     {
-        printf("No memory in the heap to create row of pixel");
-        return 1;
+        printf("No memory in the heap to create row of pixel, it will crash");
     }
 
     // Loop on each row
