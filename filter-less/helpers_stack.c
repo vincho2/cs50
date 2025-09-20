@@ -1,7 +1,6 @@
 #include "helpers.h"
 #include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 const int MAX_BYTE = 255;
 
@@ -90,7 +89,6 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
 
-    RGBTRIPLE *rrptr[] = malloc(width, sizeof(RGBTRIPLE));
     RGBTRIPLE reflected_row[width];
     // Loop on each row
     for (int i = 0; i < height; i++)
@@ -98,12 +96,12 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
         // Loop on each column to populate the reflected row array
         for (int j = 0; j < width; j++)
         {
-            *rrptr[j] = image[i][width - j - 1];
+            reflected_row[j] = image[i][width - j - 1];
         }
         // Loop again on each column to populate the image array with the reflected array content
         for (int j = 0; j < width; j++)
         {
-            image[i][j] = *rrptr[j];
+            image[i][j] = reflected_row[j];
         }
     }
 }
