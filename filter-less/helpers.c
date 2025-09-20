@@ -93,6 +93,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     if (rrptr == NULL)
     {
         printf("No memory in the heap to create row of pixel, it will crash");
+        return;
     }
 
     // Loop on each row
