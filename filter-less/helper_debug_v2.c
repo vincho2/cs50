@@ -90,18 +90,27 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
 
     RGBTRIPLE reflected_row[width];
+    RGBTRIPLE *rpptr;
+    RGBTRIPLE *tpptr;
     // Loop on each row
     for (int i = 0; i < height; i++)
     {
         // Loop on each column to populate the reflected row array
         for (int j = 0; j < width; j++)
         {
+            RGBTRIPLE reflected_pixel_before = reflected_row[j];   // debug TBR
+            RGBTRIPLE original_pixel = image[i][width - j - 1];    // debug TBR
             reflected_row[j] = image[i][width - j - 1];
+            RGBTRIPLE reflected_pixel_after = reflected_row[j]; // debug TBR
+            printf("stop");     // debug TBR
         }
         // Loop again on each column to populate the image array with the reflected array content
         for (int j = 0; j < width; j++)
         {
+            RGBTRIPLE image_pixel_before = image[i][j]; // debug TBR
             image[i][j] = reflected_row[j];
+            RGBTRIPLE image_pixel_after = image[i][j];  // debug TBR
+            printf("stop");     // debug TBR
         }
     }
 }
@@ -109,15 +118,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 // Blur image
 //--------------------------------------------------------------------------------------------------
-void blur(int height, int width, RGBTRIPLE image[height][width]) {
-
-
-
-
-
-
-
-}
+void blur(int height, int width, RGBTRIPLE image[height][width]) {}
 
 //--------------------------------------------------------------------------------------------------
 // Helper function to set the Sepia color value
