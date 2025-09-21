@@ -11,7 +11,7 @@ BYTE *rptr;
 
 typedef enum { BLUE, GREEN, RED } Color;
 
-BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input);
+
 
 //--------------------------------------------------------------------------------------------------
 // Convert image to grayscale
@@ -52,8 +52,10 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 }
 
 //--------------------------------------------------------------------------------------------------
-// Convert image to sepia
+// Convert image to SEPIA
 //--------------------------------------------------------------------------------------------------
+BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input);
+
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
     // Declare original color variables
@@ -85,49 +87,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 }
 
 //--------------------------------------------------------------------------------------------------
-// Reflect image horizontally
-//--------------------------------------------------------------------------------------------------
-void reflect(int height, int width, RGBTRIPLE image[height][width])
-{
-    RGBTRIPLE *rrptr = calloc(width, sizeof(RGBTRIPLE));
-    if (rrptr == NULL)
-    {
-        printf("No memory in the heap to create row of pixel, it will crash");
-        return;
-    }
-
-    // Loop on each row
-    for (int i = 0; i < height; i++)
-    {
-        // Loop on each column to populate the reflected row array
-        for (int j = 0; j < width; j++)
-        {
-            rrptr[j] = image[i][width - j - 1];
-        }
-        // Loop again on each column to populate the image array with the reflected array content
-        for (int j = 0; j < width; j++)
-        {
-            image[i][j] = rrptr[j];
-        }
-    }
-    free(rrptr);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Blur image
-//--------------------------------------------------------------------------------------------------
-void blur(int height, int width, RGBTRIPLE image[height][width]) {
-
-
-
-
-
-
-
-}
-
-//--------------------------------------------------------------------------------------------------
-// Helper function to set the Sepia color value
+// Helper function to set the SEPIA color value
 //--------------------------------------------------------------------------------------------------
 BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input)
 {
@@ -165,3 +125,81 @@ BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input)
     // return result as a byte type
     return (BYTE) int_result;
 }
+
+//--------------------------------------------------------------------------------------------------
+// REFLECT image horizontally
+//--------------------------------------------------------------------------------------------------
+void reflect(int height, int width, RGBTRIPLE image[height][width])
+{
+    RGBTRIPLE *rrptr = calloc(width, sizeof(RGBTRIPLE));
+    if (rrptr == NULL)
+    {
+        printf("No memory in the heap to create row of pixel, it will crash");
+        return;
+    }
+
+    // Loop on each row
+    for (int i = 0; i < height; i++)
+    {
+        // Loop on each column to populate the reflected row array
+        for (int j = 0; j < width; j++)
+        {
+            rrptr[j] = image[i][width - j - 1];
+        }
+        // Loop again on each column to populate the image array with the reflected array content
+        for (int j = 0; j < width; j++)
+        {
+            image[i][j] = rrptr[j];
+        }
+    }
+    free(rrptr);
+}
+
+//--------------------------------------------------------------------------------------------------
+// BLUR image
+//--------------------------------------------------------------------------------------------------
+const int grid_size = 3;
+
+
+void blur(int height, int width, RGBTRIPLE image[height][width])
+{
+    for (int i = 0; i < height; i++)
+    {
+        int m = 0;
+        for (int j = 0; j < width; j++)
+        {
+            int local_grid[9];
+            for (int k = i - 1; k < i + 1; k++)
+            {
+                for (int l = j - 1; l < j + 1; l++)
+                {
+                    local_grid[k][l] = image[i - 1 + k, j - 1 + l];
+                }
+            }
+
+
+            if ()
+            RGBTRIPLE current_pixel = image[i][j];
+            RGBTRIPLE pixptr =&image[i][j];
+
+        }
+
+    }
+
+
+
+
+
+
+
+}
+
+//--------------------------------------------------------------------------------------------------
+// Helper function to compute an inner blurry pixel value
+//--------------------------------------------------------------------------------------------------
+RGBTRIPLE get_blurry_inner_pixel(int pixel_count, )
+{
+
+}
+
+
