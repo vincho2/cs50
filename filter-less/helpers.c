@@ -179,11 +179,16 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
                     if (k = 0 || j = 0 || k = height || j = width)
                     {
-                        local_grid[m] = 
-
+                        local_grid[m] = null_pixel;
+                        neighbor_count--;
                     }
-                    local_grid[m] = image[k][l];
+                    else
+                    {
+                        local_grid[m] = image[k][l];
+                    }
+                    m++;
                 }
+                image[i][j] = get_blurry_inner_pixel(local_grid, )
             }
 
 
