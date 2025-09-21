@@ -164,13 +164,14 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     int m = 0;
     int neighbor_count = grid_size;
-    RGBTRIPLE null_pixel;
-    BYTE null_pixel.rgbtBlue = 
+    // Define null pixel
+    RGBTRIPLE null_pixel = {0, 0, 0};
+
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
-            int local_grid[grid_size];
+            RGBTRIPLE local_grid[grid_size];
             for (int k = i - 1; k < i + 1; k++)
             {
                 for (int l = j - 1; l < j + 1; l++)
@@ -178,6 +179,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
                     if (k = 0 || j = 0 || k = height || j = width)
                     {
+                        local_grid[m] = 
 
                     }
                     local_grid[m] = image[k][l];
