@@ -11,8 +11,6 @@ BYTE *rptr;
 
 typedef enum { BLUE, GREEN, RED } Color;
 
-
-
 //--------------------------------------------------------------------------------------------------
 // Convert image to grayscale
 //--------------------------------------------------------------------------------------------------
@@ -158,10 +156,18 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 // BLUR image
 //--------------------------------------------------------------------------------------------------
+
+// Default number of pixel in a neighborhood
+const int grid_size = 9;
+
+RGBTRIPLE get_blurry_inner_pixel(RGBTRIPLE grid[grid_size], float average_factor);
+
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Store original image in another location as reference
-    RGBTRIPLE (*original_image)[width] = calloc(height * width, sizeof(RGBTRIPLE));
+    // Debug
+    int fault = 0;
+    // Store original image in another location as reference before the image starts to be modified
+    RGBTRIPLE(*original_image)[width] = calloc(height, width * sizeof(RGBTRIPLE));
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -170,15 +176,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
-    // Loop on each pixel to update the pixel value with the average of its neighborhood
+    // Loop on each pixel to update the image pixel values with the average of its neighborhood
 
-    // Default number of pixel in a neighborhood
-    const int grid_size = 9;
-
-    // Define the local grid array
+    // Define the local grid array (square of 3*3 pixels represented as a single array of 9 pixels)
     RGBTRIPLE local_grid[grid_size];
 
-    // Define null pixel
+    // Define null pixel (assigned to pixels outside the image)
     RGBTRIPLE null_pixel = {0, 0, 0};
 
     // Loop on each pixel of the resulting image
@@ -186,45 +189,60 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            // Reset neighbor count to the grid size
-            int neighbor_count = grid_size;
+            // Reset average factor to the grid size
+            float average_factor = (float) grid_size;
             // Define local grid counter to 0
-            int m = 0;
+            int local_grid_counter = 0;
 
-            for (int k = i - 1; k < i + 1; k++)
+            // Build the local grid array for this pixel
+            for (int k = i - 1; k <= i + 1; k++)
             {
-                for (int l = j - 1; l < j + 1; l++)
+                for (int l = j - 1; l <= j + 1; l++)
                 {
-
-                    if (k = 0 || j = 0 || k = height || j = width)
+                    // If the current local grid pixel is outside the image
+                    if (k < 0 || l < 0 || k >= height || l >= width)
                     {
-                        local_grid[m] = null_pixel;
-                        neighbor_count--;
+                        // Assign the null pixel (will not be taken into account for the average)
+                        local_grid[local_grid_counter] = null_pixel;
+                        // decrease the total of pixels of the grid to compute the correct average
+                        average_factor--;
                     }
+                    // Else store the pixel values into the local grid array
                     else
                     {
-                        local_grid[m] = image[k][l];
+                        local_grid[local_grid_counter] = original_image[k][l];
                     }
-                    m++;
+                    // Increment local grid counter to move to next pixel to store in the array
+                    local_grid_counter++;
                 }
-                if (m != grid_size)
-                {
-                    printf("%i should be %i", m, grid_size);
-                }
-                image[i][j] = get_blurry_inner_pixel(local_grid, neighbor_count);
             }
+            // Update pixel
+            image[i][j] = get_blurry_inner_pixel(local_grid, average_factor);
         }
     }
+    // After finishing looping on each pixels, free the memory allocated to the original image
     free(original_image);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Helper function to compute an inner blurry pixel value
 //--------------------------------------------------------------------------------------------------
-RGBTRIPLE get_blurry_inner_pixel(RGBTRIPLE grid[grid_size], int average_factor)
+RGBTRIPLE get_blurry_inner_pixel(RGBTRIPLE grid[grid_size], float average_factor)
 {
+    RGBTRIPLE resulting_pixel;
+    int blue = 0;
+    int green = 0;
+    int red = 0;
 
+    for (int i = 0; i < grid_size; i++)
+    {
+        blue += grid[i].rgbtBlue;
+        green += grid[i].rgbtGreen;
+        red += grid[i].rgbtRed;
+    }
+    resulting_pixel.rgbtBlue = (BYTE) round(blue / average_factor);
+    resulting_pixel.rgbtGreen = (BYTE) round(green / average_factor);
+    resulting_pixel.rgbtRed = (BYTE) round(red / average_factor);
 
+    return resulting_pixel;
 }
-
-
