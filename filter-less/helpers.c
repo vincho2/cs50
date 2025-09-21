@@ -163,6 +163,8 @@ const int grid_size = 9;
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     int m = 0;
+    int neighbor_count = grid_size;
+    RGBTRIPLE null_
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -172,7 +174,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             {
                 for (int l = j - 1; l < j + 1; l++)
                 {
-                    
+
+                    if (k = 0 || j = 0 || k = height || j = width)
+                    {
+
+                    }
                     local_grid[m] = image[k][l];
                 }
             }
