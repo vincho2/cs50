@@ -172,7 +172,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             {
                 for (int l = j - 1; l < j + 1; l++)
                 {
-                    local_grid[m] = image[i - 1 + k, j - 1 + l];
+                    
+                    local_grid[m] = image[k][l];
                 }
             }
 
