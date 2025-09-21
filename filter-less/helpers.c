@@ -164,6 +164,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     // Define null pixel
     RGBTRIPLE null_pixel = {0, 0, 0};
+    // Store original image in another location as reference
+    RGBTRIPLE (*original_image)[width] = calloc(height * width, sizeof(RGBTRIPLE));
 
     for (int i = 0; i < height; i++)
     {
@@ -197,6 +199,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
         }
     }
+    free(original_image);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -204,7 +207,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 RGBTRIPLE get_blurry_inner_pixel(RGBTRIPLE grid[grid_size], int average_factor)
 {
-    
+
 
 }
 
