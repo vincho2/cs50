@@ -158,14 +158,25 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 // BLUR image
 //--------------------------------------------------------------------------------------------------
-const int grid_size = 9;
-
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     // Define null pixel
     RGBTRIPLE null_pixel = {0, 0, 0};
+
     // Store original image in another location as reference
     RGBTRIPLE (*original_image)[width] = calloc(height * width, sizeof(RGBTRIPLE));
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            original_image[i][j] = image[i][j];
+        }
+    }
+
+    // Loop on each pixel to update the pixel value with the average of its neighborhood
+
+    // Default number of pixel in a neighborhood
+    const int grid_size = 9;
 
     for (int i = 0; i < height; i++)
     {
