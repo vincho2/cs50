@@ -172,7 +172,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             int neighbor_count = grid_size;
             RGBTRIPLE local_grid[grid_size];
             int m = 0;
-            
+
             for (int k = i - 1; k < i + 1; k++)
             {
                 for (int l = j - 1; l < j + 1; l++)
@@ -189,31 +189,22 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     }
                     m++;
                 }
-                image[i][j] = get_blurry_inner_pixel(local_grid, )
+                if (m != grid_size)
+                {
+                    printf("%i should be %i", m, grid_size);
+                }
+                image[i][j] = get_blurry_inner_pixel(local_grid, neighbor_count);
             }
-
-
-            if ()
-            RGBTRIPLE current_pixel = image[i][j];
-            RGBTRIPLE pixptr =&image[i][j];
-
         }
-
     }
-
-
-
-
-
-
-
 }
 
 //--------------------------------------------------------------------------------------------------
 // Helper function to compute an inner blurry pixel value
 //--------------------------------------------------------------------------------------------------
-RGBTRIPLE get_blurry_inner_pixel(int pixel_count, )
+RGBTRIPLE get_blurry_inner_pixel(RGBTRIPLE grid[grid_size], int average_factor)
 {
+    
 
 }
 
