@@ -182,7 +182,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
+            // Reset neighbor count to the grid size
             int neighbor_count = grid_size;
+            // Define the local grid array
             RGBTRIPLE local_grid[grid_size];
             int m = 0;
 
