@@ -160,12 +160,10 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Default number of pixel in a neighborhood
 const int grid_size = 9;
 
-RGBTRIPLE get_blurry_inner_pixel(RGBTRIPLE grid[grid_size], float average_factor);
+RGBTRIPLE get_blurry_pixel(RGBTRIPLE grid[grid_size], float average_factor);
 
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Debug
-    int fault = 0;
     // Store original image in another location as reference before the image starts to be modified
     RGBTRIPLE(*original_image)[width] = calloc(height, width * sizeof(RGBTRIPLE));
     for (int i = 0; i < height; i++)
@@ -217,7 +215,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
             // Update pixel
-            image[i][j] = get_blurry_inner_pixel(local_grid, average_factor);
+            image[i][j] = get_blurry_pixel(local_grid, average_factor);
         }
     }
     // After finishing looping on each pixels, free the memory allocated to the original image
@@ -227,7 +225,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 // Helper function to compute an inner blurry pixel value
 //--------------------------------------------------------------------------------------------------
-RGBTRIPLE get_blurry_inner_pixel(RGBTRIPLE grid[grid_size], float average_factor)
+RGBTRIPLE get_blurry_pixel(RGBTRIPLE grid[grid_size], float average_factor)
 {
     RGBTRIPLE resulting_pixel;
     int blue = 0;
