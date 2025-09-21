@@ -158,22 +158,21 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 // BLUR image
 //--------------------------------------------------------------------------------------------------
-const int grid_size = 3;
-
+const int grid_size = 9;
 
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    int m = 0;
     for (int i = 0; i < height; i++)
     {
-        int m = 0;
         for (int j = 0; j < width; j++)
         {
-            int local_grid[9];
+            int local_grid[grid_size];
             for (int k = i - 1; k < i + 1; k++)
             {
                 for (int l = j - 1; l < j + 1; l++)
                 {
-                    local_grid[k][l] = image[i - 1 + k, j - 1 + l];
+                    local_grid[m] = image[i - 1 + k, j - 1 + l];
                 }
             }
 
