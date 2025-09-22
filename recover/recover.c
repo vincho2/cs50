@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 // -------------------------------------------------------------------------------------------------
 // Helper function to set output jpg file name
 // -------------------------------------------------------------------------------------------------
-int build_new_jpg_file_name(int counter, char *file_name)
+int build_new_jpg_file_name(int counter, char file_name[8])
 {
     const char *ext = ".jpg";
 
