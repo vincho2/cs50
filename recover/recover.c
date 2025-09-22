@@ -75,11 +75,12 @@ int main(int argc, char *argv[])
         }
     }
 
-    // At the end of the input raw file, close the last jpg file
+    // At the end of the input raw file, close the last jpg file and the input file
     if (output_file_ptr != NULL)
     {
         fclose(output_file_ptr);
     }
+    fclose(inptr);
 }
 
 // -------------------------------------------------------------------------------------------------
