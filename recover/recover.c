@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
     // Initialize block array of 512 bytes
     BYTE block[block_size];
 
-
     // Initialize jpg file name and pointer
     char output_file[8];
     int jpg_counter = 0;
