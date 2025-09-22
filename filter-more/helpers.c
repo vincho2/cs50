@@ -242,31 +242,8 @@ const double GY[] = {-1, -2, -1, 0, 0, 0, 1, 2, 1};
 RGBTRIPLE get_target_pixel_edge(RGBTRIPLE grid[grid_size])
 {
     RGBTRIPLE resulting_pixel;
-    double gxb = 0;
-    double gyb = 0;
-    double tb = 0;
-    BYTE tbb = 0;
 
-    int green = 0;
-    int red = 0;
-
-    for (int i = 0; i < grid_size; i++)
-    {
-        gxb += grid[i].rgbtBlue * GX[i];
-        gyb += grid[i].rgbtBlue * GY[i];
-    }
-    tb = pow(pow(gxb, 2) + pow(gyb, 2), 0.5);
-    tbb = round(max(tb, MAX_BYTE));
-
-
-
-
-
-
-
-        green += grid[i].rgbtGreen;
-        red += grid[i].rgbtRed;
-    resulting_pixel.rgbtBlue = (BYTE) round(blue / average_factor);
+    resulting_pixel.rgbtBlue = get_target_byte_edge(BLUE, grid);
     resulting_pixel.rgbtGreen = (BYTE) round(green / average_factor);
     resulting_pixel.rgbtRed = (BYTE) round(red / average_factor);
 
