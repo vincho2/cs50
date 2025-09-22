@@ -234,25 +234,26 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 //--------------------------------------------------------------------------------------------------
 // Helper function to compute target pixel value
 //--------------------------------------------------------------------------------------------------
-double max(double x, double y);
-
-const double GX[] = {-1, 0, 1, -2, 0, 2, -1, 0, 1};
-const double GY[] = {-1, -2, -1, 0, 0, 0, 1, 2, 1};
+BYTE get_target_byte_edge(Color c, RGBTRIPLE grid[grid_size]);
 
 RGBTRIPLE get_target_pixel_edge(RGBTRIPLE grid[grid_size])
 {
     RGBTRIPLE resulting_pixel;
 
     resulting_pixel.rgbtBlue = get_target_byte_edge(BLUE, grid);
-    resulting_pixel.rgbtGreen = (BYTE) round(green / average_factor);
-    resulting_pixel.rgbtRed = (BYTE) round(red / average_factor);
-
+    resulting_pixel.rgbtGreen = get_target_byte_edge(GREEN, grid);
+    resulting_pixel.rgbtRed = get_target_byte_edge(RED, grid);
     return resulting_pixel;
 
 }
 //--------------------------------------------------------------------------------------------------
 // Helper function to get the target color byte value
 //--------------------------------------------------------------------------------------------------
+double max(double x, double y);
+
+const double GX[] = {-1, 0, 1, -2, 0, 2, -1, 0, 1};
+const double GY[] = {-1, -2, -1, 0, 0, 0, 1, 2, 1};
+
 BYTE get_target_byte_edge(Color c, RGBTRIPLE grid[grid_size])
 {
     double gx = 0;
