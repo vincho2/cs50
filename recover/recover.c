@@ -9,7 +9,7 @@ const BYTE INIT_3_BYTES[] = {0xff, 0xd8, 0xff};
 const BYTE BYTE4_MIN = 0xe0;
 const BYTE BYTE4_MAX = 0xef;
 
-int build_new_jpg_file_name(int counter, char file_name[8]);
+int build_new_jpg_file_name(int counter);
 
 int main(int argc, char *argv[])
 {
