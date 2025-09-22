@@ -7,9 +7,9 @@ typedef uint8_t BYTE;
 const int block_size = 512;
 const BYTE INIT_3_BYTES[] = {0xff, 0xd8, 0xff};
 const BYTE BYTE4_MIN = 0xe0;
-const BYTE BYTE4_MAX = 0xef;
+BYTE BYTE4_MAX = 0xef;
 
-char *build_new_jpg_file_name(int counter);
+int build_new_jpg_file_name(int counter, char file_name[8]);
 
 int main(int argc, char *argv[])
 {
@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
 
 
     // Initialize jpg file name and pointer
-    char *output_file;
+    char output_file[8];
     int jpg_counter = 0;
-    build_new_jpg_file_name(jpg_counter);
+    build_new_jpg_file_name(jpg_counter, output_file);
     FILE *output_file_ptr = NULL;
 
     // Loop over each block in the input file
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
             }
 
             // Initialize new JPG file name
-            output_file = build_new_jpg_file_name(jpg_counter);
+            build_new_jpg_file_name(jpg_counter, output_file);
             // Open new output file
             output_file_ptr = fopen(output_file, "w");
             if (output_file_ptr == NULL)
@@ -85,27 +85,28 @@ int main(int argc, char *argv[])
 // -------------------------------------------------------------------------------------------------
 // Helper function to set output jpg file name
 // -------------------------------------------------------------------------------------------------
-char *build_new_jpg_file_name(int counter)
+int build_new_jpg_file_name(int counter, char file_name[8])
 {
     const char *ext = ".jpg";
-    char result[8];
 
     if (counter > 999)
     {
         printf("too many files");
-        return "999.jpg";
+        return 2;
     }
     if (counter < 10)
     {
-        sprintf(result, "00%i%s", counter, ext);
+        sprintf(file_name, "00%i%s", counter, ext);
+        return 0;
     }
     else if (counter < 100)
     {
-        sprintf(result, "0%i%s", counter, ext);
+        sprintf(file_name, "0%i%s", counter, ext);
+        return 0;
     }
     else
     {
-        sprintf(result, "%i%s", counter, ext);
+        sprintf(file_name, "%i%s", counter, ext);
+        return 0;
     }
-    return result;
 }
