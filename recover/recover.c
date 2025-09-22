@@ -11,7 +11,7 @@ int build_new_jpg_file_name(int counter, char file_name[8]);
 int main(int argc, char *argv[])
 {
     // Command line should accept 1 and only 1 argument
-    if(argc != 2)
+    if (argc != 2)
     {
         printf("Usage: ./recover file.raw");
         return 1;
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     FILE *output_file_ptr = NULL;
 
     // Loop over each block in the input file
-    while(fread(block, block_size * sizeof(BYTE), 1, inptr))
+    while (fread(block, block_size * sizeof(BYTE), 1, inptr))
     {
         // Identify JPG pattern
         if (memcmp(block, INIT_3_BYTES, 3) == 0 && block[4] <= BYTE4_MIN && block[4] <= BYTE4_MAX)
@@ -88,7 +88,7 @@ int build_new_jpg_file_name(int counter, char file_name[8])
 {
     const char *ext = ".jpg";
 
-    if(counter > 999)
+    if (counter > 999)
     {
         printf("too many files");
         return 2;
