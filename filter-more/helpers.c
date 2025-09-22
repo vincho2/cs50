@@ -248,7 +248,6 @@ RGBTRIPLE get_target_pixel_edge(RGBTRIPLE grid[grid_size])
 
     // Return target pixel
     return resulting_pixel;
-
 }
 //--------------------------------------------------------------------------------------------------
 // Helper function to get the target color byte value
@@ -299,6 +298,7 @@ BYTE get_target_byte_edge(Color c, RGBTRIPLE grid[grid_size])
 //--------------------------------------------------------------------------------------------------
 // Helper function to get the max of 2 doubles
 //--------------------------------------------------------------------------------------------------
-double min(double x, double y) {
+double min(double x, double y)
+{
     return (x < y) ? x : y;
 }
