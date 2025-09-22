@@ -6,7 +6,7 @@
 typedef uint8_t BYTE;
 const int block_size = 512;
 
-void build_new_jpg_file_name(int counter, char file_name);
+void build_new_jpg_file_name(int counter, char file_name[8]);
 
 int main(int argc, char *argv[])
 {
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     BYTE BYTE4_MAX = 0xef;
 
     // Initialize jpg file name and pointer
-    char output_file[7];
+    char output_file[8];
     int jpg_counter = 0;
     build_new_jpg_file_name(jpg_counter, output_file);
     FILE *output_file_ptr = NULL;
