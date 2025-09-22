@@ -249,7 +249,7 @@ RGBTRIPLE get_target_pixel_edge(RGBTRIPLE grid[grid_size])
 //--------------------------------------------------------------------------------------------------
 // Helper function to get the target color byte value
 //--------------------------------------------------------------------------------------------------
-double max(double x, double y);
+double min(double x, double y);
 
 const double GX[] = {-1, 0, 1, -2, 0, 2, -1, 0, 1};
 const double GY[] = {-1, -2, -1, 0, 0, 0, 1, 2, 1};
@@ -284,13 +284,13 @@ BYTE get_target_byte_edge(Color c, RGBTRIPLE grid[grid_size])
     }
 
     target_color_int = pow(pow(gx, 2) + pow(gy, 2), 0.5);
-    target_color_byte = (BYTE) round(max(target_color_int, MAX_BYTE));
+    target_color_byte = (BYTE) round(min(target_color_int, MAX_BYTE));
     return (BYTE) target_color_byte;
 }
 
 //--------------------------------------------------------------------------------------------------
 // Helper function to get the max of 2 doubles
 //--------------------------------------------------------------------------------------------------
-double max(double x, double y) {
-    return (x > y) ? x : y;
+double min(double x, double y) {
+    return (x < y) ? x : y;
 }
