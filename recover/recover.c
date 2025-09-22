@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 char *build_new_jpg_file_name(int counter)
 {
     const char *ext = ".jpg";
-    char *result = ;
+    char result[8];
 
     if (counter > 999)
     {
