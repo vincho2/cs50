@@ -223,7 +223,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     local_grid_counter++;
                 }
             }
-            // Update pixel
+            // Update pixel with target value
             image[i][j] = get_target_pixel_edge(local_grid);
         }
     }
@@ -238,11 +238,15 @@ BYTE get_target_byte_edge(Color c, RGBTRIPLE grid[grid_size]);
 
 RGBTRIPLE get_target_pixel_edge(RGBTRIPLE grid[grid_size])
 {
+    // Declare resulting pixel
     RGBTRIPLE resulting_pixel;
 
+    // Set each color value for the resulting pixel
     resulting_pixel.rgbtBlue = get_target_byte_edge(BLUE, grid);
     resulting_pixel.rgbtGreen = get_target_byte_edge(GREEN, grid);
     resulting_pixel.rgbtRed = get_target_byte_edge(RED, grid);
+
+    // Return target pixel
     return resulting_pixel;
 
 }
@@ -256,12 +260,14 @@ const double GY[] = {-1, -2, -1, 0, 0, 0, 1, 2, 1};
 
 BYTE get_target_byte_edge(Color c, RGBTRIPLE grid[grid_size])
 {
+    // Initialize x and y variants
     double gx = 0;
     double gy = 0;
+
     double target_color_int = 0;
     BYTE original_grid_color_byte = 0;
-    BYTE target_color_byte = 0;
 
+    // Loop on each grid pixels to define horizontal and vertical gradients for a given pixel color
     for (int i = 0; i < grid_size; i++)
     {
         switch (c)
@@ -283,9 +289,11 @@ BYTE get_target_byte_edge(Color c, RGBTRIPLE grid[grid_size])
         gy += original_grid_color_byte * GY[i];
     }
 
+    // Compute horizontal and vertical gradient combination as an integer
     target_color_int = pow(pow(gx, 2) + pow(gy, 2), 0.5);
-    target_color_byte = (BYTE) round(min(target_color_int, MAX_BYTE));
-    return (BYTE) target_color_byte;
+
+    // Return the rounded value of minimum of the computed target color and the maximum byte value
+    return (BYTE) round(min(target_color_int, MAX_BYTE));
 }
 
 //--------------------------------------------------------------------------------------------------
