@@ -5,6 +5,9 @@
 
 typedef uint8_t BYTE;
 const int block_size = 512;
+const BYTE INIT_3_BYTES[] = {0xff, 0xd8, 0xff};
+const BYTE BYTE4_MIN = 0xe0;
+const BYTE BYTE4_MAX = 0xef;
 
 int build_new_jpg_file_name(int counter, char file_name[8]);
 
@@ -29,9 +32,7 @@ int main(int argc, char *argv[])
 
     // Initialize block array of 512 bytes
     BYTE block[block_size];
-    BYTE INIT_3_BYTES[] = {0xff, 0xd8, 0xff};
-    BYTE BYTE4_MIN = 0xe0;
-    BYTE BYTE4_MAX = 0xef;
+
 
     // Initialize jpg file name and pointer
     char output_file[8];
