@@ -6,7 +6,7 @@
 typedef uint8_t BYTE;
 const int block_size = 512;
 
-void build_new_jpg_file_name(int counter, char file_name[7]);
+void build_new_jpg_file_name(int counter, char file_name);
 
 int main(int argc, char *argv[])
 {
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 // -------------------------------------------------------------------------------------------------
 // Helper function to set output jpg file name
 // -------------------------------------------------------------------------------------------------
-void build_new_jpg_file_name(int counter, char *file_name[7])
+void build_new_jpg_file_name(int counter, char *file_name)
 {
     const char *ext = ".jpg";
 
