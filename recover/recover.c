@@ -95,14 +95,14 @@ int build_new_jpg_file_name(int counter, char *file_name)
     }
     if (counter < 10)
     {
-        sprintf(file_name, "00%i%s", counter, *ext);
+        sprintf(file_name, "00%i%s", counter, ext);
     }
     else if (counter < 100)
     {
-        sprintf(file_name, "0%i%s", counter, *ext);
+        sprintf(file_name, "0%i%s", counter, ext);
     }
     else
     {
-        sprintf(file_name, "%i%s", counter, *ext);
+        sprintf(file_name, "%i%s", counter, ext);
     }
 }
