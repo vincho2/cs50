@@ -276,8 +276,15 @@ RGBTRIPLE get_target_pixel_edge(RGBTRIPLE grid[grid_size])
 //--------------------------------------------------------------------------------------------------
 // Helper function to get the target color byte value
 //--------------------------------------------------------------------------------------------------
-BYTE get_target_byte_edge(Color c, RGBYBYTE b_input, BYTE g_input, BYTE r_input)
+BYTE get_target_byte_edge(Color c, RGBTRIPLE pixel_input)
 {
+            gxb += grid[i].rgbtBlue * GX[i];
+        gyb += grid[i].rgbtBlue * GY[i];
+        tb = pow(pow(gxb, 2) + pow(gyb, 2), 0.5);
+        tbb = round(max(tb, MAX_BYTE));
+
+
+
     // Initialize factors by color
     float b_factor;
     float g_factor;
