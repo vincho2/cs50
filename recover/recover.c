@@ -85,9 +85,10 @@ int main(int argc, char *argv[])
 // -------------------------------------------------------------------------------------------------
 // Helper function to set output jpg file name
 // -------------------------------------------------------------------------------------------------
-int build_new_jpg_file_name(int counter, char file_name[8])
+char *build_new_jpg_file_name(int counter)
 {
     const char *ext = ".jpg";
+    char *result;
 
     if (counter > 999)
     {
@@ -96,17 +97,17 @@ int build_new_jpg_file_name(int counter, char file_name[8])
     }
     if (counter < 10)
     {
-        sprintf(file_name, "00%i%s", counter, ext);
+        sprintf(result, "00%i%s", counter, ext);
         return 0;
     }
     else if (counter < 100)
     {
-        sprintf(file_name, "0%i%s", counter, ext);
+        sprintf(result, "0%i%s", counter, ext);
         return 0;
     }
     else
     {
-        sprintf(file_name, "%i%s", counter, ext);
+        sprintf(result, "%i%s", counter, ext);
         return 0;
     }
 }
