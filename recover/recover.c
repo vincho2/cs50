@@ -93,21 +93,19 @@ char *build_new_jpg_file_name(int counter)
     if (counter > 999)
     {
         printf("too many files");
-        return 2;
+        return "999.jpg";
     }
     if (counter < 10)
     {
         sprintf(result, "00%i%s", counter, ext);
-        return 0;
     }
     else if (counter < 100)
     {
         sprintf(result, "0%i%s", counter, ext);
-        return 0;
     }
     else
     {
         sprintf(result, "%i%s", counter, ext);
-        return 0;
     }
+    return result;
 }
