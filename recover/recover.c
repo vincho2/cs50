@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
             }
 
             // Initialize new JPG file name
-            build_new_jpg_file_name(jpg_counter, output_file);
+            output_file = build_new_jpg_file_name(jpg_counter);
             // Open new output file
             output_file_ptr = fopen(output_file, "w");
             if (output_file_ptr == NULL)
