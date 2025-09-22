@@ -274,9 +274,9 @@ RGBTRIPLE get_target_pixel_edge(RGBTRIPLE grid[grid_size])
 
 }
 //--------------------------------------------------------------------------------------------------
-// Helper function to set the SEPIA color value  -- To be removed !!!!!!!!!!!!!!!!
+// Helper function to get the target color byte value
 //--------------------------------------------------------------------------------------------------
-BYTE set_sepia_color(Color c, BYTE b_input, BYTE g_input, BYTE r_input)
+BYTE get_target_byte_edge(Color c, RGBYBYTE b_input, BYTE g_input, BYTE r_input)
 {
     // Initialize factors by color
     float b_factor;
