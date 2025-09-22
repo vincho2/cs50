@@ -280,53 +280,34 @@ BYTE get_target_byte_edge(Color c, RGBTRIPLE grid[grid_size])
 {
     double gx = 0;
     double gy = 0;
-    double target_byte = 0;
+    double target_color_int = 0;
+    BYTE original_grid_color_byte = 0;
+    BYTE target_color_byte = 0;
 
     for (int i = 0; i < grid_size; i++)
     {
         switch (c)
         {
             case BLUE:
-                
+                original_grid_color_byte = grid[i].rgbtBlue;
+                break;
+
+            case GREEN:
+                original_grid_color_byte = grid[i].rgbtGreen;
+                break;
+
+            case RED:
+                original_grid_color_byte = grid[i].rgbtRed;
+                break;
         }
 
+        gx += original_grid_color_byte * GX[i];
+        gy += original_grid_color_byte * GY[i];
     }
 
-
-    gxb += grid[i].rgbtBlue * GX[i];
-        gyb += grid[i].rgbtBlue * GY[i];
-        tb = pow(pow(gxb, 2) + pow(gyb, 2), 0.5);
-        tbb = round(max(tb, MAX_BYTE));
-
-
-    // Set byte depending on the input color to convert
-    switch (c)
-    {
-        case BLUE:
-            b_factor = .131;
-            g_factor = .534;
-            r_factor = .272;
-            break;
-
-        case GREEN:
-            b_factor = .168;
-            g_factor = .686;
-            r_factor = .349;
-            break;
-
-        case RED:
-            b_factor = .189;
-            g_factor = .769;
-            r_factor = .393;
-            break;
-    }
-
-    // Compute resulting sepia color
-    int int_result =
-        (int) round(fmin(MAX_BYTE, b_factor * b_input + g_factor * g_input + r_factor * r_input));
-
-    // return result as a byte type
-    return (BYTE) int_result;
+    target_color_int = pow(pow(gx, 2) + pow(gy, 2), 0.5);
+    target_color_byte = (BYTE) round(max(target_color_int, MAX_BYTE));
+    return (BYTE) target_color_byte;
 }
 
 //--------------------------------------------------------------------------------------------------
