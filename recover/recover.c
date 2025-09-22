@@ -6,7 +6,7 @@
 typedef uint8_t BYTE;
 const int block_size = 512;
 
-void build_new_jpg_file_name(int counter, char file_name[8]);
+int build_new_jpg_file_name(int counter, char file_name[8]);
 
 int main(int argc, char *argv[])
 {
@@ -96,13 +96,16 @@ int build_new_jpg_file_name(int counter, char file_name[8])
     if (counter < 10)
     {
         sprintf(file_name, "00%i%s", counter, ext);
+        return 0;
     }
     else if (counter < 100)
     {
         sprintf(file_name, "0%i%s", counter, ext);
+        return 0;
     }
     else
     {
         sprintf(file_name, "%i%s", counter, ext);
+        return 0;
     }
 }
