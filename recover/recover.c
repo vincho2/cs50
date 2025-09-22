@@ -9,7 +9,7 @@ const BYTE INIT_3_BYTES[] = {0xff, 0xd8, 0xff};
 const BYTE BYTE4_MIN = 0xe0;
 const BYTE BYTE4_MAX = 0xef;
 
-int build_new_jpg_file_name(int counter);
+char *build_new_jpg_file_name(int counter);
 
 int main(int argc, char *argv[])
 {
@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
 
 
     // Initialize jpg file name and pointer
-    char output_file[8];
+    char *output_file;
     int jpg_counter = 0;
-    build_new_jpg_file_name(jpg_counter, output_file);
+    build_new_jpg_file_name(jpg_counter);
     FILE *output_file_ptr = NULL;
 
     // Loop over each block in the input file
