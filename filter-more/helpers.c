@@ -266,13 +266,11 @@ RGBTRIPLE get_target_pixel_edge(RGBTRIPLE grid[grid_size])
 
         green += grid[i].rgbtGreen;
         red += grid[i].rgbtRed;
-    }
     resulting_pixel.rgbtBlue = (BYTE) round(blue / average_factor);
     resulting_pixel.rgbtGreen = (BYTE) round(green / average_factor);
     resulting_pixel.rgbtRed = (BYTE) round(red / average_factor);
 
     return resulting_pixel;
-
 
 }
 //--------------------------------------------------------------------------------------------------
@@ -280,6 +278,19 @@ RGBTRIPLE get_target_pixel_edge(RGBTRIPLE grid[grid_size])
 //--------------------------------------------------------------------------------------------------
 BYTE get_target_byte_edge(Color c, RGBTRIPLE grid[grid_size])
 {
+    double gx = 0;
+    double gy = 0;
+    double target_byte = 0;
+
+    for (int i = 0; i < grid_size; i++)
+    {
+        switch (c)
+        {
+            case BLUE:
+                
+        }
+
+    }
 
 
     gxb += grid[i].rgbtBlue * GX[i];
