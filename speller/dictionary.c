@@ -123,16 +123,15 @@ bool unload(void)
 {
     for (int i = 0; i < N; i++)
     {
-        if (table[i] != NULL)
+        node *tmp = malloc(sizeof(node));
+        while (table[i] != NULL)
         {
-            
+            tmp = table[i]->next;
+            table[i] = tmp;
+
         }
-    }
-    if (dic_file != NULL)
-    {
 
-
-        return (dic_file != NULL) ? false : true;
     }
+
     return true;
 }
