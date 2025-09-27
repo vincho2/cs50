@@ -104,8 +104,8 @@ bool load(const char *dictionary)
 
     while (fread(&c, sizeof(char), 1, dic_file))
     {
-        
-        while (c != '\n')
+
+        if (c != '\n')
         {
             word[index] = c;
             index++;
