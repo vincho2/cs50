@@ -87,6 +87,11 @@ bool load(const char *dictionary)
 
         // Initialize new node that will host the dictionary word
         node *new_n = malloc(sizeof(node));
+        if (new_n == NULL)
+        {
+            return false;
+        }
+        // Set the new node values
         new_n->word = word;
         new_n->next = NULL;
 
