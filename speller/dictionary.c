@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 #include "dictionary.h"
 
@@ -26,13 +26,13 @@ unsigned int dic_size = 0;
 node *table[N];
 
 //  Make sure that the hash table starts with null node values
-void clear_hash_table() {
+void clear_hash_table()
+{
     for (int i = 0; i < N; i++)
     {
         table[i] = NULL;
     }
 }
-
 
 //--------------------------------------------------------------------------------------------------
 // Returns true if word is in dictionary, else false
@@ -67,7 +67,8 @@ bool load(const char *dictionary)
 
     // Open dictionary into dic file
     dic_file = fopen(dictionary, "r");
-    if (dic_file == NULL) {
+    if (dic_file == NULL)
+    {
         return false;
     }
 
@@ -86,7 +87,6 @@ bool load(const char *dictionary)
 
         // Get hash value of the current word
         unsigned int word_hash = hash(word);
-
 
         // --- Initialize new node that will host the dictionary word ----------------------
         node *new_n = malloc(sizeof(node));
