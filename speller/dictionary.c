@@ -25,7 +25,7 @@ unsigned int dic_size = 0;
 // Hash table
 node *table[N];
 
-//  Make sure that the hash table starts with null node values
+//  Function to make sure that the hash table starts with null node values
 void clear_hash_table()
 {
     for (int i = 0; i < N; i++)
@@ -34,6 +34,7 @@ void clear_hash_table()
     }
 }
 
+// Done
 //--------------------------------------------------------------------------------------------------
 // Returns true if word is in dictionary, else false
 //--------------------------------------------------------------------------------------------------
@@ -53,7 +54,7 @@ bool check(const char *word)
     // Define traversal node and initialize it to the table pointer corresponding to the hash value
     node *n = table[hash_value];
 
-    // Loop on each node of the linked list
+    // Loop on each node of the linked list and return true if it's found
     while (n != NULL)
     {
         if (strcmp(n->word, lower_word) == 0)
@@ -62,10 +63,11 @@ bool check(const char *word)
         }
         n = n->next;
     }
-    // If the word is not found
+    // If the word is not found, return false
     return false;
 }
 
+// To be enhanced
 //--------------------------------------------------------------------------------------------------
 // Hashes word to a number
 //--------------------------------------------------------------------------------------------------
