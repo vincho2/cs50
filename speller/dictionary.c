@@ -50,6 +50,7 @@ unsigned int hash(const char *word)
     return toupper(word[0]) - 'A';
 }
 
+// Done
 //--------------------------------------------------------------------------------------------------
 // Loads dictionary into memory, returning true if successful, else false
 //--------------------------------------------------------------------------------------------------
@@ -106,8 +107,12 @@ bool load(const char *dictionary)
     // Close file when the whole dictionary has been loaded and update dictionary size
     fclose(dic_file);
     dic_size = word_counter;
+
+    // Return true
+    return true;
 }
 
+// Done
 //--------------------------------------------------------------------------------------------------
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
 //--------------------------------------------------------------------------------------------------
@@ -116,6 +121,7 @@ unsigned int size(void)
     return dic_size;
 }
 
+// Done
 //--------------------------------------------------------------------------------------------------
 // Unloads dictionary from memory, returning true if successful, else false
 //--------------------------------------------------------------------------------------------------
