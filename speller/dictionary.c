@@ -91,11 +91,9 @@ bool load(const char *dictionary)
         }
         else
         {
-            
-
+            new_n->next = table[word_hash];
+            table[word_hash] = new_n;
         }
-
-
     }
 
 
