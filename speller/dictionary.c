@@ -55,8 +55,9 @@ unsigned int hash(const char *word)
 //--------------------------------------------------------------------------------------------------
 bool load(const char *dictionary)
 {
-    // Make sure we start with an empty hash table
+    // Make sure we start with an empty hash table and a dictionary size equal to 0
     clear_hash_table();
+    dic_size = 0;
 
     // Open dictionary into dic file
     dic_file = fopen(dictionary, "r");
@@ -95,7 +96,8 @@ bool load(const char *dictionary)
             new_n->next = table[word_hash];
             table[word_hash] = new_n;
         }
-        // Prepare for next word, reset index to 0
+        // Prepare for next word, increment size and reset index to 0
+        dic_size++;
         index = 0;
     }
     // Close file when the whole dictionary has been loaded
@@ -107,8 +109,7 @@ bool load(const char *dictionary)
 //--------------------------------------------------------------------------------------------------
 unsigned int size(void)
 {
-    // TODO
-    return 0;
+    return dic_size;
 }
 
 //--------------------------------------------------------------------------------------------------
