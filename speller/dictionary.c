@@ -46,9 +46,9 @@ bool check(const char *word)
         lower_word[i] = tolower(word[i]);
     }
     lower_word[strlen(word)] = '\0';
-    
+
     // Compute hash value of the word to check
-    int hash_value = hash(word);
+    int hash_value = hash(lower_word);
 
     // Define traversal node and initialize it to the table pointer corresponding to the hash value
     node *n = table[hash_value];
@@ -56,7 +56,7 @@ bool check(const char *word)
     // Loop on each node of the linked list
     while (n != NULL)
     {
-        if (strcmp(n->word, word) = 0)
+        if (strcmp(n->word, lower_word) == 0)
         {
             return true;
         }
