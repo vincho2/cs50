@@ -85,13 +85,12 @@ bool load(const char *dictionary)
         // Get hash value of the current word
         unsigned int word_hash = hash(word);
 
-        // Initialize new node that will host the dictionary word
+        // Initialize new node that will host the dictionary word and return false it fails
         node *new_n = malloc(sizeof(node));
         if (new_n == NULL)
         {
             return false;
         }
-        // Set the new node values
         new_n->word = word;
         new_n->next = NULL;
 
