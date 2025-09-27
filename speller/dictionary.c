@@ -22,6 +22,12 @@ FILE *dic_file = NULL;
 // Hash table
 node *table[N];
 
+//  Make sure that the hash table starts with null node values
+for (int i = 0; i < N; i++)
+{
+    
+}
+
 //--------------------------------------------------------------------------------------------------
 // Returns true if word is in dictionary, else false
 //--------------------------------------------------------------------------------------------------
@@ -73,7 +79,7 @@ bool load(const char *dictionary)
         n->next = NULL;
 
         // Place the word node in the hash table
-        for 
+        for
 
 
     }
