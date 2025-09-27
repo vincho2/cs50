@@ -108,6 +108,7 @@ bool load(const char *dictionary)
         {
             word[index] = c;
             index++;
+            continue;
         }
 
         // Get hash value of the current word
