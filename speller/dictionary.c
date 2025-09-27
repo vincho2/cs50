@@ -84,7 +84,7 @@ bool load(const char *dictionary)
         new_n->word = word;
         new_n->next = NULL;
 
-        // Place the word node in the hash table
+        // Insert the word node in the hash table at the beginning of the chain (more performant)
         if (table[word_hash] == NULL)
         {
             table[word_hash] = new_n;
@@ -97,12 +97,8 @@ bool load(const char *dictionary)
         // Prepare for next word, reset index to 0
         index = 0;
     }
-
-
-
-
-
-
+    // Close file when the whole dictionary has been loaded
+    fclose(dic_file);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -121,7 +117,8 @@ bool unload(void)
 {
     if (dic_file != NULL)
     {
-        fclose(dic_file);
+
+
         return (dic_file != NULL) ? false : true;
     }
     return true;
