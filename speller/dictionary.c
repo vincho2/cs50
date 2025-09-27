@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "dictionary.h"
 
@@ -74,7 +75,7 @@ bool load(const char *dictionary)
     char c;
     int index = 0;
 
-    while (fread(&c, sizeof(char), dic_file))
+    while (fread(&c, sizeof(char), 1, dic_file))
     {
         while (c != '\n')
         {
