@@ -40,10 +40,13 @@ void clear_hash_table()
 bool check(const char *word)
 {
     // Convert word to lower case
+    char lower_word[LENGTH + 1];
     for (int i = 0; i < strlen(word); i++)
     {
-        word[i] = tolower(word[i]);
+        lower_word[i] = tolower(word[i]);
     }
+    lower_word[strlen(word)] = '\0';
+    
     // Compute hash value of the word to check
     int hash_value = hash(word);
 
