@@ -16,8 +16,9 @@ typedef struct node
 // Choose number of buckets in hash table
 const unsigned int N = 26;
 
-// Declare the dictionary file to load
+// Declare the dictionary file to load and its size
 FILE *dic_file = NULL;
+unsigned int dic_size = 0;
 
 // Hash table
 node *table[N];
