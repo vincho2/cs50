@@ -24,7 +24,6 @@ node *table[N];
 
 //  Make sure that the hash table starts with null node values
 void clear_hash_table() {
-
     for (int i = 0; i < N; i++)
     {
         table[i] = NULL;
@@ -55,6 +54,9 @@ unsigned int hash(const char *word)
 //--------------------------------------------------------------------------------------------------
 bool load(const char *dictionary)
 {
+    // Make sure we start with an empty hash table
+    clear_hash_table();
+
     // Open dictionary into dic file
     dic_file = fopen(dictionary, "r");
     if (dic_file == NULL) {
@@ -78,12 +80,12 @@ bool load(const char *dictionary)
         unsigned int word_hash = hash(word);
 
         // Initialize new node that will host the dictionary word
-        node *n = malloc(sizeof(node));
-        n->word = word;
-        n->next = NULL;
+        node *new_n = malloc(sizeof(node));
+        new_n->word = word;
+        new_n->next = NULL;
 
         // Place the word node in the hash table
-        for
+        for (node n = table->)
 
 
     }
