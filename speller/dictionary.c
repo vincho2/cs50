@@ -59,6 +59,9 @@ bool load(const char *dictionary)
     clear_hash_table();
     dic_size = 0;
 
+    // Define the variable to count the number of words load in the hash table
+    unsigned int word_counter = 0;
+
     // Open dictionary into dic file
     dic_file = fopen(dictionary, "r");
     if (dic_file == NULL) {
@@ -97,11 +100,12 @@ bool load(const char *dictionary)
             table[word_hash] = new_n;
         }
         // Prepare for next word, increment size and reset index to 0
-        dic_size++;
+        word_counter++;
         index = 0;
     }
-    // Close file when the whole dictionary has been loaded
+    // Close file when the whole dictionary has been loaded and update dictionary size
     fclose(dic_file);
+    dic_size = word_counter;
 }
 
 //--------------------------------------------------------------------------------------------------
