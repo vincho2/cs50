@@ -52,10 +52,15 @@ bool load(const char *dictionary)
     }
 
     // Insert each word of the dictionary into the hash table
+    char word[LENGTH + 1];
     char c;
+    int index = 0;
+
     while (fread(&c, sizeof(char), dic_file))
     {
-        
+        while
+
+
     }
 
 
