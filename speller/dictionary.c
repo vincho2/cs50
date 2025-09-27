@@ -94,6 +94,8 @@ bool load(const char *dictionary)
             new_n->next = table[word_hash];
             table[word_hash] = new_n;
         }
+        // Prepare for next word
+        
     }
 
 
