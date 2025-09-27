@@ -39,7 +39,23 @@ void clear_hash_table()
 //--------------------------------------------------------------------------------------------------
 bool check(const char *word)
 {
-    // TODO
+    // Convert word to lower case
+    // Compute hash value of the word to check
+    int hash_value = hash(word);
+
+    // Define traversal node and initialize it to the table pointer corresponding to the hash value
+    node *n = table[hash_value];
+
+    // Loop on each node of the linked list
+    while (n != NULL)
+    {
+        if (strcmp(n->word, word) = 0)
+        {
+            return true;
+        }
+        n = n->next;
+    }
+    // If the word is not found
     return false;
 }
 
