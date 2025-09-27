@@ -85,7 +85,7 @@ bool load(const char *dictionary)
         new_n->next = NULL;
 
         // Place the word node in the hash table
-        for (node n = table->)
+        for (node *n = table[word_hash];  )
 
 
     }
