@@ -27,10 +27,8 @@ void clear_hash_table() {
 
     for (int i = 0; i < N; i++)
     {
-        table[i]->word
-
+        table[i] = NULL;
     }
-
 }
 
 
