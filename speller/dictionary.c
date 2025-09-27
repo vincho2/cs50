@@ -63,7 +63,17 @@ bool load(const char *dictionary)
             word[index] = c;
             index++;
         }
-        
+
+        // Get hash value of the current word
+        unsigned int word_hash = hash(word);
+
+        // Initialize new node that will host the dictionary word
+        node *n = malloc(sizeof(node));
+        n->word = word;
+        n->next = NULL;
+
+        // Place the word node in the hash table
+        for 
 
 
     }
