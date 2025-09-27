@@ -23,10 +23,16 @@ FILE *dic_file = NULL;
 node *table[N];
 
 //  Make sure that the hash table starts with null node values
-for (int i = 0; i < N; i++)
-{
-    
+void clear_hash_table() {
+
+    for (int i = 0; i < N; i++)
+    {
+        table[i]->word
+
+    }
+
 }
+
 
 //--------------------------------------------------------------------------------------------------
 // Returns true if word is in dictionary, else false
