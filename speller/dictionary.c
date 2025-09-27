@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 #include "dictionary.h"
 
 // Represents a node in a hash table
@@ -94,7 +95,7 @@ bool load(const char *dictionary)
         {
             return false;
         }
-        new_n->word = word;
+        strcpy(new_n->word, word);
         new_n->next = NULL;
 
         // --- Insert the word node in the hash table at the beginning of the chain -------------
