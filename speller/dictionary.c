@@ -126,12 +126,18 @@ bool unload(void)
         node *tmp = NULL;
         while (table[i] != NULL)
         {
+            // Set temporary pointer to the next node address in the chain
             tmp = table[i]->next;
+            // Free the node memory
+            free(table[i]);
+            // Make sure memory is actually freed, else return false
+            if (table[i] != NULL)
+            {
+                return false;
+            }
+            // Reassign table[i] to the next node
             table[i] = tmp;
-
         }
-
     }
-
     return true;
 }
