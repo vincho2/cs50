@@ -16,7 +16,7 @@ typedef struct node
 } node;
 
 // Choose number of buckets in hash table
-const unsigned int N = 20000;
+const unsigned int N = 1000;
 
 // Declare the dictionary file to load and its size
 FILE *dic_file = NULL;
@@ -37,6 +37,7 @@ void clear_hash_table()
     }
 }
 
+// Done
 //--------------------------------------------------------------------------------------------------
 // Returns true if word is in dictionary, else false
 //--------------------------------------------------------------------------------------------------
@@ -69,10 +70,9 @@ bool check(const char *word)
     return false;
 }
 
-// To be enhanced ----------------------------------------------------------------------------------
+// To be enhanced
 //--------------------------------------------------------------------------------------------------
 // Hashes word to a number
-//--------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 unsigned int hash(const char *word)
 {
@@ -80,9 +80,7 @@ unsigned int hash(const char *word)
 
     for (int i = 0; i < strlen(word); i++)
     {
-
-        result = result * 131 + word[i];
-        // result = (result << 5) ^ (result >> 27) ^ word[i];
+        result += word[i];
     }
     return result % N;
 }
@@ -156,13 +154,23 @@ bool load(const char *dictionary)
     fclose(dic_file);
     dic_size = word_counter;
 
-    /* Debug print table structure
+    // Debug print table structure
+    int max = 0;
+    int min = 0;
+
     for (int i = 0; i < N; i++)
     {
-        printf("%i\n", table_structure[i]);
+        if(max < table_structure[i])
+        {
+            max = table_structure[i];
+        }
+        if (min > table_structure[i])
+        {
+            min = table_structure[i];
+        }
+        printf("%i;%i\n", i, table_structure[i]);
     }
-    */
-
+    
     // Return true
     return true;
 }

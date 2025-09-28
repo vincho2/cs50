@@ -81,8 +81,7 @@ unsigned int hash(const char *word)
     for (int i = 0; i < strlen(word); i++)
     {
 
-        result = result * 131 + word[i];
-        // result = (result << 5) ^ (result >> 27) ^ word[i];
+        result += word[i] * word[i];
     }
     return result % N;
 }
