@@ -12,9 +12,15 @@ counters = {
     C_SENTENCES: 0
 }
 
+# --------------------------------------------------------------------------------------------------
+# Define main function to print the grade of an input text
 def main()
 
 
+
+
+
+def compute_grade(text)
 
 
 
