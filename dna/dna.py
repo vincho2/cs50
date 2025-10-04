@@ -16,7 +16,7 @@ def main():
     db_name = sys.argv[1]
     sample_name = sys.argv[2]
 
-    # Read database file into rows variable (list of dictionaries)
+    # -------  Read database file into rows variable (list of dictionaries) --------------
     rows = []
 
     try:
@@ -33,8 +33,9 @@ def main():
         print(f'DB file not found: {db_name}')
         return 2
 
+    # ------   Read DNA sequence file into a variable ------------------------------------
     try:
-        # Read DNA sequence file into a variable
+
         with open(sample_name) as seqf:
             sample_content = seqf.read()
     except:
@@ -45,11 +46,11 @@ def main():
     sample_str = {}
     headers.remove('name')
 
-    # Find longest match of each STR referenced in the DB in DNA sequence
+    # ------ Find longest match of each STR referenced in the DB in DNA sequence ---------
     for s in headers:
         sample_str[s] = longest_match(sample_content, s)
 
-    # Check database for matching profiles
+    # ------ Check database for matching profiles ----------------------------------------
 
     # Loop on each row of the db
     for row in rows:
