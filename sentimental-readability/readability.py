@@ -27,7 +27,7 @@ def main():
         # Count text elements and store them in the dedicated global variables
         counters = get_text_elements_counters(text, counters)
 
-        if counters[C_WORDS] > 0:
+        if counters[C_LETTERS] > 0:
             break
 
     # Compute the grade of the input text based on the counters
