@@ -12,6 +12,10 @@ counters = {
     C_SENTENCES: 0
 }
 
+words = 0
+letters = 0
+sentences = 0
+
 # --------------------------------------------------------------------------------------------------
 # Define main function to print the grade of an input text
 # --------------------------------------------------------------------------------------------------
@@ -48,7 +52,9 @@ def count_text_elements(text):
 
         # Count letters
         if char.isalnum():
-            
+            letters += 1
+        elif 
+
 
 
 
