@@ -31,6 +31,7 @@ def main():
             headers = db_content.fieldnames
     except:
         print('DB file not found')
+        return 2
 
     try:
         # Read DNA sequence file into a variable
@@ -38,6 +39,7 @@ def main():
             sample_content = seqf.read()
     except:
         print('Sample file not found')
+        return 3
 
     # Initialize Sample STR count dictionary
     sample_str = {}
