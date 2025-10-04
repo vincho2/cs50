@@ -1,12 +1,6 @@
 import csv
 import sys
 
-# Initialize subsequences to match
-AGATC = 'AGATC'
-AATG = 'AATG'
-TATC = 'TATC'
-
-
 # --------------------------------------------------------------------------------------------------
 # Define Main function
 # --------------------------------------------------------------------------------------------------
@@ -39,11 +33,7 @@ def main():
         sample_content = seqf.read()
 
     # Initialize Sample STR count
-    sample_str = {
-        AGATC: 0,
-        AATG: 0,
-        TATC: 0
-    }
+    sample_str = {}
 
     # Find longest match of each STR in DNA sequence
     for s in sample_str:
