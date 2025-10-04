@@ -48,6 +48,7 @@ def count_text_elements(text):
 
         # Count letters
         if char.isalnum():
+            
 
 
 
