@@ -53,7 +53,7 @@ def compute_grade(counters):
     S = counters[C_SENTENCES] * 100 / counters[C_WORDS]
 
     # Return Coleman-Liau index
-    return 0.0588 * L - 0.296 * S - 15.8
+    return round(0.0588 * L - 0.296 * S - 15.8)
 
 
 # --------------------------------------------------------------------------------------------------
