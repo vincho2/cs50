@@ -14,7 +14,7 @@ def main():
 
     while True:
 
-        # Define counters dictionary
+        # Define counters dictionary (words starts at 1)
         counters = {
             C_LETTERS: 0,
             C_WORDS: 1,
@@ -27,6 +27,7 @@ def main():
         # Count text elements and store them in the dedicated global variables
         counters = get_text_elements_counters(text, counters)
 
+        # Keep asking for a text until at leat 1 letter is provided
         if counters[C_LETTERS] > 0:
             break
 
