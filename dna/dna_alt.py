@@ -20,12 +20,9 @@ def main():
     db_name = sys.argv[1]
     sample_name = sys.argv[2]
 
-    # Read database file into rows variable (list of dictionaries)
-    rows = []
+    # Read database file into a variable
     with open(db_name, newline='') as dbf:
         db_content = csv.DictReader(dbf)
-        for row in db_content:
-            rows.append(row)
 
     # Read DNA sequence file into a variable
     with open(sample_name) as seqf:
@@ -39,19 +36,20 @@ def main():
     }
 
     # Find longest match of each STR in DNA sequence
-    for s in sample_str:
-        sample_str[s] = longest_match(sample_content, s)
+    sample_str[AGATC] = longest_match(sample_content, AGATC)
+    sample_str[AATG] = longest_match(sample_content, AATG)
+    sample_str[TATC] = longest_match(sample_content, TATC)
 
     # Check database for matching profiles
 
     # Loop on each row of the db
-    for row in rows:
+    for row in db_content:
 
         # For each row, loop on each STR to check if they match with sample
         for s in sample_str:
 
             # As soon as a non-match is found, process with next row
-            if sample_str[s] != int(row[s]):
+            if sample_str[s] != row[s]:
                 break
         # If all STRs matches, then print the name of the person matched and stop the program
         else:
