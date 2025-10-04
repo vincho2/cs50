@@ -32,10 +32,10 @@ def main():
     with open(sample_name) as seqf:
         sample_content = seqf.read()
 
-    # Initialize Sample STR count
+    # Initialize Sample STR count dictionary
     sample_str = {}
 
-    # Find longest match of each STR in DNA sequence
+    # Find longest match of each STR referenced in the DB in DNA sequence
     for s in headers:
         sample_str[s] = longest_match(sample_content, s)
 
@@ -45,7 +45,7 @@ def main():
     for row in rows:
 
         # For each row, loop on each STR to check if they match with sample
-        for s in sample_str:
+        for s in headers:
 
             # As soon as a non-match is found, process with next row
             if sample_str[s] != int(row[s]):
