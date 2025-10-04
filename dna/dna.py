@@ -1,16 +1,30 @@
 import csv
 import sys
 
+AATG = 'AATG'
+AGATC = 'AGAT'
+TATC = 'TATC'
 
 def main():
 
-    # TODO: Check for command-line usage
+    # Check for command-line usage
+    if len(sys.argv) != 3:
+        print('Usage: python dna.py database.csv sample.txt')
+        return 1
 
-    # TODO: Read database file into a variable
+    db_name = sys.argv[1]
+    sample_name = sys.argv[2]
 
-    # TODO: Read DNA sequence file into a variable
+    # Read database file into a variable
+    with open(db_name) as dbf:
+        db_content = dbf.read
+    # Read DNA sequence file into a variable
+    with open(sample_name) as seqf:
+        sample_content = seqf.read()
 
-    # TODO: Find longest match of each STR in DNA sequence
+    # Find longest match of each STR in DNA sequence
+    
+
 
     # TODO: Check database for matching profiles
 
