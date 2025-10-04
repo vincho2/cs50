@@ -12,8 +12,6 @@ counters = {
     C_SENTENCES: 0
 }
 
-
-
 # --------------------------------------------------------------------------------------------------
 # Define main function to print the grade of an input text
 # --------------------------------------------------------------------------------------------------
@@ -31,7 +29,8 @@ def main():
     elif grade > 16:
         print('Grade 16+')
     else:
-        print(f'Grade {grade})
+        print(f'Grade {grade}')
+
 
 # --------------------------------------------------------------------------------------------------
 # Function to compute the grade
@@ -43,6 +42,13 @@ def compute_grade(text):
 # Function to update the array containing the different character types in a provided text
 # --------------------------------------------------------------------------------------------------
 def count_text_elements(text):
+
+    # Loop on each text caracter and update counters
+    for char in text:
+
+        # Count letters
+        
+
 
 
 # Call main
