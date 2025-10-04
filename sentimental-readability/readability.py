@@ -30,8 +30,8 @@ def main():
         if counters[C_WORDS] > 0:
             break
 
-    # Compute the grade of the input text
-    grade = compute_grade(text, counters)
+    # Compute the grade of the input text based on the counters
+    grade = compute_grade(counters)
 
     # Display result
     if grade < 1:
@@ -45,7 +45,7 @@ def main():
 # --------------------------------------------------------------------------------------------------
 # Function to compute the grade
 # --------------------------------------------------------------------------------------------------
-def compute_grade(text, counters):
+def compute_grade(counters):
 
     # L = average number of letters per 100 words in the text
     L = counters[C_LETTERS] * 100 / counters[C_WORDS]
