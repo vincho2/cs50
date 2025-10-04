@@ -14,9 +14,6 @@ def main():
 
     while True:
 
-        # Ask the user for a text
-        text = input("Text: ")
-
         # Define counters dictionary
         counters = {
             C_LETTERS: 0,
@@ -24,11 +21,17 @@ def main():
             C_SENTENCES: 0
         }
 
+        # Ask the user for a text
+        text = input("Text: ")
+
         # Count text elements and store them in the dedicated global variables
         counters = get_text_elements_counters(text, counters)
 
+        if counters[C_WORDS] > 0:
+            break
+
     # Compute the grade of the input text
-    grade = compute_grade(text)
+    grade = compute_grade(text, counters)
 
     # Display result
     if grade < 1:
@@ -42,12 +45,12 @@ def main():
 # --------------------------------------------------------------------------------------------------
 # Function to compute the grade
 # --------------------------------------------------------------------------------------------------
-def compute_grade(text):
+def compute_grade(text, counters):
 
     # L = average number of letters per 100 words in the text
-    L = letters * 100 / words
+    L = counters[C_LETTERS] * 100 / counters[C_WORDS]
     # S = average number of sentences per 100 words in the text
-    S = sentences * 100 / words
+    S = counters[C_SENTENCES] * 100 / counters[C_WORDS]
 
     # Return Coleman-Liau index
     return 0.0588 * L - 0.296 * S - 15.8
