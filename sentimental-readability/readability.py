@@ -7,11 +7,18 @@ separators = ['.', '?', '!']
 # --------------------------------------------------------------------------------------------------
 def main():
 
-    # Ask the user for a text
-    text = input("Text: ")
+    while True:
 
-    # Count text elements and store them in the dedicated global variables
-    count_text_elements(text)
+        # Ask the user for a text
+        text = input("Text: ")
+
+        # Initialize counters
+        words = 0
+        letters = 0
+        sentences = 0
+
+        # Count text elements and store them in the dedicated global variables
+        count_text_elements(text)
 
     # Compute the grade of the input text
     grade = compute_grade(text)
