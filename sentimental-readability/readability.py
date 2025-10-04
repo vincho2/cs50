@@ -17,7 +17,7 @@ def main():
         # Define counters dictionary
         counters = {
             C_LETTERS: 0,
-            C_WORDS: 0,
+            C_WORDS: 1,
             C_SENTENCES: 0
         }
 
