@@ -18,6 +18,7 @@ def main():
 
     # Read database file into rows variable (list of dictionaries)
     rows = []
+    try 
     with open(db_name, newline='') as dbf:
         db_content = csv.DictReader(dbf)
 
