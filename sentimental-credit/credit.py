@@ -7,7 +7,7 @@ VISA = "VISA"
 INVALID = "INVALID"
 
 patterns = {
-    AMEX: r"^(34|35)\d{13}",
+    AMEX: r"^(34|37)\d{13}",
     MASTERCARD: r"^5[1-5]\d{14}",
     VISA: r"^4(\d{12}|\d{15})"
 }
