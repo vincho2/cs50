@@ -17,13 +17,15 @@ def main():
         # Ask the user for a text
         text = input("Text: ")
 
-        # Initialize counters
-        words = 0
-        letters = 0
-        sentences = 0
+        # Define counters dictionary
+        counters = {
+            C_LETTERS: 0,
+            C_WORDS: 0,
+            C_SENTENCES: 0
+        }
 
         # Count text elements and store them in the dedicated global variables
-        counters = get_text_elements_counters(text)
+        counters = get_text_elements_counters(text, counters)
 
     # Compute the grade of the input text
     grade = compute_grade(text)
@@ -56,24 +58,18 @@ def compute_grade(text):
 # --------------------------------------------------------------------------------------------------
 def get_text_elements_counters(text):
 
-    # Define counters dictionary
-    counters = {
-        C_LETTERS: 0,
-        C_WORDS: 0,
-        C_SENTENCES: 0
-    }
-
     # Loop on each text caracter and update counters
     for char in text:
 
         # Count letters
         if char.isalnum():
-            counters. += 1
+            counters[C_LETTERS] += 1
         elif char.isspace():
-            words += 1
+            counters[C_WORDS] += 1
         elif char in separators:
-            sentences += 1
+            counters[C_SENTENCES] += 1
 
+    return counters
 
 # --------------------------------------------------------------------------------------------------
 # Call main
