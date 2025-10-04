@@ -56,7 +56,7 @@ def compute_grade(text):
 # --------------------------------------------------------------------------------------------------
 # Function to update the array containing the different character types in a provided text
 # --------------------------------------------------------------------------------------------------
-def get_text_elements_counters(text):
+def get_text_elements_counters(text, counters):
 
     # Loop on each text caracter and update counters
     for char in text:
