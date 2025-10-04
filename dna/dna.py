@@ -25,6 +25,7 @@ def main():
     rows = []
     with open(db_name, newline='') as dbf:
         db_content = csv.DictReader(dbf)
+        headers = db_content.fieldnames
         for row in db_content:
             rows.append(row)
 
