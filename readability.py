@@ -12,6 +12,8 @@ counters = {
     C_SENTENCES: 0
 }
 
+separators = ['.', '?', '!']
+
 words = 0
 letters = 0
 sentences = 0
@@ -53,13 +55,13 @@ def count_text_elements(text):
         # Count letters
         if char.isalnum():
             letters += 1
-        elif 
+        elif char.isspace():
+            words += 1
+        elif char in separators:
+            sentences += 1
 
-
-
-
-
-
+# --------------------------------------------------------------------------------------------------
 # Call main
+# --------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     main()
