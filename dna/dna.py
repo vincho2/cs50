@@ -20,24 +20,28 @@ def main():
     rows = []
 
     try:
+        with open(db_name, newline='') as dbf:
+            db_content = csv.DictReader(dbf)
 
-    with open(db_name, newline='') as dbf:
-        db_content = csv.DictReader(dbf)
+            # Create a list of dictionaries containing each person's STR counts
+            for row in db_content:
+                rows.append(row)
 
-        # Create a list of dictionaries containing each person's STR counts
-        for row in db_content:
-            rows.append(row)
+            # Define the list of STRs to check
+            headers = db_content.fieldnames
+    except:
+        print('DB file not found')
 
-        # Define the list of STRs to check
-        headers = db_content.fieldnames
-        headers.remove('name')
-
-    # Read DNA sequence file into a variable
-    with open(sample_name) as seqf:
-        sample_content = seqf.read()
+    try:
+        # Read DNA sequence file into a variable
+        with open(sample_name) as seqf:
+            sample_content = seqf.read()
+    except:
+        print('Sample file not found')
 
     # Initialize Sample STR count dictionary
     sample_str = {}
+    headers.remove('name')
 
     # Find longest match of each STR referenced in the DB in DNA sequence
     for s in headers:
