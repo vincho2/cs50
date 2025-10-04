@@ -12,12 +12,16 @@ counters = {
     C_SENTENCES: 0
 }
 
-separators = ['.', '?', '!']
 
+# Initialize counters as global variables
 words = 0
 letters = 0
 sentences = 0
 
+# Define sentences separators
+separators = ['.', '?', '!']
+
+# Define Colemam-Liau index factors
 letter_factor = 0.0588
 sentence_factor = 0.296
 formula_const = 15.8
@@ -29,6 +33,9 @@ def main():
 
     # Ask the user for a text
     text = input("Text: ")
+
+    # Count text elements and store them in the dedicated global variables
+    count_text_elements(text)
 
     # Compute the grade of the input text
     grade = compute_grade(text)
@@ -46,6 +53,12 @@ def main():
 # Function to compute the grade
 # --------------------------------------------------------------------------------------------------
 def compute_grade(text):
+
+    # index = 0.0588 * L - 0.296 * S - 15.8
+    # L = average number of letters per 100 words in the text
+    L = 
+    # S = average number of sentences per 100 words in the text
+
 
 
 # --------------------------------------------------------------------------------------------------
