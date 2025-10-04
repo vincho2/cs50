@@ -21,10 +21,6 @@ sentences = 0
 # Define sentences separators
 separators = ['.', '?', '!']
 
-# Define Colemam-Liau index factors
-letter_factor = 0.0588
-sentence_factor = 0.296
-formula_const = 15.8
 
 # --------------------------------------------------------------------------------------------------
 # Define main function to print the grade of an input text
@@ -54,11 +50,13 @@ def main():
 # --------------------------------------------------------------------------------------------------
 def compute_grade(text):
 
-    # index = 0.0588 * L - 0.296 * S - 15.8
     # L = average number of letters per 100 words in the text
-    L = 
+    L = letters * 100 / words
     # S = average number of sentences per 100 words in the text
+    S = sentences * 100 / words
 
+    # Return Coleman-Liau index
+    return 0.0588 * L - 0.296 * S - 15.8
 
 
 # --------------------------------------------------------------------------------------------------
@@ -76,6 +74,7 @@ def count_text_elements(text):
             words += 1
         elif char in separators:
             sentences += 1
+
 
 # --------------------------------------------------------------------------------------------------
 # Call main
