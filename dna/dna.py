@@ -25,9 +25,14 @@ def main():
     rows = []
     with open(db_name, newline='') as dbf:
         db_content = csv.DictReader(dbf)
-        headers = db_content.fieldnames
+
+        # Create a list of dictionaries containing each person's STR counts
         for row in db_content:
             rows.append(row)
+
+        # Define the list of STRs to check
+        headers = db_content.fieldnames
+        headers.remove('name')
 
     # Read DNA sequence file into a variable
     with open(sample_name) as seqf:
