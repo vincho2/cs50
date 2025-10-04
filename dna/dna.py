@@ -36,7 +36,7 @@ def main():
     sample_str = {}
 
     # Find longest match of each STR in DNA sequence
-    for s in sample_str:
+    for s in headers:
         sample_str[s] = longest_match(sample_content, s)
 
     # Check database for matching profiles
