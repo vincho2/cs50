@@ -30,7 +30,7 @@ def main():
             # Define the list of STRs to check
             headers = db_content.fieldnames
     except:
-        print('DB file not found')
+        print(f'DB file not found: {db_name}')
         return 2
 
     try:
@@ -38,7 +38,7 @@ def main():
         with open(sample_name) as seqf:
             sample_content = seqf.read()
     except:
-        print('Sample file not found')
+        print(f'Sample file not found: {sample_name}')
         return 3
 
     # Initialize Sample STR count dictionary
