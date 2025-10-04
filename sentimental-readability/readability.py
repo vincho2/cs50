@@ -1,6 +1,11 @@
 # Define sentences separators
 separators = ['.', '?', '!']
 
+# Define counters key
+C_LETTERS = 'Letters counter'
+C_WORDS = 'Word counter'
+C_SENTENCES = 'Sentences counter'
+
 
 # --------------------------------------------------------------------------------------------------
 # Define main function to print the grade of an input text
@@ -18,7 +23,7 @@ def main():
         sentences = 0
 
         # Count text elements and store them in the dedicated global variables
-        count_text_elements(text)
+        counters = get_text_elements_counters(text)
 
     # Compute the grade of the input text
     grade = compute_grade(text)
@@ -49,14 +54,21 @@ def compute_grade(text):
 # --------------------------------------------------------------------------------------------------
 # Function to update the array containing the different character types in a provided text
 # --------------------------------------------------------------------------------------------------
-def count_text_elements(text):
+def get_text_elements_counters(text):
+
+    # Define counters dictionary
+    counters = {
+        C_LETTERS: 0,
+        C_WORDS: 0,
+        C_SENTENCES: 0
+    }
 
     # Loop on each text caracter and update counters
     for char in text:
 
         # Count letters
         if char.isalnum():
-            letters += 1
+            counters. += 1
         elif char.isspace():
             words += 1
         elif char in separators:
