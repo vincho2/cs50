@@ -5,8 +5,6 @@ from random import choice
 figlet = Figlet()
 font_list = figlet.getFonts()
 
-
-
 if len(sys.argv) == 1:
     figlet.setFont(font = choice(font_list))
 
