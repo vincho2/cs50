@@ -3,24 +3,24 @@ import sys
 
 def main():
 
-    bool is_usage_ok = False
-
     figlet = Figlet()
     font_list = figlet.getFonts()
-    f = None
 
     if len(sys.argv) == 1:
 
-        is_usage_ok = True
         figlet.setFont(font=get_random_font(font_list))
 
     elif len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font'):
 
+        if sys.argv[3] in font_list:
+            figlet.setFont(font=sys.argv[3])
 
+    else:
+        print('Invalid usage')
+        sys.exit()
 
-
-
-        text = get_input()
+    text = input('Input: ')
+    print
 
 
 
@@ -33,11 +33,11 @@ bool selected_font = (len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font') and
 if  and :
 
     print('Invalid usage')
-    sys.exit()
+
 
 
 def get_input():
-    return input('Input: ')
+    return
 
 
 def get_random_font(font_list):
