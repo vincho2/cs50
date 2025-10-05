@@ -11,6 +11,8 @@ f = None
 
     if len(sys.argv) == 1:
         is_usage_ok = True
+        f = get_random_font(font_list)
+
 
     elif len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font'):
 
@@ -32,11 +34,11 @@ if  and :
     sys.exit()
 
 
-
-
 def get_input():
     return input('Input: ')
 
 
-def
+def get_random_font(font_list):
+
+
 
