@@ -3,7 +3,11 @@ import sys
 
 def main():
 
+    bool is_usage_ok = False
+
     if len(sys.argv) == 1:
+        is_usage_ok = True
+        
         text = get_input()
 
 
@@ -27,5 +31,5 @@ def get_input():
     return input('Input: ')
 
 
-def 
+def
 
