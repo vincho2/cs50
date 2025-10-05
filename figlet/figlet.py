@@ -9,8 +9,16 @@ font_list = figlet.getFonts()
 parser = argparse.ArgumentParser(description='Display text in a random or specified font')
 parser.add_argument('-f', '--font', help = 'Font to be used (must be in the available fonts)')
 
-if parser.font:
-    
+args = parser.parse_args
+
+if args.font:
+    if args.font in font_list:
+        figlet.setFont(font=args.font)
+    else:
+        return_exit()
+else:
+
+
 
 
 if len(sys.argv) == 1:
@@ -25,3 +33,8 @@ else:
 
 text = input('Input: ')
 print(figlet.renderText(text))
+
+
+def return_exit():
+    print('Invalid usage')
+    sys.exit(1)
