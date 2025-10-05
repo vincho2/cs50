@@ -7,7 +7,7 @@ def main():
 
 figlet = Figlet()
 font_list = figlet.getFonts()
-f = 
+f = None
 
     if len(sys.argv) == 1:
         is_usage_ok = True
