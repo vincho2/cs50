@@ -17,7 +17,7 @@ class MyArgumentParser(argparse.ArgumentParser):
 parser = MyArgumentParser(description='Display text in a random or specified font')
 parser.add_argument('-f', '--font', help = 'Font to be used (must be in the available fonts)')
 
-args = parser.parse_args
+args = parser.parse_args()
 
 if args.font:
     if args.font in font_list:
