@@ -2,44 +2,18 @@ from pyfiglet import Figlet
 import sys
 from random import choice
 
-def main():
+figlet = Figlet()
+font_list = figlet.getFonts()
 
-    figlet = Figlet()
-    font_list = figlet.getFonts()
+if len(sys.argv) == 1:
+    figlet.setFont(font = choice(font_list))
 
-    if len(sys.argv) == 1:
+elif len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font') and sys.argv[3] in font_list:
+    figlet.setFont(font=sys.argv[3])
 
-        figlet.setFont(font = choice(font_list))
-
-    elif len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font') sys.argv[3] in font_list:
-            figlet.setFont(font=sys.argv[3])
-
-    else:
-        print('Invalid usage')
-        sys.exit()
-
-    text = input('Input: ')
-    print(figlet.renderText(text))
-
-
-
-
-
-
-bool random_font = len(sys.argv) == 1
-bool selected_font = (len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font') and sys.argv[3] in font_list)
-
-if  and :
-
+else:
     print('Invalid usage')
+    sys.exit()
 
-
-
-def get_input():
-    return
-
-
-def get_random_font(font_list):
-
-
-
+text = input('Input: ')
+print(figlet.renderText(text))
