@@ -1,5 +1,6 @@
 from pyfiglet import Figlet
 import sys
+from random import choice
 
 def main():
 
@@ -10,9 +11,7 @@ def main():
 
         figlet.setFont(font = choice(font_list))
 
-    elif len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font'):
-
-        if sys.argv[3] in font_list:
+    elif len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font') sys.argv[3] in font_list:
             figlet.setFont(font=sys.argv[3])
 
     else:
