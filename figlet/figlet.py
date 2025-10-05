@@ -1,5 +1,6 @@
+import sys
 
-if (argvs[])
+if len(sys.argv) 
 
 
 input ('Input: ')
