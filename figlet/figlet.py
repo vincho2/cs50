@@ -8,7 +8,7 @@ def main():
 
     if len(sys.argv) == 1:
 
-        figlet.setFont(font=get_random_font(font_list))
+        figlet.setFont(font = choice(font_list))
 
     elif len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font'):
 
