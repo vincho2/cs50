@@ -20,7 +20,7 @@ def main():
         sys.exit()
 
     text = input('Input: ')
-    print
+    print(figlet.renderText(text))
 
 
 
