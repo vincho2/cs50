@@ -6,8 +6,8 @@ from random import choice
 figlet = Figlet()
 font_list = figlet.getFonts()
 
-parser = argparse.ArgumentParser('-f', '--font',
-                                 help = 'Font to be used (must be in the available fonts)')
+parser = argparse.ArgumentParser(description='Display text in a random or specified font'
+parser.add_argument('-f', '--font', help = 'Font to be used (must be in the available fonts)')
 
 if len(sys.argv) == 1:
     figlet.setFont(font = choice(font_list))
