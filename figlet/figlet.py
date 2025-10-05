@@ -5,16 +5,18 @@ def main():
 
     bool is_usage_ok = False
 
-figlet = Figlet()
-font_list = figlet.getFonts()
-f = None
+    figlet = Figlet()
+    font_list = figlet.getFonts()
+    f = None
 
     if len(sys.argv) == 1:
-        is_usage_ok = True
-        f = get_random_font(font_list)
 
+        is_usage_ok = True
+        figlet.setFont(font=get_random_font(font_list))
 
     elif len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font'):
+
+
 
 
 
