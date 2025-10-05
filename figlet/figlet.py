@@ -13,7 +13,7 @@ elif len(sys.argv) == 3 and sys.argv[1] in ('-f', '--font') and sys.argv[2] in f
 
 else:
     print('Invalid usage')
-    sys.exit()
+    sys.exit(1)
 
 text = input('Input: ')
 print(figlet.renderText(text))
