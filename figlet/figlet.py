@@ -7,12 +7,13 @@ def main():
 
 figlet = Figlet()
 font_list = figlet.getFonts()
-
+f = 
 
     if len(sys.argv) == 1:
         is_usage_ok = True
+
     elif len(sys.argv) == 3 and sys.argv[2] in ('-f', '--font'):
-        
+
 
 
         text = get_input()
