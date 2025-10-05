@@ -27,10 +27,12 @@ class MyArgumentParser(argparse.ArgumentParser):
 parser = MyArgumentParser(description='Display text in a random or specified font')
 parser.add_argument('-f', '--font', help = 'Font to be used (must be in the available fonts)')
 
-# Put arguments 
+# Create arguments namespace
 args = parser.parse_args()
 
+# Set the font if argument is present
 if args.font:
+    # Make sure the font exists
     if args.font in font_list:
         figlet.setFont(font=args.font)
     else:
