@@ -36,10 +36,14 @@ def main():
 def calculate(reader):
 
     result = {
-        
+        'Washington': 23,
+        'Texas': 13,
+        'Ohio': 34
     }
 
     print(reader.fieldnames[0])
+
+    return result
 
 
 # TODO: Calculate and print out seven day average for given state
