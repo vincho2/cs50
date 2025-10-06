@@ -1,7 +1,11 @@
 class Jar:
-    def __init__(self, capacity=12):
-        ...
 
+    # Constructor method, set default capacity to 12
+    def __init__(self, capacity=12):
+
+        self._capacity = capacity
+
+    #
     def __str__(self):
 
 
@@ -35,7 +39,7 @@ def main():
 
     jar.withdraw(1)
     print(str(jar))
-    
+
 
 
 
