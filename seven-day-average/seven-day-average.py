@@ -34,6 +34,7 @@ def main():
 
 # TODO: Create a dictionary to store 14 most recent days of new cases by state
 def calculate(reader):
+    today = max(reader.)
 
     result = {
         'Washington': 23,
