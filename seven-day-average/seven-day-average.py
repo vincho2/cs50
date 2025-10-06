@@ -34,12 +34,12 @@ def main():
 
 # TODO: Create a dictionary to store 14 most recent days of new cases by state
 def calculate(reader):
-    ...
+    print(reader.fieldnames[0])
 
 
 # TODO: Calculate and print out seven day average for given state
 def comparative_averages(new_cases, states):
-    ...
+    print('comp average function')
 
 
 main()
