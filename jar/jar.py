@@ -4,18 +4,19 @@ class Jar:
     def __init__(self, capacity=12):
 
         self._capacity = capacity
+        self._size = 0
 
-    #
+    # Define output when print str is called
     def __str__(self):
 
+        return "🍪" * self._size
 
-        return 🍪
-
+    # Define deposit method
     def deposit(self, n):
-        ...
+        self._size += n
 
     def withdraw(self, n):
-        ...
+        self._size -= n
 
     @property
     def capacity(self):
@@ -23,7 +24,7 @@ class Jar:
 
     @property
     def size(self):
-        ...
+        return self._size
 
 
 def main():
@@ -39,8 +40,5 @@ def main():
 
     jar.withdraw(1)
     print(str(jar))
-
-
-
 
 main()
