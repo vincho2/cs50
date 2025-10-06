@@ -29,16 +29,16 @@ class Jar:
 
 def main():
 
-    jar = Jar()
+    jar = Jar(5)
 
     print(str(jar.capacity))
 
     print(str(jar))
 
-    jar.deposit(2)
+    jar.deposit(4)
     print(str(jar))
 
-    jar.withdraw(1)
+    jar.withdraw(3)
     print(str(jar))
 
 main()
