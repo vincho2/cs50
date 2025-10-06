@@ -41,7 +41,7 @@ def calculate(reader):
         'Ohio': 34
     }
 
-    print(reader.fieldnames[:])
+    print(str(reader.fieldnames[1]))
 
     return result
 
