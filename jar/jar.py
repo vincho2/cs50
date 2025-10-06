@@ -37,8 +37,10 @@ def main():
 
     jar.deposit(4)
     print(str(jar))
+    print(str(jar.size))
 
     jar.withdraw(3)
     print(str(jar))
+    print(str(jar.size))
 
 main()
