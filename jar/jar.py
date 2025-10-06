@@ -13,7 +13,11 @@ class Jar:
 
     # Define deposit method
     def deposit(self, n):
-        self._size += n
+
+        if self._size + n <= self._capacity:
+            self._size += n
+        else:
+            raise ValueError('Jar capacity exceeded')
 
     def withdraw(self, n):
         self._size -= n
