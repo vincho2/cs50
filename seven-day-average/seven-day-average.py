@@ -55,7 +55,7 @@ def calculate(reader):
         result.setdefault(state, []).append(new_cases)
 
         # Maintain a window of twice the number of the number of days used for average
-        if len(result[state]) > AVG_DAYS*2:
+        if len(result[state]) > AVG_DAYS * 2:
             result[state].pop(0)
 
         # Update cumulative state for the current row
@@ -76,7 +76,7 @@ def comparative_averages(new_cases, states):
 
         # Compute average (previous and latest)
         prev_avg = round(sum(cases[0:AVG_DAYS]) / AVG_DAYS)
-        recent_avg = round(sum(cases[AVG_DAYS:AVG_DAYS*2]) / AVG_DAYS)
+        recent_avg = round(sum(cases[AVG_DAYS:AVG_DAYS * 2]) / AVG_DAYS)
 
         # Compute trend
         trend = round((recent_avg / prev_avg - 1) * 100) if prev_avg != 0 else 0
