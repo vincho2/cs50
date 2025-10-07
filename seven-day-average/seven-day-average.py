@@ -1,6 +1,8 @@
 import csv
 import requests
 
+AVG_DAYS = 7
+
 
 def main():
     # Read NYTimes Covid Database
@@ -11,7 +13,7 @@ def main():
     file = decoded_content.splitlines()
     reader = csv.DictReader(file)
 
-    # Construct 14 day lists of new cases for each states
+    # Construct day lists of new cases for each states
     new_cases = calculate(reader)
 
     # Create a list to store selected states
@@ -28,86 +30,61 @@ def main():
 
     print(f"\nSeven-Day Averages")
 
-    # Print out 7-day averages for this week vs last week
+    # Print out n-day averages for this week vs last week
     comparative_averages(new_cases, states)
 
 
-# Create a dictionary to store 14 most recent days of new cases by state
+# Create a dictionary to store the most recent days of new cases by state
 def calculate(reader):
 
-    # Key = State name, value = [total nb of cases, counter]
-    cumulative_cases = {}
-    # Key = State name, value = [case day 0, case day 1, etc]
-    result = {}
+    cumulative_cases = {}       # {State name: total nb of cases}
+    result = {}                 # {State name: list of new cases}
 
-    # Loop on each row of the csv file
     for row in reader:
 
-        # Define state and current cases variables with the row values
         state = row['state']
-        current_cases = row['cases']
+        current_cases = int(row['cases'])
 
-        # Initialize cumulative cases dictionary with 0 values if the state key is absent
-        if state not in cumulative_cases.keys():
-            cumulative_cases[state] = [0]
-            cumulative_cases[state].append(0)
-
-        # Inistialize previous cases count and result array counter
-        previous_cases = int(cumulative_cases[state][0])
-        counter = int(cumulative_cases[state][1])
+        # Initialize previous cases count
+        previous_cases = cumulative_cases.get(state, 0)
 
         # Count new cases compared to previous day for this state
-        new_cases = int(current_cases) - previous_cases
+        new_cases = current_cases - previous_cases
 
-        # Initialize the key in the result dictionary if not present
-        if state not in result.keys():
-            result[state] = [new_cases]
+        # Append the new cases value to the result or initialize the key and value if not present
+        result.setdefault(state, []).append(new_cases)
 
-        # Else fill the result list with cases until there are 14 values
-        elif len(result[state]) < 14:
-            result[state].append(new_cases)
-
-        # After the max of 14 values is reached, start replacing oldest values by newest ones
-        else:
-            result[state][counter % 14] = new_cases
-            cumulative_cases[state][1] += 1
+        # Maintain a window of twice the number of the number of days used for average
+        if len(result[state]) > AVG_DAYS*2:
+            result[state].pop(0)
 
         # Update cumulative state for the current row
-        cumulative_cases[state][0] = int(current_cases)
+        cumulative_cases[state] = current_cases
 
-    # Reorder case values in the correct order with the oldest ones at the beginning of the list
-    formatted_result = {}
-    for state, cases in result.items():
-        counter = cumulative_cases[state][1]
-        formatted_result[state] = [cases[counter % 14]]
-
-        for i in range(13):
-            formatted_result[state].append(cases[(counter + 1 + i) % 14])
-
-    # Return the result
-    return formatted_result
-
+    return result
 
 # Calculate and print out seven day average for given state
+
+
 def comparative_averages(new_cases, states):
 
     # Loop on each state
     for state in states:
 
-        # Define the list of cases for the last 14 days (old to new)
-        new_cases_state = new_cases[state]
+        # Define the list of cases for the doubled average day
+        cases = new_cases[state]
 
         # Compute average (previous and latest)
-        prev_seven_day_avg = round(sum(new_cases_state[0:7]) / 7)
-        seven_day_avg = round(sum(new_cases_state[7:14]) / 7)
+        prev_avg = round(sum(cases[0:AVG_DAYS]) / AVG_DAYS)
+        recent_avg = round(sum(cases[AVG_DAYS:AVG_DAYS*2]) / AVG_DAYS)
 
         # Compute trend
-        trend = round((seven_day_avg / prev_seven_day_avg - 1) * 100)
+        trend = round((recent_avg / prev_avg - 1) * 100) if prev_avg != 0 else 0
         trend_abs = abs(trend)
         trend_type = 'an increase' if trend > 0 else 'a decrease'
 
         # Print result
-        print(f'{state} had a 7-day average of {seven_day_avg} and {trend_type} of {trend_abs}%')
+        print(f'{state} had a {AVG_DAYS}-day average of {recent_avg} and {trend_type} of {trend_abs}%')
 
 
 # Call Main
