@@ -1,6 +1,6 @@
 
 
-prices = {
+PRICES = {
     "Baja Taco": 4.25,
     "Burrito": 7.50,
     "Bowl": 8.50,
@@ -12,4 +12,7 @@ prices = {
     "Tortilla Salad": 8.00
 }
 
+
+try:
+    input()
 
