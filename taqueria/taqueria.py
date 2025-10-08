@@ -12,8 +12,16 @@ PRICES = {
     "Tortilla Salad": 8.00
 }
 
+total = 0
 
+# Prompt the user with items
 try:
-    input(")
-except EOFError:
+    while True:
+        item = input('Item: ').title()
+        if item in PRICES:
+            total += PRICES[item]
+            print('Total: $' + str(total))
 
+# Stop program when user has finished the command
+except EOFError:
+    print('')
