@@ -14,5 +14,6 @@ PRICES = {
 
 
 try:
-    input()
+    input(")
+except EOFError:
 
