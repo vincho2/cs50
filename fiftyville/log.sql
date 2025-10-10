@@ -32,24 +32,36 @@ AND activity = 'exit';
 
 -- Get ATM's info
 
--- Find people that called someone less than a minute on the theft day and having left the parking lot
--- of the bakery on the same day and having withdrawn money as well (3 results)
-SELECT DISTINCT(pp.name), pp.passport_number, bnk.account_number, atm.transaction_type, atm.atm_location, atm.amount
-FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk, atm_transactions atm
+-- Iterations (each iteration enrich the final query):
+-- 1. Find people that called someone less than a minute on the theft day (8 results)
+-- 2. Cross with the ones having left the parking lot of the bakery on the same day (5 results)
+-- 3. Cross with and having withdrawn money as well (3 results)
+-- 4. Croos with flight passengers of any flight based on passport number
+SELECT DISTINCT(pp.name), pp.passport_number, bnk.account_number, atm.amount,
+psg.flight_id, psg.seat
+FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk,
+atm_transactions atm, passengers psg
 WHERE 1=1
+-- Iteration 1
 AND ph.caller = pp.phone_number
-AND bkl.license_plate = pp.license_plate
-AND bkl.year = 2024
-AND bkl.month = 7
-AND bkl.day = 28
 AND ph.year = 2024
 AND ph.month = 7
 AND ph.day = 28
 AND ph.duration < 60
+-- Iteration 2
+AND bkl.license_plate = pp.license_plate
+AND bkl.year = 2024
+AND bkl.month = 7
+AND bkl.day = 28
+-- Itertaion 3
 AND bnk.person_id = pp.id
 AND bnk.account_number = atm.account_number
 AND atm.atm_location = 'Leggett Street'
+AND atm.transaction_type = 'withdraw'
 AND atm.year = 2024
 AND atm.month = 7
 AND atm.day = 28
+-- Iteration 4
+AND psg.passport_number = pp.passport_number
 ;
+
