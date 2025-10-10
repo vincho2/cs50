@@ -25,12 +25,6 @@ AND transcript LIKE '%bakery%';
 -- In the call, I heard the thief say that they were planning to take the earliest flight out of Fiftyville tomorrow.
 -- The thief then asked the person on the other end of the phone to purchase the flight ticket.
 
--- Get bakery security log
-SELECT * FROM bakery_security_logs
-WHERE year = 2024 AND month = 7 AND day = 28
-AND activity = 'exit';
-
--- Get ATM's info
 
 -- Iterations (each iteration enrich the final query):
 -- 1. Find people that called someone less than a minute on the theft day (8 results)
@@ -54,6 +48,7 @@ AND bkl.license_plate = pp.license_plate
 AND bkl.year = 2024
 AND bkl.month = 7
 AND bkl.day = 28
+AND activity = 'exit'
 -- Itertaion 3
 AND bnk.person_id = pp.id
 AND bnk.account_number = atm.account_number
