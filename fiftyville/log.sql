@@ -77,7 +77,7 @@ order by fl.hour, fl.minute
 
 
 SELECT DISTINCT(pp.name), psg.flight_id, psg.seat, ap1.city AS origin, fl.hour, fl.minute, ap2.city as destination,
-pp.phone_number
+pp.phone_number, pp.license_plate, bnk.account_number, pp.passport_number
 FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk,
 atm_transactions atm, passengers psg, flights fl, airports ap1, airports ap2
 WHERE 1=1
@@ -112,4 +112,6 @@ AND ap1.city like ('%fiftyville%')
 AND fl.destination_airport_id = ap2.id
 order by fl.hour, fl.minute
 ;
+
+
 
