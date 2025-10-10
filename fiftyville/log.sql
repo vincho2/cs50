@@ -74,37 +74,4 @@ AND fl.destination_airport_id = ap2.id
 order by fl.hour, fl.minute
 ;
 
-SELECT DISTINCT(pp.name), psg.flight_id, psg.seat, ap1.city AS origin, fl.hour, fl.minute, ap2.city as destination
-FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk,
-atm_transactions atm, passengers psg, flights fl, airports ap1, airports ap2
-WHERE 1=1
--- Iteration 1
-AND ph.caller = pp.phone_number
-AND ph.year = 2024
-AND ph.month = 7
-AND ph.day = 28
-AND ph.duration < 60
--- Iteration 2
-AND bkl.license_plate = pp.license_plate
-AND bkl.year = 2024
-AND bkl.month = 7
-AND bkl.day = 28
--- Itertaion 3
-AND bnk.person_id = pp.id
-AND bnk.account_number = atm.account_number
-AND atm.atm_location = 'Leggett Street'
-AND atm.transaction_type = 'withdraw'
-AND atm.year = 2024
-AND atm.month = 7
-AND atm.day = 28
--- Iteration 4
-AND psg.passport_number = pp.passport_number
--- Iteration 5
-AND psg.flight_id = fl.id
-AND fl.origin_airport_id = ap1.id
-AND ap1.city like ('%york%')
-AND fl.destination_airport_id = ap2.id
-order by fl.hour, fl.minute
-;
-
 
