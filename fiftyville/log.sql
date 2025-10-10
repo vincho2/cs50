@@ -41,7 +41,7 @@ AND activity = 'exit';
 SELECT DISTINCT(pp.name), pp.passport_number, bnk.account_number, atm.amount,
 psg.flight_id, psg.seat, fl.origin_airport_id, fl.destination_airport_id, fl.hour, fl.minute
 FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk,
-atm_transactions atm, passengers psg, flight fl
+atm_transactions atm, passengers psg, flights fl
 WHERE 1=1
 -- Iteration 1
 AND ph.caller = pp.phone_number
@@ -65,6 +65,13 @@ AND atm.day = 28
 -- Iteration 4
 AND psg.passport_number = pp.passport_number
 -- Iteration 5
-AND psg.flight_id = 
+AND psg.flight_id = fl.id
+;
+
+select * from flights fl
+where fl.year = 2024
+AND fl.month = 7
+AND fl.day = 29
+order by hour desc, minute desc
 ;
 
