@@ -33,10 +33,10 @@ AND activity = 'exit';
 -- Get ATM's info
 
 -- Get phone calls that lasts less than a minute -- 9 results
-SELECT pp.* FROM phone_calls ph, people pp, bakery_security_logs bk
+SELECT DISTINCT(pp.name), pp.* FROM phone_calls ph, people pp, bakery_security_logs bk
 WHERE 1=1
 AND ph.caller = pp.phone_number
-AND bk.licence_plate = pp.license_plate
+AND bk.license_plate = pp.license_plate
 AND bk.year = 2024
 AND bk.month = 7
 AND bk.day = 28
