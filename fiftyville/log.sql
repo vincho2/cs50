@@ -38,10 +38,9 @@ AND activity = 'exit';
 -- 3. Cross with and having withdrawn money as well (3 results)
 -- 4. Cross with flight passengers of any flight based on passport number (still 3 results)
 -- 5. Cross with actual flights on the next day (29 July)
-SELECT DISTINCT(pp.name), pp.passport_number, bnk.account_number, atm.amount,
-psg.flight_id, psg.seat, fl.origin_airport_id, fl.destination_airport_id, fl.hour, fl.minute
+SELECT DISTINCT(pp.name), psg.flight_id, psg.seat, ap1.city AS origin, fl.hour, fl.minute, ap2.city as destination
 FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk,
-atm_transactions atm, passengers psg, flights fl, airports ap
+atm_transactions atm, passengers psg, flights fl, airports ap1, airports ap2
 WHERE 1=1
 -- Iteration 1
 AND ph.caller = pp.phone_number
@@ -77,8 +76,9 @@ select fl.*, ap.* from flights fl, airports ap
 where fl.year = 2024
 AND fl.month = 7
 AND fl.day = 29
-AND fl.origin_airport_id = ap.id
-AND ap.city like ('%fiftyville%')
+AND fl.origin_airport_id = ap1.id
+AND ap1.city like ('%fiftyville%')
+AND fl.destination_airport_id = ap2.id
 order by hour desc, minute desc
 ;
 
