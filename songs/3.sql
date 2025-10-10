@@ -1,1 +1,1 @@
-SELECT TOP(5) name FROM songs ORDER BY duration_ms DESC;
+SELECT name FROM songs ORDER BY duration_ms DESC LIMIT 5;
