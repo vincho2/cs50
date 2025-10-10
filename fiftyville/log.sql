@@ -39,7 +39,7 @@ AND activity = 'exit';
 -- 4. Cross with flight passengers of any flight based on passport number (still 3 results)
 -- 5. Cross with actual flights on the next day (29 July) that flew from Fiftyville (3 results but we see that the earliest flight went to NYC)
 SELECT DISTINCT(pp.name), psg.flight_id, psg.seat, ap1.city AS origin, fl.hour, fl.minute, ap2.city as destination,
-pp.phone_number
+pp.phone_number, bkl.hour, bkl.minute
 FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk,
 atm_transactions atm, passengers psg, flights fl, airports ap1, airports ap2
 WHERE 1=1
