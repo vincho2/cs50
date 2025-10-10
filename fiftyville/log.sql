@@ -72,7 +72,7 @@ AND fl.destination_airport_id = ap2.id
 order by fl.hour, fl.minute
 ;
 
--- Get accomplice
+-- Get accomplice (1 result)
 SELECT DISTINCT(pp2.name),
 pp2.phone_number
 FROM phone_calls ph, people pp1, people pp2
@@ -84,6 +84,7 @@ AND ph.year = 2024
 AND ph.month = 7
 AND ph.day = 28
 AND ph.duration < 60
+AND pp1.name = 'Bruce'
 ;
 
 
