@@ -33,9 +33,9 @@ AND activity = 'exit';
 -- Get ATM's info
 
 -- Find people that called someone less than a minute on the theft day and having left the parking lot
--- of the bakery on the same day (5 results)
-SELECT DISTINCT(pp.name), pp.passport_number, bnk.account_number
-FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk, atm_transaction atm
+-- of the bakery on the same day and having withdrawn money as well (3 results)
+SELECT DISTINCT(pp.name), pp.passport_number, bnk.account_number, atm.transaction_type, atm.atm_location, atm.amount
+FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk, atm_transactions atm
 WHERE 1=1
 AND ph.caller = pp.phone_number
 AND bkl.license_plate = pp.license_plate
@@ -48,4 +48,8 @@ AND ph.day = 28
 AND ph.duration < 60
 AND bnk.person_id = pp.id
 AND bnk.account_number = atm.account_number
+AND atm.atm_location = 'Leggett Street'
+AND atm.year = 2024
+AND atm.month = 7
+AND atm.day = 28
 ;
