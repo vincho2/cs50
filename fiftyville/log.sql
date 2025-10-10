@@ -32,7 +32,8 @@ AND activity = 'exit';
 
 -- Get ATM's info
 
--- Get phone calls that lasts less than a minute -- 9 results
+-- Find people that called someone less than a minute on the theft day and having left the parking lot
+-- of the bakery on the same day (5 results)
 SELECT DISTINCT(pp.name), pp.* FROM phone_calls ph, people pp, bakery_security_logs bk
 WHERE 1=1
 AND ph.caller = pp.phone_number
