@@ -34,7 +34,7 @@ AND activity = 'exit';
 
 -- Find people that called someone less than a minute on the theft day and having left the parking lot
 -- of the bakery on the same day (5 results)
-SELECT DISTINCT(pp.name), pp.passport_number,  FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_account bnk
+SELECT DISTINCT(pp.name), pp.passport_number, bnk. FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_account bnk
 WHERE 1=1
 AND ph.caller = pp.phone_number
 AND bkl.license_plate = pp.license_plate
