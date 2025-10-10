@@ -1,6 +1,6 @@
 
-
-PRICES = {
+# Items & prices
+MENU = {
     "Baja Taco": 4.25,
     "Burrito": 7.50,
     "Bowl": 8.50,
@@ -12,15 +12,16 @@ PRICES = {
     "Tortilla Salad": 8.00
 }
 
-total = 0
+total = 0.0
 
-# Prompt the user with items
+# Prompt the user with items as long as he does not press ctrl+D
 try:
     while True:
         item = input('Item: ').title()
-        if item in PRICES:
-            total += PRICES[item]
-            print('Total: $' + str(total))
+        # Get item price and add it to the sum (reprompt if item is not in the menu)
+        if item in MENU:
+            total += MENU[item]
+            print(f'Total: ${total:.2f}')
 
 # Stop program when user has finished the command
 except EOFError:
