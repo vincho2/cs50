@@ -36,11 +36,12 @@ AND activity = 'exit';
 -- 1. Find people that called someone less than a minute on the theft day (8 results)
 -- 2. Cross with the ones having left the parking lot of the bakery on the same day (5 results)
 -- 3. Cross with and having withdrawn money as well (3 results)
--- 4. Croos with flight passengers of any flight based on passport number
+-- 4. Cross with flight passengers of any flight based on passport number (still 3 results)
+-- 5. Cross with actual flights on the next day (29 July)
 SELECT DISTINCT(pp.name), pp.passport_number, bnk.account_number, atm.amount,
-psg.flight_id, psg.seat
+psg.flight_id, psg.seat, fl.origin_airport_id, fl.destination_airport_id, fl.hour, fl.minute
 FROM phone_calls ph, people pp, bakery_security_logs bkl, bank_accounts bnk,
-atm_transactions atm, passengers psg
+atm_transactions atm, passengers psg, flight fl
 WHERE 1=1
 -- Iteration 1
 AND ph.caller = pp.phone_number
@@ -63,5 +64,7 @@ AND atm.month = 7
 AND atm.day = 28
 -- Iteration 4
 AND psg.passport_number = pp.passport_number
+-- Iteration 5
+AND psg.flight_id = 
 ;
 
