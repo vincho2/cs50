@@ -3,7 +3,7 @@ Implement in your homepage directory a website that must:
 - Contain at least 4 different .html pages,
   - at least one of which is index.html (the main page of your website),
   - and it should be possible to get from any page on your website to any other page by following one or more hyperlinks.
-- 
+  
 - Use at least ten (10) distinct HTML tags besides <html>, <head>, <body>, and <title>. Using some tag (e.g., <p>) multiple times still counts as just one (1) of those ten
 - Integrate one or more features from Bootstrap into your site. Bootstrap is a popular library (that comes with lots of CSS classes and more) via which you can beautify your site. See Bootstrap’s documentation to get started. In particular, you might find some of Bootstrap’s components of interest.
 - Have at least one stylesheet file of your own creation, styles.css, which uses
