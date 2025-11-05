@@ -1,0 +1,57 @@
+body {
+    font-family: 'Montserrat';
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(13, 110, 253);
+    color: #e3f2fd;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+header a.navbar-brand {
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    color: #e3f2fd;
+}
+
+nav {
+    background-color: #e3f2fd;
+    color: rgb(13, 110, 253);
+    font-size: 1rem;
+}
+
+.paragraph-header {
+    font-weight: bold;
+}
+
+#counterText {
+    font-size: 0.8rem;
+    color: #999999;
+}
+
+.text-link {
+    color: rgb(13, 110, 253);
+
+}
+
+h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    gap: 1rem;
+}
+
+section {
+    padding: 1rem;
+
+}
+
+footer {
+    font-size: 0.9rem;
+    background-color: #999999;
+    color: white;
+    text-align: center;
+}

@@ -1,15 +1,162 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
     <head>
+        <!-- Encoding and display properties -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+        <!-- Links to bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+            integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+            crossorigin="anonymous"></script>
+
+        <!-- Style -->
         <link href="styles.css" rel="stylesheet">
-        <title>My Webpage</title>
+
+        <!-- General information -->
+        <title>Homepage - Vincent</title>
     </head>
+
     <body>
-        hello, homepage
+        <header class="sticky-top">
+            <a class="navbar-brand" href="index">
+                <img src="doc/android-chrome-512x512.png" alt="Logo" width="28" height="28"
+                    class="d-inline-block align-text-center">
+                Home
+            </a>
+            <div>Welcome to my website</div>
+            <nav class="navbar">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="family">Family</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="job">Job</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="hobbies">Hobbies</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="intro">
+                <h1>Introduction</h1>
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseOne">
+                                Myself
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <p class="paragraph-header">First, let's talk about myself !</p>
+                                <p>Hi there, welcome to my corner of the web!
+                                    I’m Vincent, and here you’ll find stories about my <a class="text-link"
+                                        href="family">family</a>, my favorite <a class="text-link"
+                                        href="hobbies">hobbies</a>,
+                                    and my <a class="text-link" href="job">job</a>.
+                                    Thanks for visiting, and I hope you enjoy discovering a bit of my world.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseTwo">
+                                You, my fan
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <p class="paragraph-header">Now, let's talk about you !</p>
+                                <p>Welcome, dear fan, and thank you for visiting my site! Here, you’ll find a world
+                                    crafted
+                                    especially for those who are curious, engaged, and eager to explore. Whether you’re
+                                    drawn by the stories, the projects, or the moments shared, there is always something
+                                    here that sparks interest.</p>
+
+                                <p>Every visit is a chance to connect with ideas, experiences, and perspectives that
+                                    might
+                                    resonate in unexpected ways. You can come here for inspiration, for insight, and
+                                    sometimes
+                                    simply for the joy of discovering something new. Each section of this site is
+                                    designed
+                                    to invite exploration, to encourage curiosity, and to celebrate the shared
+                                    excitement
+                                    that will surely keeps you coming back.</p>
+
+                                <p>From the first glance to the latest update, there’s a rhythm and a flow intended to
+                                    capture attention and provide a satisfying experience. You will return not just for
+                                    what’s
+                                    presented, but for the energy and engagement that surrounds every corner of this
+                                    space.
+                                    Whether you’re here for a quick look, a deep dive, or just to follow along with
+                                    ongoing
+                                    updates, this site offers a place to connect, explore, and enjoy.</p>
+
+                                <p>So, take your time, browse the pages, and see what resonates. Fans are the heartbeat
+                                    of
+                                    this site, and each visit helps shape the journey, offering new perspectives,
+                                    unexpected
+                                    surprises, and countless reasons to come back for more.</p>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <section id="contact">
+                <h1>Let's stay in touch</h1>
+                <p class="paragraph-header">Leave your contact details and message here !</p>
+                <form class="row g-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John"
+                            required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Smith"
+                            required>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="inputEmail" name="email"
+                            placeholder="mail@domain.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="3"
+                        maxlength="500" required></textarea>
+                        <div id="counterText">
+                            <span id="remainingCharCount"></span> characters remaining
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary" id="submitButton">Send</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <footer class="electrolize-regular">Made by Vincent from France</footer>
+        <script src="main.js"></script>
     </body>
+
 </html>

@@ -1,0 +1,44 @@
+List of HTML tags used:
+header
+main
+footer
+nav
+section
+div
+link
+meta
+script
+a
+img
+ul
+li
+p
+h1
+h2
+form
+input
+label
+button
+
+CSS properties used:
+display
+font-family
+justify-content
+align-items
+background-color
+color
+font-weight
+font-size
+padding-left
+padding
+text-align
+gap
+
+Description of how I chose to use JavaScript and Bootstrap:
+I used Bootstrap mainly for CSS classes like sticky-top, navbar, justify-content-end and also include an accordion, it was also used to have nice forms
+I used Javascript to include a contact form on my main page, display the remaining characters count, an alert once the form is sent and a display of the data sent on the browser consol.
+
+
+
+
+
