@@ -35,8 +35,40 @@ def after_request(response):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    return apology("TODO")
 
+    # Get user ID from session
+    userId = session.get("user_id")
+
+    # Query database for username
+    user_rows = db.execute(
+            "SELECT username, cash FROM users WHERE id = ?", userId)
+    username = user_rows[0]["username"]
+    cash_balance = user_rows[0]["cash"]
+
+    # Query database for user's portfolio in history table
+    portfolio_rows = db.execute(
+            "SELECT symbol, SUM(shares) AS sum_shares FROM history WHERE userid = ? GROUP BY symbol HAVING sum_shares > 0", userId)
+    # Define portfolio list
+    portfolio = []
+
+    # for each stock symbol in portfolio_rows, get data and look up current price and calculate total value
+    for row in portfolio_rows:
+        symbol = row["symbol"]
+        shares = row["sum_shares"]
+        # Look up current price
+        quote = lookup(symbol)
+        # If a match is found, calculate total value and append to portfolio list
+        if quote:
+            total_value = shares * quote["price"]
+            portfolio.append({
+                "symbol": symbol,
+                "shares": shares,
+                "price": quote["price"],
+                "total_value": total_value
+            })
+
+    # Render index.html with username
+    return render_template("index.html", username=username, cash_balance=cash_balance, portfolio=portfolio)
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
@@ -112,7 +144,58 @@ def quote():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
-    return apology("TODO")
+    # Forget any user_id
+    session.clear()
+
+    # User reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+
+        # Get user name from the form
+        username = request.form.get("username")
+
+        # Ensure username was submitted
+        if not username:
+            return apology("must provide username", 403)
+
+        # Get user password from the form
+        password = request.form.get("password")
+        # Ensure password was submitted
+        if not password:
+            return apology("must provide password", 403)
+
+        # Ensure confirmation password was submitted
+        if not request.form.get("confirmation"):
+            return apology("must confirm password", 403)
+
+        # Ensure password and confirmation match
+        if password != request.form.get("confirmation"):
+            return apology("passwords do not match", 403)
+
+        # If everything is ok, get the hash of the user's password and insert the new user into the database
+        # (Keep the default cash value to 10000)
+        hashed_password = generate_password_hash(password)
+        try:
+            db.execute(
+                "INSERT INTO users (username, hash) VALUES (?, ?)",
+                username,
+                hashed_password,
+            )
+        except Exception as e:
+            return apology("username already exists", 403)
+
+        # Once registered, log the user in automatically
+        # Query database for username
+        rows = db.execute(
+            "SELECT * FROM users WHERE username = ?", username
+        )
+        session["user_id"] = rows[0]["id"]
+
+        # And redirect user to home page
+        return redirect("/")
+
+    # User reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("register.html")
 
 
 @app.route("/sell", methods=["GET", "POST"])

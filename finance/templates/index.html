@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portofolio
+{% endblock %}
+
+{% block main %}
+    <h1>Portfolio of {{ username }}</h1>
+
+    <div class="section">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for stock in portfolio %}
+
+                    <tr>
+                        <th>{{ stock.symbol }}</th>
+                        <th>{{ stock.shares }}</th>
+                        <th>${{ stock.price }}</th>
+                        <th>${{ stock.total_value }}</th>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+{% endblock %}
