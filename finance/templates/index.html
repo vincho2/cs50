@@ -5,37 +5,66 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Portfolio of {{ username }}</h1>
+    <h3>Portfolio of {{ username }}</h3>
 
-    <div class="section">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Symbol</th>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">Total</th>
+                <th>Buy</th>
+                <th>Sell</th>
+                <th>Get Quote</th>
+            </tr>
+        </thead>
+        <tbody>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Symbol</th>
-                    <th>Shares</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
+            {% for stock in portfolio %}
 
-                {% for stock in portfolio %}
+            <tr>
+                <td class="text-start">{{ stock.symbol }}</td>
+                <td class="text-end">{{ stock.shares }}</td>
+                <td class="text-end">{{ stock.price }}</td>
+                <td class="text-end">{{ stock.position_value }}</td>
 
-                    <tr>
-                        <th>{{ stock.symbol }}</th>
-                        <th>{{ stock.shares }}</th>
-                        <th>${{ stock.price }}</th>
-                        <th>${{ stock.total_value }}</th>
-                    </tr>
+                <td>
+                    <form action="/buy" method="post" class="d-flex align-items-center">
+                        <input type="hidden" name="symbol" value="{{ stock.symbol }}">
+                        <input class="form-control mx-auto w-auto me-1" name="shares" placeholder="Quantity" type="number" min="1">
+                        <button class="btn btn-sm btn-success" type="submit">Buy</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/sell" method="post" class="d-flex align-items-center">
+                        <input type="hidden" name="symbol" value="{{ stock.symbol }}">
+                        <input class="form-control mx-auto w-auto me-1" name="shares" placeholder="Quantity" type="number" min="1">
+                        <button class="btn btn-sm btn-danger" type="submit">Sell</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/quote" method="post">
+                        <input type="hidden" name="symbol" value="{{ stock.symbol }}">
+                        <button class="btn btn-sm btn-info" type="submit">Get Quote</button>
+                    </form>
+                </td>
+            </tr>
 
-                {% endfor %}
+            {% endfor %}
 
-            </tbody>
-        </table>
-    </div>
-
-
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="3">Cash Available</td>
+                <td class="border-0 text-end">{{ cash_display }}</td>
+            </tr>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="3">TOTAL BALANCE</td>
+                <td class="border-0 w-bold text-end">{{ total_balance_value }}</td>
+            </tr>
+        </tfoot>
+    </table>
 
 
 {% endblock %}

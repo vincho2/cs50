@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <h3>Quoted Stock</h3>
+    <table class="table table-bordered w-auto text-center align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-end">{{ symbol }}</td>
+                <td>{{ name }}</td>
+                <td class="text-end">{{ price }}</td>
+            </tr>
+    </tbody>
+    </table>
+
+
+{% endblock %}
